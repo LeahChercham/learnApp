@@ -9,10 +9,9 @@ const logIn = function () {
         renderer.render(LOGIN_TEMPLATE, { isLoggedIn: true, username }, LOGIN_AREA)
         let data = "" // because we need data to use handlebars
         renderer.render(MAIN_TEMPLATE, data, MAIN_AREA)
-        renderer.render(MAIN_TEMPLATE, data, MAIN_AREA)
+        renderer.render(RESULTS_TEMPLATE, data, RESULTS_AREA)
         renderer.render(DB_TEMPLATE, data, DB_AREA)
 
-        //render(MAIN_TEMPLATE, , MAIN_AREA)
     } else {
         alert("Please enter your password.")
     }
@@ -22,6 +21,7 @@ const logOut = function(){
     user = undefined
     renderer.render(LOGIN_TEMPLATE, { isLoggedIn: false }, LOGIN_AREA)
     renderer.clear(MAIN_AREA)
+    renderer.clear(RESULTS_AREA)
     renderer.clear(DB_AREA)
 }
 

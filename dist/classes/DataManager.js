@@ -1,9 +1,9 @@
 class DataManager{
 
     constructor(){
-       // this.Book = []
-        this.Podcast = []
-       // this.Course = []
+       // this.books = []
+        this.podcasts = []
+       // this.course = []
 
     }
 
@@ -13,7 +13,7 @@ class DataManager{
         debugger
         await $.ajax({
             method:"get",
-            url:`/podcasts/{skill}`,
+            url:`/podcasts/${skill}`,
             success: (podcasts)=>{
                 this.podcasts = podcasts
             },
@@ -26,8 +26,8 @@ class DataManager{
     async getAllDataFromAPI(skill){
         await getPodcastFromAPI(skill)
         console.log(this.Podcasts)
-        // v4 await getCoursesFromAPI()
-        // v3 await getBooksFromAPI()
+        // v4 await getCourseFromAPI()
+        // v3 await getBookFromAPI()
     }
 
 
