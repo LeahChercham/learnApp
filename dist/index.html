@@ -1,41 +1,58 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <body>
     <div id="container">
         <div class="login-area"></div>
         <div class="main-area"></div>
+        <div class="db-area"></div>
     </div>
-    
 
-    <!-- Handlebars Templates--> 
+
+    <!-- Handlebars Templates-->
     <script id="login-template" type="text/x-handlebars-template">
     {{#if isLoggedIn}}
         <span>Hi {{username}}</span>
-        <div class="button" onclick=logOut()>Logout</div>
+        <button class="button logOut" onclick=logOut()>Logout</button>
     {{else}}
         <input id="username" placeholder="Username">
         <input id="password" placeholder="Password" type="password">
-        <div class="button" onclick=logIn()>Login</div>
+        <button class="button logIn" onclick=logIn()>Login</button>
     {{/if}}
     </script>
 
     <script id="main-template" type="text/x-handlebars-template">
-    
+        <input type="text" placeholder="What skill do you want to improve?">
+        <button class="button search">Show me Recommendations!</button>
+        <div id="result">
+            <div class="result podcast">
+            </div>
+        </div>
+    </script>
+
+    <script id="db-template" type="text/x-handlebars-template">
+        <div class="db-container">
+            <div id="savedPodcasts">
+
+            </div>
+        </div>
     </script>
 
 
 
-    <script src="./jquery/dist/jquery.js"></script>
-    <script src="./handlebars/dist/handlebars.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/handlebars/dist/handlebars.js"></script>
     <script src="./classes/Renderer.js"></script>
     <script src="./classes/DataManager.js"></script>
     <script src="constants.js"></script>
     <script src="./classes/UserClass.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>
