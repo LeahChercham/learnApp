@@ -14,6 +14,7 @@ class User {
         debugger
         let user = this.name
         await dataManager.saveToDB(podcast, user)
+    
         let data = dataManager.savedPodcasts
         console.log(data)
         renderer.render(DB_TEMPLATE, data, DB_AREA)

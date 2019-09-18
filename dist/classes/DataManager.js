@@ -35,6 +35,7 @@ class DataManager {
 
     async saveToDB(object, user){
         debugger
+
         await $.ajax({
             method:"put",
             url:`/podcast/${user}`,
@@ -44,6 +45,6 @@ class DataManager {
             },
             error: function(xhr,text,error){console.log("error : "+ error + " - " + text)}
         }) 
-        this.getAllDataFromDB()
+        await this.getAllDataFromDB()
     }
 }
