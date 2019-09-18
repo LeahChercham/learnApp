@@ -1,6 +1,3 @@
-const dataManager = new DataManager()
-const renderer = new Renderer()
-
 class User {
     constructor(name){
         this.name = name

@@ -1,14 +1,3 @@
-const renderer = new Renderer()
-
-LOGIN_TEMPLATE = "login-template"
-LOGIN_AREA = "login-area"
-
-MAIN_TEMPLATE = "main-template"
-MAIN_AREA = "main-area"
-
-
-
-let user
 
 const logIn = function () {
     const username = $("#username").val()
