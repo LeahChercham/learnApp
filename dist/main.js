@@ -34,10 +34,32 @@ renderer.render(LOGIN_TEMPLATE, { isLoggedIn: false }, LOGIN_AREA)
 $(".main-area").on("click", "#searchButton", search)
 
 //------------Simona's Read more feature -------------
-$('.podcastDescription').text(function(_, txt) {
-    if(txt.length > 200){
-      txt = txt.substr(0, 200) + "...";
-      $(this).parent().append("<a href='#'>Read More</a>");
-    }
-    $(this).html(txt)
+
+const showMore = function(){
+    $(".body").on("click",".showMore", function(){
+        const podcastDiv = $(this).closest(".podcast")
+        const allDescription = $(this).attr("data-id")
+        podcastDiv.append(`<div>${allDescription}</div>)`)
+    } )
+    // let data = $(this).previousSibling(".podcastDescription")
+    // $(this).sibling(".podcastDescription").append(data)
+}
+
+//$("body").on("click", ".showMore", showMore())
+
+Handlebars.registerHelper('shortDesc', function(str) {
+    if (str.length > 200) 
+    return `${str.substring(0,200)}`;
+    return str;
   });
+
+//   Handlebars.registerHelper('showMore', function(str) {
+//     if (str.length > 200) 
+//     return `${str.substring(200)}`;
+//   });
+
+
+//   Handlebars.registerHelper('clickFunction', function(str) {
+//     if (str.length > 200)
+//     return <span class="showMore">...Show more </span>;
+//   });

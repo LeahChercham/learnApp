@@ -48,6 +48,7 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
 
     const first3Podcasts = function (resultsOfData) {
         for (let i = 0; i < 4; i++) {
+            debugger 
             resultsOfData[i] = {
                 episodeTitle: resultsOfData[i].title_original,
                 podcastName: resultsOfData[i].podcast_title_original,
@@ -60,6 +61,7 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
         }
         return resultsOfData
     }
+
     request(getLink, callback);
 })
 // ======================================= GET PODCAST REQUEST DONE ================================ // 
