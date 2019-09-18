@@ -20,7 +20,29 @@ router.post("/login", function (req, res) {
 
 })
 
+router.put("/podcast/:username", function(req,res){
+    let user = req.params.username
+    User.findOneAndUpdate({"name": user}, {$push: {"podcasts" : req.body}}, {new: true}, function(error, response){
+        console.log(response)
+        res.send(response)
+    })
+})
 
+router.delete("/podcast/:username/:episodeTitle", function(req,res){
+    let user = req.params.username
+    let episodeTitle = req.params.episodeTitle
+    console.log("episode title:" + episodeTitle)
+    User.findOneAndUpdate({"name": user}, {$pull: {"podcasts" :{"episodeTitle" : episodeTitle}}}, {new: true}, function(error,response){
+        res.send(response)
+    })
+})
+
+router.get("/savedPodcasts/:username", function(req,res){
+    let user = req.params.username
+    User.findOne({"name":user}, function(error,response){
+        res.send(response.podcasts)
+    })
+})
 
 // ======================================= GET PODCAST REQUEST ================================ // 
 router.get("/podcasts/:searchedSkill", async function (req, res) {
