@@ -1,7 +1,7 @@
 const dataManager = new DataManager()
 const renderer = new Renderer()
 
-class UserClass {
+class User {
     constructor(name){
         this.name = name
     }

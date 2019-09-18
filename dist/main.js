@@ -28,3 +28,5 @@ const logOut = function(){
     render(LOGIN_TEMPLATE, { isLoggedIn: false }, LOGIN_AREA)
     renderer.clear(MAIN_AREA)
 }
+
+render(LOGIN_TEMPLATE, { isLoggedIn: false }, LOGIN_AREA)
