@@ -10,4 +10,8 @@ class Renderer {
         $(`.${destination}`).append(html)
         
     }
+
+    clear(area){
+        $(".area").empty()
+    }
 }
