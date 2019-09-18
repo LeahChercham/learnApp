@@ -36,16 +36,16 @@ $(".main-area").on("click", "#searchButton", search)
 //------------Simona's Read more feature -------------
 
 const showMore = function(){
-    $(".body").on("click",".showMore", function(){
-        const podcastDiv = $(this).closest(".podcast")
-        const allDescription = $(this).attr("data-id")
-        podcastDiv.append(`<div>${allDescription}</div>)`)
-    } )
-    // let data = $(this).previousSibling(".podcastDescription")
-    // $(this).sibling(".podcastDescription").append(data)
+        debugger
+        const allDescription = $(this).closest(".podcast").find(".podcastDescription").data("id")
+        console.log(allDescription)
+        
+        podcastDiv.append(`<div>${allDescription}</div>`)
+    let data = $(this).siblings(".podcastDescription")
+    $(this).siblings(".podcastDescription").append(data)
 }
 
-//$("body").on("click", ".showMore", showMore())
+$("body").on("click", ".showMore", showMore)
 
 Handlebars.registerHelper('shortDesc', function(str) {
     if (str.length > 200) 
