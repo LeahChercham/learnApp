@@ -2,9 +2,10 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
 const PodcastSchema = new Schema({
-    author: String,
-    title: String,
-    buyLink: String,
+    episodeTitle: String,
+    podcastName: String,
+    podcastLink: String,
+    duration: Number,
     image: String,
     description: String,
     podcastSaved: Boolean
