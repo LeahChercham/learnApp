@@ -35,6 +35,13 @@ router.delete("/podcast/:username/:podcastName", function(req,res){
     })
 })
 
+router.get("/savedPodcasts/:username", function(req,res){
+    let user = req.params.username
+    User.findOne({"name":user}, function(error,response){
+        res.send(response.podcasts)
+    })
+})
+
 // ======================================= GET PODCAST REQUEST ================================ // 
 router.get("/podcasts/:searchedSkill", async function (req, res) {
     const searchedSkill = req.params.searchedSkill
