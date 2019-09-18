@@ -1,19 +1,89 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
-    
-    
+    <div id="container">
+        <div class="login-area"></div>
+        <div class="main-area"></div>
+        <div class="results-area"></div>
+        <div class="db-area"></div>
+    </div>
+
+
+    <!-- Handlebars Templates-->
+    <script id="login-template" type="text/x-handlebars-template">
+    {{#if isLoggedIn}}
+    <div class="logContainer">
+            <div id="welcomeMessage">Hi {{username}}</div class="">
+            <button class="button" id="logOutButton" onclick=logOut()>Logout</button>
+    </div>
+    {{else}}
+    <div class="logContainer">
+        <input id="username" placeholder="Username">
+        <input id="password" placeholder="Password" type="password">
+        <button class="button" id="logInButton" onclick=logIn()>Login</button>
+    </div>
+    {{/if}}
+    </script>
+
+    <script id="main-template" type="text/x-handlebars-template">
+        <input type="text" placeholder="What skill do you want to improve?" id="skillInput">
+        <button class="button" id="searchButton">Show me Recommendations!</button>
+
+        </div>
+    </script>
+
+    <script id="results-template" type="text/x-handlebars-template">
+        <div id="result">
+            <div class="result podcast">
+                <div>
+                    <div class="podcastName">{{podcastName}}</div>
+                    <div class="episodeTitle">{{episodeTitle}}</div>
+                    <div class="podcastImage">
+                            <img src={{image}} alt="image of podcast">
+                    </div>
+                    <div>Listen to the podcast:
+                        <audio controls duration src={{podcastLink}}>Your browser does not support the <code>audio</code> element.</audio>
+                    </div>
+                    <div class="podcastDescription">{{description}}</div>
+                </div>  
+            </div>
+            <div class="result book"></div>
+            <div class="result course"></div>
+        </div>
+    </script>
+
+
+    <script id="db-template" type="text/x-handlebars-template">
+        <div class="db-container">
+            <div id="savedPodcasts">
+                <h2>Listen to later:</h2>
+                <ul>
+                    <li><img id="listenImage" src="../images\small-logo.png" alt="Powered by LISTEN NOTES"></li>
+                </ul>  
+            </div>
+        </div>
+    </script>
 
 
 
 
-    <script src="./jquery/dist/jquery.js"></script>
-    <script src="./handlebars/dist/handlebars.js"></script>
+
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/handlebars/dist/handlebars.js"></script>
+    <script src="./classes/Renderer.js"></script>
+    <script src="./classes/DataManager.js"></script>
+    <script src="constants.js"></script>
+    <script src="./classes/UserClass.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>

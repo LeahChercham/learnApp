@@ -1,0 +1,24 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+    --primaryTextColor: #0A2342;
+    color:var(--primaryTextColor);
+    --secondaryTextColor: white;
+    --secondaryBackgroundColor: var(--primaryTextColor);
+}
+body{
+    margin: 10px;
+}
+
+.button{
+    background-color:var(--secondaryBackgroundColor);
+    color:var(--secondaryTextColor);
+    cursor:pointer;
+}
+
+#container{
+    height: 98vh;
+    width: 98vw;
+    display:grid;
+    grid-template-rows: 1fr 4fr 4fr 5fr;
+}
+
