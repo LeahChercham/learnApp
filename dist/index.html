@@ -6,9 +6,27 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="container">
+        <div class="login-area"></div>
+        <div class="main-area"></div>
+    </div>
     
 
+    <!-- Handlebars Templates--> 
+    <script id="login-template" type="text/x-handlebars-template">
+    {{#if isLoggedIn}}
+        <span>Hi {{username}}</span>
+        <div class="button" onclick=logOut()>Logout</div>
+    {{else}}
+        <input id="username" placeholder="Username">
+        <input id="password" placeholder="Password" type="password">
+        <div class="button" onclick=logIn()>Login</div>
+    {{/if}}
+    </script>
+
+    <script id="main-template" type="text/x-handlebars-template">
+    
+    </script>
 
 
 
