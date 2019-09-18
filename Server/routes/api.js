@@ -5,9 +5,9 @@ const request = require("request")
 const userModule = require("../modules/userModel.js")
 
 router.get("/podcasts/:searchedSkill", async function (req, res) {
-    const searchedSkill = req.params.skill
+    const searchedSkill = req.params.searchedSkill
     const getLink = {
-        url: `https://listen-api.listennotes.com/api/v2/search?q=${searchedSkill}&sort_by_date=0&type=episode&offset=0&len_min=10&len_max=30&only_in=title%2Cdescription&language=English&safe_mode=1`,
+        url: `https://listen-api.listennotes.com/api/v2/search?q=${searchedSkill}&type=episode&offset=0&len_min=10&len_max=30&only_in=title&language=English&safe_mode=1`,
         headers: {
             'X-ListenAPI-Key': 'c1c2187a1d5e462b9f49a13728df80de'
         }
