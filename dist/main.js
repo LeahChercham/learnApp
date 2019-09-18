@@ -32,3 +32,12 @@ const search = function(){
 
 renderer.render(LOGIN_TEMPLATE, { isLoggedIn: false }, LOGIN_AREA)
 $(".main-area").on("click", "#searchButton", search)
+
+//------------Simona's Read more feature -------------
+$('.podcastDescription').text(function(_, txt) {
+    if(txt.length > 200){
+      txt = txt.substr(0, 200) + "...";
+      $(this).parent().append("<a href='#'>Read More</a>");
+    }
+    $(this).html(txt)
+  });

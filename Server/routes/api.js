@@ -18,7 +18,7 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
             //console.log(` Asking API for ${searchedSkill} podcasts`)
             
             let data = JSON.parse(body)
-            let resultsOfData = data.results
+            let resultsOfData = data.results// this will be an array
             
             first3Podcasts(resultsOfData)
             resultsOfData.splice(3)
