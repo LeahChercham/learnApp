@@ -12,6 +12,7 @@
     <div id="container">
         <div class="login-area"></div>
         <div class="main-area"></div>
+        <div class="results-area"></div>
         <div class="db-area"></div>
     </div>
 
@@ -33,11 +34,9 @@
     </script>
 
     <script id="main-template" type="text/x-handlebars-template">
-        <input type="text" placeholder="What skill do you want to improve?">
+        <input type="text" placeholder="What skill do you want to improve?" id="skillInput">
         <button class="button" id="searchButton">Show me Recommendations!</button>
-        <div id="result">
-            <div class="result podcast">
-            </div>
+
         </div>
     </script>
 
@@ -47,6 +46,14 @@
 
             </div>
         </div>
+    </script>
+
+    <script id="results-template" type="text/x-handlebars-template">
+            <div id="result">
+                <div class="result podcast">
+                <div class="result book">
+                <div class="result course">
+            </div>
     </script>
 
 

@@ -4,8 +4,9 @@ class User {
     }
 
     async search(skill){
-        await dataManager.getAllDataFromAPI()
-        renderer.render()
+        await dataManager.getAllDataFromAPI(skill)
+        let data = {podcast: dataManager.Podcast, }
+        renderer.render(RESULTS_TEMPLATE, data, RESULTS_AREA)
     }
 
 }

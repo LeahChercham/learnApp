@@ -1,24 +1,19 @@
 class DataManager{
 
     constructor(){
-        this.Books = []
-        this.Podcasts = []
-        this.Courses = []
+       // this.Book = []
+        this.Podcast = []
+       // this.Course = []
+
     }
 
     // v2 getAllDataFromDB(){
     // }
-
-    async getAllDataFromAPI(){
-        await getPodcastsFromAPI()
-        // v4 await getCoursesFromAPI()
-        // v3 await getBooksFromAPI()
-    }
-
-    async getPodcastsFromAPI(){
+    async getPodcastFromAPI(skill){
+        debugger
         await $.ajax({
             method:"get",
-            url:"/podcasts",
+            url:`/podcasts/{skill}`,
             success: (podcasts)=>{
                 this.podcasts = podcasts
             },
@@ -26,8 +21,16 @@ class DataManager{
                 console.log("error: " + error + " - " + text)
             }
         })
-
     }
+
+    async getAllDataFromAPI(skill){
+        await getPodcastFromAPI(skill)
+        console.log(this.Podcasts)
+        // v4 await getCoursesFromAPI()
+        // v3 await getBooksFromAPI()
+    }
+
+
 
 
 }
