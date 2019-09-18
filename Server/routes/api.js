@@ -23,14 +23,16 @@ router.post("/login", function (req, res) {
 router.put("/podcast/:username", function(req,res){
     let user = req.params.username
     User.findOneAndUpdate({"name": user}, {$push: {"podcasts" : req.body}}, {new: true}, function(error, response){
+        console.log(response)
         res.send(response)
     })
 })
 
-router.delete("/podcast/:username/:podcastName", function(req,res){
+router.delete("/podcast/:username/:episodeTitle", function(req,res){
     let user = req.params.username
-    let podcastName = req.params.podcastName
-    User.findOneAndUpdate({"name": user}, {$pull: {"podcasts" :{"podcastName" : podcastName}}}, {new: true}, function(error,response){
+    let episodeTitle = req.params.episodeTitle
+    console.log("episode title:" + episodeTitle)
+    User.findOneAndUpdate({"name": user}, {$pull: {"podcasts" :{"episodeTitle" : episodeTitle}}}, {new: true}, function(error,response){
         res.send(response)
     })
 })

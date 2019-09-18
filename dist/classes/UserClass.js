@@ -10,11 +10,19 @@ class User {
         renderer.render(RESULTS_TEMPLATE, data, RESULTS_AREA)
     }
 
-    async saveToDB(podcast) {
+    async saveToDB(episode) {
+        let user = this.name
+        await dataManager.saveToDB(episode, user)
+    
+        let data = dataManager.savedPodcasts
+        console.log(data)
+        renderer.render(DB_TEMPLATE, data, DB_AREA)
+    }
+
+    async removeFromDB(episode){
         debugger
         let user = this.name
-        await dataManager.saveToDB(podcast, user)
-    
+        await dataManager.removeFromDB(episode, user)
         let data = dataManager.savedPodcasts
         console.log(data)
         renderer.render(DB_TEMPLATE, data, DB_AREA)

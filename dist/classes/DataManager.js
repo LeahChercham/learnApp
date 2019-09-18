@@ -8,13 +8,11 @@ class DataManager {
 
     }
     async getPodcastsFromDB(){
-        debugger
         let response = await $.get(`/savedPodcasts/${user.name}`)
         this.savedPodcasts = response
     }
 
     async getAllDataFromDB() {
-        debugger
         await this.getPodcastsFromDB()
         console.log(this.savedPodcasts)
     }
@@ -33,13 +31,24 @@ class DataManager {
         // v3 await getBookFromAPI()
     }
 
-    async saveToDB(object, user){
-        debugger
-
+    async saveToDB(episode, user){
         await $.ajax({
             method:"put",
             url:`/podcast/${user}`,
-            data: object,
+            data: episode,
+            success: (res)=>{
+             console.log("success")
+            },
+            error: function(xhr,text,error){console.log("error : "+ error + " - " + text)}
+        }) 
+        await this.getAllDataFromDB()
+    }
+
+    async removeFromDB(episode, user){
+        debugger
+        await $.ajax({
+            method:"delete",
+            url:`/podcast/${user}/${episode.episodeTitle}`,
             success: (res)=>{
              console.log("success")
             },
