@@ -9,23 +9,28 @@ class DataManager{
 
     // v2 getAllDataFromDB(){
     // }
-    async getPodcastFromAPI(skill){
-        debugger
-        await $.ajax({
-            method:"get",
-            url:`/podcasts/${skill}`,
-            success: (podcasts)=>{
-                this.podcasts = podcasts
-            },
-            error: function(xhr,text,error){
-                console.log("error: " + error + " - " + text)
-            }
-        })
+     async getPodcastFromAPI(skill){
+        
+        // return $.ajax({
+        //     method:"get",
+        //     url:`/podcasts/${skill}`,
+        //     success: (data)=>{
+        //         this.podcasts = data
+        //     },
+        //     error: function(xhr,text,error){
+        //         console.log("error: " + error + " - " + text)
+        //     }
+        // })
+        let response = await $.get(`/podcasts/${skill}`)
+        if(response){
+            this.podcasts = response
+        }
     }
 
     async getAllDataFromAPI(skill){
-        await getPodcastFromAPI(skill)
-        console.log(this.Podcasts)
+        
+        await this.getPodcastFromAPI(skill)
+        console.log(this.podcasts)
         // v4 await getCourseFromAPI()
         // v3 await getBookFromAPI()
     }

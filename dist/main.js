@@ -25,10 +25,9 @@ const logOut = function(){
     renderer.clear(DB_AREA)
 }
 
-const search = async function(){
+const search = function(){
     let skill = $("#skillInput").val()
-    await user.search(skill)
-    console.log("done")
+    user.search(skill).then(()=>console.log("done"))
 }
 
 renderer.render(LOGIN_TEMPLATE, { isLoggedIn: false }, LOGIN_AREA)
