@@ -1,8 +1,28 @@
 const express = require("express")
 const router = express.Router()
 const request = require("request")
-const userModule = require("../modules/userModel.js")
+const User = require("../modules/userModel")
 
+// ======================================= USER DB REQUEST ===================================== // 
+
+router.post("/login", function (req, res) {
+    const username = req.body.username
+    console.log(username)
+
+    User.findOne({ name: username }, function (err, existingUser) {
+
+        const user = existingUser ? existingUser : new User({ name: username, skillSearches: [], desiredJobSaved: false, books: [], podcasts: [], courses: [] })
+
+        if (!existingUser) { user.save() }
+
+        res.send(user)
+    })
+
+})
+
+
+
+// ======================================= GET PODCAST REQUEST ================================ // 
 router.get("/podcasts/:searchedSkill", async function (req, res) {
     const searchedSkill = req.params.searchedSkill
     const getLink = {
@@ -16,10 +36,10 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
         if (!error && response.statusCode == 200) {
             //const searchedSkill = req.params.skill
             //console.log(` Asking API for ${searchedSkill} podcasts`)
-            
+
             let data = JSON.parse(body)
             let resultsOfData = data.results
-            
+
             first3Podcasts(resultsOfData)
             resultsOfData.splice(3)
             res.send(resultsOfData)
@@ -37,13 +57,11 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
                 description: resultsOfData[i].description_original,
                 podcastSaved: false
             }
-
         }
         return resultsOfData
     }
-
     request(getLink, callback);
-
 })
+// ======================================= GET PODCAST REQUEST DONE ================================ // 
 
 module.exports = router
