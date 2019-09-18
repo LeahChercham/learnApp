@@ -12,6 +12,6 @@ class Renderer {
     }
 
     clear(area){
-        $(".area").empty()
+        $(`.${area}`).empty()
     }
 }

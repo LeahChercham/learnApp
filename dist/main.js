@@ -22,6 +22,7 @@ const logOut = function(){
     user = undefined
     renderer.render(LOGIN_TEMPLATE, { isLoggedIn: false }, LOGIN_AREA)
     renderer.clear(MAIN_AREA)
+    renderer.clear(DB_AREA)
 }
 
 renderer.render(LOGIN_TEMPLATE, { isLoggedIn: false }, LOGIN_AREA)
