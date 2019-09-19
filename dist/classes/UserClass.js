@@ -14,7 +14,7 @@ class User {
         let user = this.name
         await dataManager.saveToDB(episode, user)
     
-        let data = dataManager.savedPodcasts
+        let data = {podcast : dataManager.savedPodcasts}
         console.log(data)
         renderer.render(DB_TEMPLATE, data, DB_AREA)
     }
@@ -23,7 +23,8 @@ class User {
         debugger
         let user = this.name
         await dataManager.removeFromDB(episode, user)
-        let data = dataManager.savedPodcasts
+
+        let data = {podcast : dataManager.savedPodcasts}
         console.log(data)
         renderer.render(DB_TEMPLATE, data, DB_AREA)
     }

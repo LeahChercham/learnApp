@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
@@ -21,16 +22,16 @@
     <!-- Handlebars Templates-->
     <script id="login-template" type="text/x-handlebars-template">
     {{#if isLoggedIn}}
-    <div class="logContainer">
-            <div id="welcomeMessage">Hi {{username}}</div class="">
-            <button class="button" id="logOutButton" onclick=logOut()>Logout</button>
-    </div>
+        <div class="logContainer">
+                <div id="welcomeMessage">Hi {{username}}</div class="">
+                <button class="button" id="logOutButton" onclick=logOut()>Logout</button>
+        </div>
     {{else}}
-    <div class="logContainer">
-        <input id="username" placeholder="Username">
-        <input id="password" placeholder="Password" type="password">
-        <button class="button" id="logInButton" onclick=logIn()>Login</button>
-    </div>
+        <div class="logContainer">
+            <input id="username" placeholder="Username">
+            <input id="password" placeholder="Password" type="password">
+            <button class="button" id="logInButton" onclick=logIn()>Login</button>
+        </div>
     {{/if}}
     </script>
 
@@ -48,6 +49,7 @@
                 <div class="podcast">
                     <h1 class="episodeTitle">{{episodeTitle}}</h1>
                     <h2 class="podcastName">{{podcastName}}</h2>
+                    <div><button class="savePodcast"><i class="fas fa-archive"></i><br></button></div>
                     
                     <div class="podcastImage">
                             <img class="podcastImage" src={{image}} alt="image of podcast">
@@ -73,9 +75,22 @@
         <div class="db-container">
             <div id="savedPodcasts">
                 <h2>Listen to later:</h2>
-                <ul>
-                    <li><img id="listenImage" src="./images\small-logo.png" alt="Powered by LISTEN NOTES"></li>
-                </ul>  
+                
+                    {{#each podcast}}
+                <div class="savedPodcast">
+                    <div class="savedPodcastName">{{podcastName}}</div>
+                    <div class="savedEpisodeTitle">{{episodeTitle}}</div>
+                    <div class="savedPodcastImage">
+                            <img class="savedPodcastImage" src={{image}} alt="image of podcast">
+                    </div>
+                        
+                    <div><audio controls duration src={{podcastLink}}></audio></div>
+                    <div><button class="removePodcast"><i class="fas fa-trash"></i></button></div>
+                    </div>
+
+                    {{/each}}
+                    <img id="listenImage" src="./images\small-logo.png" alt="Powered by LISTEN NOTES">
+                  
             </div>
         </div>
     </script>

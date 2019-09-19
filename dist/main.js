@@ -61,21 +61,19 @@ Handlebars.registerHelper('shortDesc', function (description) {
         return fewWords;
 });
 
-// //------works! But without words------
-// const showMore = function () {
-//     const podcastDiv = $(this).closest(".podcast")
-//     const allDescription = $(this).closest(".podcast").find(".podcastDescription").data("id")
-//     const restOfDesc = allDescription.substring(200)
-//     $(this).empty()
-//     podcastDiv.append(`<span>${restOfDesc}</span>`)
-// }
-// //------works! But without words------
+// ========= save and remove buttons
 
-// //------works! but without words------
-// Handlebars.registerHelper('shortDesc', function (str) {
-//     if (str.length > 200)
-//         return `${str.substring(0, 200)}`;
-//     return str;
-// });
-// //------works! but without words------
+const saveToDB = function(){
+    let episodeName = $(this).closest(".podcast").find(".episodeTitle").text()
+    user.saveToDB(episodeName)
+}
+
+const removeFromDB = function(){
+    let episodeName = $(this).closest(".savedPodcast").find(".savedEpisodeTitle").text()
+    user.removeFromDB(episodeName)
+}
+
+
+$("body").on("click", ".savePodcast", saveToDB)
+$("body").on("click", ".removePodcast", removeFromDB)
 

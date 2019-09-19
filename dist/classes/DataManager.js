@@ -32,10 +32,13 @@ class DataManager {
     }
 
     async saveToDB(episode, user){
+        let data = this.podcasts.find(p => p.episodeTitle == episode)
+        console.log(data)
+
         await $.ajax({
             method:"put",
             url:`/podcast/${user}`,
-            data: episode,
+            data: data,
             success: (res)=>{
              console.log("success")
             },
@@ -48,7 +51,7 @@ class DataManager {
         debugger
         await $.ajax({
             method:"delete",
-            url:`/podcast/${user}/${episode.episodeTitle}`,
+            url:`/podcast/${user}/${episode}`,
             success: (res)=>{
              console.log("success")
             },
