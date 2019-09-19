@@ -3,6 +3,7 @@ const logIn = function () {
     //debugger
     const username = $("#username").val()
     let password = $("#password").val()
+    if(username){
     if (password) {
         $.post('/login', { username }, async function (u) {
             user = new User(username)
@@ -17,6 +18,8 @@ const logIn = function () {
         })
     } else {
         alert("Please enter your password.")
+    }} else {
+        alert("Please enter username.")
     }
 }
 
