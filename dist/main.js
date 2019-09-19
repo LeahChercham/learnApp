@@ -14,9 +14,10 @@ const DB_AREA = "db-area"
 
 const RESULTS_TEMPLATE = "results-template"
 const RESULTS_AREA = "results-area"
-
 //--------- Constants file above ---------
 
+
+// ============= Log In and Log Out
 const logIn = function () {
     //debugger
     const username = $("#username").val()
@@ -49,7 +50,9 @@ const logOut = function () {
     renderer.clear(RESULTS_AREA)
     renderer.clear(DB_AREA)
 }
+// ==================================================================================
 
+// =============================== Search and Render ================================
 const search = function () {
     let skill = $("#skillInput").val()
     user.search(skill).then(() => console.log("done"))
@@ -58,8 +61,30 @@ const search = function () {
 renderer.render(LOGIN_TEMPLATE, { isLoggedIn: false }, LOGIN_AREA)
 $(".main-area").on("click", "#searchButton", search)
 
+// ================================== save and remove buttons =================================
+
+const saveToDB = function () {
+    let episodeName = $(this).closest(".podcast").find(".episodeTitle").text()
+    user.saveToDB(episodeName)
+}
+
+const removeFromDB = function () {
+    let episodeName = $(this).closest(".savedPodcast").find(".savedEpisodeTitle").text()
+    user.removeFromDB(episodeName)
+}
+
+
+$("body").on("click", ".savePodcast", saveToDB)
+$("body").on("click", ".removePodcast", removeFromDB)
+
+// ============================================================================================
+
+
+
+
 //------------ Read more feature -------------
 
+// For Podcast
 const showMorePodcast = function () {
     const podcastDiv = $(this).closest(".podcast")
     const allDescription = $(this).closest(".podcast").find(".podcastDescription").data("id")
@@ -68,12 +93,11 @@ const showMorePodcast = function () {
     $(this).empty()
     podcastDiv.append(`<span class= expandedDesc >${restOfDesc}</span> <span class="readLessPodcast"> <button class="descButton">Read Less </button></span>`)
 }
-
 const showLessPodcast = function () {
     const expandedDesc = $(this).closest(".podcast").find(".expandedDesc")
     expandedDesc.empty()
 }
-
+// For Book
 const showMoreBook = function () {
     const BookDiv = $(this).closest(".book")
     const allDescription = $(this).closest(".book").find(".bookDescription").data("id")
@@ -82,7 +106,6 @@ const showMoreBook = function () {
     $(this).empty()
     BookDiv.append(`<span class= expandedDesc >${restOfDesc}</span> <span class="readLessBook"> <button class="descButton">Read Less </button></span>`)
 }
-
 const showLessBook = function () {
     const expandedDesc = $(this).closest(".book").find(".expandedDesc")
     expandedDesc.empty()
@@ -104,19 +127,4 @@ Handlebars.registerHelper('shortDesc', function (description) {
         else { return description }
     }
 });
-
-// ========= save and remove buttons
-
-const saveToDB = function () {
-    let episodeName = $(this).closest(".podcast").find(".episodeTitle").text()
-    user.saveToDB(episodeName)
-}
-
-const removeFromDB = function () {
-    let episodeName = $(this).closest(".savedPodcast").find(".savedEpisodeTitle").text()
-    user.removeFromDB(episodeName)
-}
-
-
-$("body").on("click", ".savePodcast", saveToDB)
-$("body").on("click", ".removePodcast", removeFromDB)
+// =============================================================================================
