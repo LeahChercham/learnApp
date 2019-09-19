@@ -51,6 +51,7 @@ class DataManager {
         let response = await $.get(`/books/${skill}`)
         if (response) {
             this.books = response
+            console.log (this.books)
         }
     }
 
@@ -58,6 +59,7 @@ class DataManager {
         let response = await $.get(`/videos/${skill}`)
         if (response) {
             this.videos = response
+            console.log(this.videos)
         }
     }
 
@@ -66,8 +68,7 @@ class DataManager {
         await this.getPodcastFromAPI(skill)
         await this.getBooksFromAPI(skill)
         await this.getVideosFromAPI(skill)
-        // console.log(this.books)
-        // v4 await getCourseFromAPI()
+        
     }
 
     async saveToDB(objectType, title, user) {
@@ -80,7 +81,7 @@ class DataManager {
                 url: `/podcast/${user}`,
                 data: data,
                 success: (res) => {
-                    console.log("success")
+                    console.log("success adding podcast")
                 },
                 error: function (xhr, text, error) { console.log("error : " + error + " - " + text) }
             })
@@ -94,14 +95,14 @@ class DataManager {
                 url: `/book/${user}`,
                 data: data,
                 success: (res) => {
-                    console.log("success")
+                    console.log("success adding book")
                 },
                 error: function (xhr, text, error) { console.log("error : " + error + " - " + text) }
             })
         }
 
         else if (objectType == "Video") {
-            let data = this.videos.find(p => p.title == title)
+            let data = this.videos.find(v => v.title == title)
             console.log(data)
 
             await $.ajax({
@@ -109,7 +110,7 @@ class DataManager {
                 url: `/video/${user}`,
                 data: data,
                 success: (res) => {
-                    console.log("success")
+                    console.log("success adding video")
                 },
                 error: function (xhr, text, error) { console.log("error : " + error + " - " + text) }
             })
