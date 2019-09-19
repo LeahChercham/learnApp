@@ -50,10 +50,11 @@ class DataManager {
     }
 
     async removeFromDB(episode, user) {
-
+        let data = this.savedPodcasts.find(p => p.episodeTitle == episode)
         await $.ajax({
             method: "delete",
-            url: `/podcast/${user}/${episode}`,
+            url: `/podcast/${user}`,
+            data: data,
             success: (res) => {
                 console.log("success")
             },

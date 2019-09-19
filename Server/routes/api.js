@@ -7,31 +7,23 @@ const User = require("../modules/userModel")
 
 router.post("/login", function (req, res) {
     const username = req.body.username
-    console.log(username)
-
     User.findOne({ name: username }, function (err, existingUser) {
-
         const user = existingUser ? existingUser : new User({ name: username, skillSearches: [], desiredJobSaved: false, books: [], podcasts: [], courses: [] })
-
         if (!existingUser) { user.save() }
-
         res.send(user)
     })
-
 })
 
 router.put("/podcast/:username", function (req, res) {
     let user = req.params.username
     User.findOneAndUpdate({ "name": user }, { $push: { "podcasts": req.body } }, { new: true }, function (error, response) {
-        console.log(response)
         res.send(response)
     })
 })
 
-router.delete("/podcast/:username/:episodeTitle", function (req, res) {
+router.delete("/podcast/:username", function (req, res) {
     let user = req.params.username
-    let episodeTitle = req.params.episodeTitle
-    console.log("episode title:" + episodeTitle)
+    let episodeTitle = req.body.episodeTitle
     User.findOneAndUpdate({ "name": user }, { $pull: { "podcasts": { "episodeTitle": episodeTitle } } }, { new: true }, function (error, response) {
         res.send(response)
     })
@@ -80,16 +72,8 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
                 randomNumbers.push({"number": randomNumber})
                 resultsArray.push(resultsOfData[randomNumber])
                 }
-                
-                console.log(randomNumbers)
-                
-                console.log(index)
-                
             }
-
-
             first3Podcasts(resultsArray)
-
             res.send(resultsArray)
         }
     }
@@ -109,7 +93,6 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
         }
         return resultsOfData
     }
-
     request(getLink, callback);
 })
 // ======================================= GET PODCAST REQUEST DONE ================================ // 
