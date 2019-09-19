@@ -23,7 +23,6 @@ class User {
             await dataManager.saveToDB(objectType, title, user)
         }
         let data = { podcast: dataManager.savedPodcasts, book: dataManager.savedBooks, video: dataManager.savedVideos }
-        console.log(data)
         renderer.render(DB_TEMPLATE, data, DB_AREA)
     }
 
