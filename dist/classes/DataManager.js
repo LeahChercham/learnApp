@@ -6,8 +6,10 @@ class DataManager {
         this.savedPodcasts = []
         // this.course = []
 
+        this.route = ""
+
     }
-    async getPodcastsFromDB(){
+    async getPodcastsFromDB() {
         let response = await $.get(`/savedPodcasts/${user.name}`)
         this.savedPodcasts = response
     }
@@ -31,29 +33,33 @@ class DataManager {
         // v3 await getBookFromAPI()
     }
 
-    async saveToDB(episode, user){
+    async saveToDB(episode, user) {
+        let data = this.podcasts.find(p => p.episodeTitle == episode)
+        console.log(data)
+
         await $.ajax({
-            method:"put",
-            url:`/podcast/${user}`,
-            data: episode,
-            success: (res)=>{
-             console.log("success")
+            method: "put",
+            url: `/podcast/${user}`,
+            data: data,
+            success: (res) => {
+                console.log("success")
             },
-            error: function(xhr,text,error){console.log("error : "+ error + " - " + text)}
-        }) 
+            error: function (xhr, text, error) { console.log("error : " + error + " - " + text) }
+        })
         await this.getAllDataFromDB()
     }
 
-    async removeFromDB(episode, user){
-        debugger
+    async removeFromDB(episode, user) {
+        let data = this.savedPodcasts.find(p => p.episodeTitle == episode)
         await $.ajax({
-            method:"delete",
-            url:`/podcast/${user}/${episode.episodeTitle}`,
-            success: (res)=>{
-             console.log("success")
+            method: "delete",
+            url: `/podcast/${user}`,
+            data: data,
+            success: (res) => {
+                console.log("success")
             },
-            error: function(xhr,text,error){console.log("error : "+ error + " - " + text)}
-        }) 
+            error: function (xhr, text, error) { console.log("error : " + error + " - " + text) }
+        })
         await this.getAllDataFromDB()
     }
 }

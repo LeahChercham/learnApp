@@ -14,16 +14,16 @@ class User {
         let user = this.name
         await dataManager.saveToDB(episode, user)
     
-        let data = dataManager.savedPodcasts
+        let data = {podcast : dataManager.savedPodcasts}
         console.log(data)
         renderer.render(DB_TEMPLATE, data, DB_AREA)
     }
 
     async removeFromDB(episode){
-        debugger
         let user = this.name
-        await dataManager.removeFromDB(episode, user)
-        let data = dataManager.savedPodcasts
+        let promise = await dataManager.removeFromDB(episode, user)
+        console.log(promise)
+        let data = {podcast : dataManager.savedPodcasts}
         console.log(data)
         renderer.render(DB_TEMPLATE, data, DB_AREA)
     }
