@@ -1,6 +1,9 @@
 class Renderer {
 
     render(templateID, data, destination) {
+        if(templateID == "results-template" && data ==""){
+            $(`.${destination}`).empty()
+            return}
         console.log("here data:" + data)
         $(`.${destination}`).empty()
 

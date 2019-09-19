@@ -1,5 +1,6 @@
 const renderer = new Renderer()
 const dataManager = new DataManager()
+const accordion = new Accordion()
 
 let user
 
@@ -55,7 +56,9 @@ const logOut = function () {
 // =============================== Search and Render ================================
 const search = function () {
     let skill = $("#skillInput").val()
-    user.search(skill).then(() => console.log("done"))
+    user.search(skill).then(() => {
+    console.log("done")})
+    
 }
 
 renderer.render(LOGIN_TEMPLATE, { isLoggedIn: false }, LOGIN_AREA)
@@ -175,3 +178,6 @@ Handlebars.registerHelper('shortDesc', function (description) {
     }
 });
 // =============================================================================================
+
+
+

@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="./materialize-css/dist/css/materialize.css"
+        media="screen,projection" />
+
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
@@ -25,32 +29,33 @@
     {{#if isLoggedIn}}
         <div class="logContainer">
                 <div id="welcomeMessage">Hi {{username}}</div class="">
-                <button class="button" id="logOutButton" onclick=logOut()>Logout</button>
+                <div class="waves-effect waves-light btn" id="logOutButton" onclick=logOut()>Logout</div>
         </div>
     {{else}}
         <div class="logContainer">
             <input id="username" placeholder="Username">
             <input id="password" placeholder="Password" type="password">
-            <button class="button" id="logInButton" onclick=logIn()>Login</button>
+            <div class="waves-effect waves-light btn" id="logInButton" onclick=logIn()>Login</div>
         </div>
     {{/if}}
     </script>
 
     <script id="main-template" type="text/x-handlebars-template">
         <input type="text" placeholder="What skill do you want to improve?" id="skillInput">
-        <button class="button" id="searchButton">Show me Recommendations!</button>
+        <div class="waves-effect waves-light btn" id="searchButton">Show me Recommendations!</div>
 
         </div>
     </script>
 
     <script id="results-template" type="text/x-handlebars-template">
-        <div id="result">
-            <div class="result podcast">
+        <div id="result accordion">
+            <div class="accordion-title">Podcasts</div>
+            <div class="result podcast accordion-content">
                 {{#each podcast}}
                 <div class="podcast">
                     <h1 class="episodeTitle">{{episodeTitle}}</h1>
                     <h2 class="podcastName">{{podcastName}}</h2>
-                    <div><button class="savePodcast"><i class="fas fa-archive"></i><br></button></div>
+                    <div><div class="savePodcast waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
                     
                     <div class="podcastImage">
                             <img class="podcastImage" src={{image}} alt="image of podcast">
@@ -62,13 +67,14 @@
                         <span class="podcastDescription" data-id="{{description}}">{{shortDesc description}}</span>
                         {{#if description}}
                         <span class="showMorePodcast" >
-                            <button class=descButton>Show more</button>
+                            <div class="descButton waves-effect waves-light btn">Show more</div>
                         </span>
                         {{/if}}
                     </div>  
                 {{/each}}
             </div>
-            <div class="result book">
+            <div class="accordion-title">Books</div>
+            <div class="result book accordion-content">
                     {{#each book}}
                     <div class="book">
                         <h1 class="bookTitle"><a href="{{buyLink}}">{{title}}</a></h1>
@@ -78,7 +84,7 @@
                         {{#each authors}}
                         <h3 class="bookAuthor">{{authors}}</h3>
                         {{/each}}
-                        <div><button class="saveBook"><i class="fas fa-archive"></i><br></button></div>
+                        <div><div class="saveBook waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
                         
                         <div class="bookImage">
                                 <img class="bookImage" src={{imgURL}} alt="image of book">
@@ -86,25 +92,25 @@
                             <span class="bookDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                             {{#if description}}
                             <span class="showMoreBook" >
-                                <button class=descButton>Show more</button>
+                                <div class="descButton waves-effect waves-light btn">Show more</div>
                             </span>
                             {{/if}}
                         </div>  
                     {{/each}}
                 </div>
-            
-            <div class="resultVideo">
+            <div class="accordion-title">Video</div>
+            <div class="resultVideo accordion-content">
                     {{#each video}}
                     <div class="video">
                         <h1 class="videoTitle"><a href="{{link}}">{{title}}</a></h1>
                         <h2 class="channelTitle">{{channelTitle}}</h2>
                         <iframe width="480" height="270" src= "https://www.youtube.com/embed/{{videoID}}"></iframe>
-                        <div><button class="saveVideo"><i class="fas fa-archive"></i><br></button></div>
+                        <div><div class="saveVideo waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
                         
                             <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                             {{#if description}}
                             <span class="showMoreVideo" >
-                                <button class=descButton>Show more</button>
+                                <div class="descButton waves-effect waves-light btn">Show more</div>
                             </span>
                             {{/if}}
                         </div>  
@@ -128,7 +134,7 @@
                     </div>
                         
                     <div><audio controls duration src={{podcastLink}}></audio></div>
-                    <div><button class="removePodcast"><i class="fas fa-trash"></i></button></div>
+                    <div><div class="removePodcast waves-effect waves-light btn"><i class="fas fa-trash"></i></div></div>
                     </div>
 
                     {{/each}}
@@ -149,7 +155,7 @@
                                 <img class="savedbookImage" src={{imgURL}} alt="image of book">
                         </div>
 
-                        <div><button class="removeBook"><i class="fas fa-trash"></i></button></div>
+                        <div><div class="removeBook waves-effect waves-light btn"><i class="fas fa-trash"></i></div></div>
                         </div>
                         {{/each}}     
                 </div>
@@ -164,6 +170,7 @@
     <script src="./handlebars/dist/handlebars.js"></script>
     <script src="./readmore-js/readmore.min.js"></script>
     <script src="./classes/Renderer.js"></script>
+    <script src="./classes/Accordion.js"></script>
     <script src="./classes/DataManager.js"></script>
     <script src="./classes/UserClass.js"></script>
     <script src="main.js"></script>
