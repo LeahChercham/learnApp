@@ -153,6 +153,23 @@
                         </div>
                         {{/each}}     
                 </div>
+                <div class="savedVideos">
+                        {{#each video}}
+                        <div class="savedVideo">
+                            <h1 class="savedVideoTitle"><a href="{{link}}">{{title}}</a></h1>
+                            <h2 class="savedChannelTitle">{{channelTitle}}</h2>
+                            <!-- <iframe width="480" height="270" src= "https://www.youtube.com/embed/{{videoID}}"></iframe>
+                            <div><button class="saveVideo"><i class="fas fa-archive"></i><br></button></div>
+                            
+                                <span class="savedVideoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
+                                {{#if description}}
+                                <span class="showMoreVideo" >
+                                    <button class=descButton>Show more</button>
+                                </span>
+                                {{/if}}-->
+                            </div>  
+                        {{/each}}
+                </div>
         </div>
     </script>
 
