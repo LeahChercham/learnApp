@@ -28,11 +28,11 @@ const logIn = function () {
                 user = new User(username)
                 renderer.render(LOGIN_TEMPLATE, { isLoggedIn: true, username }, LOGIN_AREA)
                 let data = "" // because we need data to use handlebars
-                let savedPodcasts = await dataManager.getAllDataFromDB()
-                savedPodcasts = { podcast: dataManager.savedPodcasts }
+                let saved = await dataManager.getAllDataFromDB()
+                saved = { podcast: dataManager.savedPodcasts, book: dataManager.savedBooks }
                 renderer.render(MAIN_TEMPLATE, data, MAIN_AREA)
                 renderer.render(RESULTS_TEMPLATE, data, RESULTS_AREA)
-                renderer.render(DB_TEMPLATE, savedPodcasts, DB_AREA)
+                renderer.render(DB_TEMPLATE, saved, DB_AREA)
 
             })
         } else {
@@ -64,7 +64,6 @@ $(".main-area").on("click", "#searchButton", search)
 // ================================== save and remove buttons =================================
 
 const saveToDB = function () {
-    debugger
     let objectType = $(this).attr("class")
     objectType = objectType.slice(4)
 
@@ -87,7 +86,7 @@ const removeFromDB = function () {
         let episodeName = $(this).closest(".savedPodcast").find(".savedEpisodeTitle").text()
         user.removeFromDB(objectType, episodeName)
     } else if (objectType == "Book") {
-        let title = $(this).closest(".book").find(".bookTitle").text()
+        let title = $(this).closest(".savedBook").find(".savedBookTitle").text()
         user.removeFromDB(objectType, title)
     }
 }

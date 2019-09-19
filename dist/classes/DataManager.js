@@ -85,7 +85,6 @@ class DataManager {
     }
 
     async removeFromDB(objectType, title, user) {
-        debugger
         if (objectType == "Podcast") {
             let data = this.savedPodcasts.find(p => p.episodeTitle == title)
             await $.ajax({

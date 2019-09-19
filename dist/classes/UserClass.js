@@ -23,7 +23,6 @@ class User {
     }
 
     async removeFromDB(objectType, title) {
-        debugger
         let user = this.name
         let promise = await dataManager.removeFromDB(objectType, title , user)
         console.log(promise)

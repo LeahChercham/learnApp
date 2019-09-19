@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
@@ -116,8 +117,26 @@
 
                     {{/each}}
                     <img id="listenImage" src="./images\small-logo.png" alt="Powered by LISTEN NOTES">
-                  
             </div>
+            <div id="savedBooks">
+                    <h2>Read later:</h2> 
+                        {{#each book}}
+                    <div class="savedBook">
+                        <div class="savedBookTitle">{{title}}</div>
+                        {{#if subtitle}}
+                        <h2 class="savedbookSubtitle">{{subtitle}}</h2>
+                        {{/if}}
+                        {{#each authors}}
+                        <h3 class="saved bookAuthor">{{authors}}</h3>
+                        {{/each}}
+                        <div class="savedbookImage">
+                                <img class="savedbookImage" src={{imgURL}} alt="image of book">
+                        </div>
+
+                        <div><button class="removeBook"><i class="fas fa-trash"></i></button></div>
+                        </div>
+                        {{/each}}     
+                </div>
         </div>
     </script>
 
