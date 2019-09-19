@@ -47,19 +47,21 @@ class DataManager {
         // v4 await getCourseFromAPI()
     }
 
-    async saveToDB(episode, user) {
-        let data = this.podcasts.find(p => p.episodeTitle == episode)
-        console.log(data)
-
-        await $.ajax({
-            method: "put",
-            url: `/podcast/${user}`,
-            data: data,
-            success: (res) => {
-                console.log("success")
-            },
-            error: function (xhr, text, error) { console.log("error : " + error + " - " + text) }
-        })
+    async saveToDB(objectType, title, user) {
+        if(objectType =="Podcast"){
+            let data = this.podcasts.find(p => p.episodeTitle == title)
+            console.log(data)
+    
+            await $.ajax({
+                method: "put",
+                url: `/podcast/${user}`,
+                data: data,
+                success: (res) => {
+                    console.log("success")
+                },
+                error: function (xhr, text, error) { console.log("error : " + error + " - " + text) }
+            })
+        }
         await this.getAllDataFromDB()
     }
 

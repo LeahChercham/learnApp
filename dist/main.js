@@ -64,18 +64,33 @@ $(".main-area").on("click", "#searchButton", search)
 // ================================== save and remove buttons =================================
 
 const saveToDB = function () {
+    debugger
+    let objectType = $(this).attr("class")
+    objectType = objectType.slice(4)
+
+    if(objectType == "Podcast"){
     let episodeName = $(this).closest(".podcast").find(".episodeTitle").text()
-    user.saveToDB(episodeName)
+    user.saveToDB(objectType, episodeName)}
+    else if (objectType == "Book"){
+    let bookTitle = $(this).closest(".book").find(".bookTitle").text()
+    user.saveToDB(objectType, bookTitle)
+    }
 }
 
 const removeFromDB = function () {
+    let objectType = $(this).attr("class")
+    objectType = objectType.slice(4)
+    
+    if(objectType == "Podcast"){
     let episodeName = $(this).closest(".savedPodcast").find(".savedEpisodeTitle").text()
-    user.removeFromDB(episodeName)
+    user.removeFromDB(episodeName)}
 }
 
 
 $("body").on("click", ".savePodcast", saveToDB)
 $("body").on("click", ".removePodcast", removeFromDB)
+$("body").on("click", ".saveBook", saveToDB)
+$("body").on("click", ".removeBook", removeFromDB)
 
 // ============================================================================================
 
