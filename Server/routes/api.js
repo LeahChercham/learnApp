@@ -44,7 +44,13 @@ router.put("/book/:username", function (req, res) {
         res.send(response)
     })
 })
-
+router.delete("/book/:username", function (req, res) {
+    let user = req.params.username
+    let title = req.body.title
+    User.findOneAndUpdate({ "name": user }, { $pull: { "books": { "title": title } } }, { new: true }, function (error, response) {
+        res.send(response)
+    })
+})
 
 
 

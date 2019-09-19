@@ -78,8 +78,10 @@ class DataManager {
         await this.getAllDataFromDB()
     }
 
-    async removeFromDB(episode, user) {
-        let data = this.savedPodcasts.find(p => p.episodeTitle == episode)
+    async removeFromDB(objectType, title, user) {
+        debugger
+        if(objectType == "Podcast"){
+        let data = this.savedPodcasts.find(p => p.episodeTitle == title)
         await $.ajax({
             method: "delete",
             url: `/podcast/${user}`,
@@ -88,7 +90,18 @@ class DataManager {
                 console.log("success")
             },
             error: function (xhr, text, error) { console.log("error : " + error + " - " + text) }
-        })
+        })} else if (objectType == "Book"){
+            let data = this.savedBooks.find(p => p.title == title)
+            await $.ajax({
+                method: "delete",
+                url: `/book/${user}`,
+                data: data,
+                success: (res) => {
+                    console.log("success")
+                },
+                error: function (xhr, text, error) { console.log("error : " + error + " - " + text) }
+            })
+        }
         await this.getAllDataFromDB()
     }
 }

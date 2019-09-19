@@ -78,12 +78,13 @@ const saveToDB = function () {
 }
 
 const removeFromDB = function () {
+    debugger
     let objectType = $(this).attr("class")
-    objectType = objectType.slice(4)
+    objectType = objectType.slice(6)
     
     if(objectType == "Podcast"){
     let episodeName = $(this).closest(".savedPodcast").find(".savedEpisodeTitle").text()
-    user.removeFromDB(episodeName)}
+    user.removeFromDB(objectType, episodeName)}
 }
 
 
