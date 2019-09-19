@@ -7,7 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+        <link type="text/css" rel="stylesheet" href="./materialize-css/dist/css/materialize.css"  media="screen,projection"/>
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <title>Document</title>
 </head>
 
@@ -25,20 +26,20 @@
     {{#if isLoggedIn}}
         <div class="logContainerOff">
                 <div id="welcomeMessage">Hi {{username}}</div class="">
-                <button class="button" id="logOutButton" onclick=logOut()>Logout</button>
+                <div class="btn waves-effect waves-light" id="logOutButton" onclick=logOut()>Logout</div>
         </div>
     {{else}}
         <div class="logContainerIn">
             <input id="username" placeholder="Username">
             <input id="password" placeholder="Password" type="password">
-            <button class="button" id="logInButton" onclick=logIn()>Login</button>
+            <div class="btn waves-effect waves-light" id="logInButton" onclick=logIn()>Login</div>
         </div>
     {{/if}}
     </script>
 
     <script id="main-template" type="text/x-handlebars-template">
         <input type="text" placeholder="What skill do you want to improve?" id="skillInput">
-        <button class="button" id="searchButton">Show me Recommendations!</button>
+        <div class="btn waves-effect waves-light" id="searchButton">Show me Recommendations!</div>
 
         </div>
     </script>
@@ -53,7 +54,7 @@
                                 <div class="podcastName resultSubtitle">{{podcastName}}</div>
                             </div>
                             <div class="savePodcastButton">
-                                <button class="savePodcast"><i class="fas fa-archive"></i><br></button>
+                                <div class="waves-effect waves-light btn savePodcast"><i class="fas fa-archive"></i><br></div>
                             </div>
                         </div>
 
@@ -64,8 +65,8 @@
                             <div class="entirePodcastDescription">
                                     <span class="podcastDescription" data-id="{{description}}">{{shortDesc description}}</span>
                                     {{#if description}}
-                                        <span class="showMorePodcast" >
-                                            <i class="button fas fa-angle-double-right descButton"></i>
+                                        <span class="showMorePodcast btn waves-effect waves-light " >
+                                            <i class="fas fa-angle-double-right descButton"></i>
                                         </span>
                                     {{/if}}
                             </div>
@@ -89,7 +90,7 @@
                             <div class="bookAuthor">{{authors}}</div>
                         {{/each}}
                         <div>
-                            <button class="saveBook"><i class="fas fa-archive"></i><br></button>
+                            <div class=" waves-effect waves-light btn saveBook"><i class="fas fa-archive"></i><br></div>
                         </div>
                         <div class="bookImage">
                             <img class="bookImage" src={{imgURL}} alt="image of book">
@@ -97,7 +98,7 @@
                         <span class="bookDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                         {{#if description}}
                             <span class="showMoreBook" >
-                                <button class=descButton>Show more</button>
+                                <div class="btn waves-effect waves-light descButton">Show more</div>
                             </span>
                         {{/if}}
                     </div>  
@@ -120,7 +121,7 @@
                     </div>
 
                     <div><audio controls duration src={{podcastLink}}></audio></div>
-                    <div><button class="removePodcast"><i class="fas fa-trash"></i></button></div>
+                    <div><div class="waves-effect waves-light removePodcast btn"><i class="fas fa-trash"></i></div></div>
                     </div>
 
                     {{/each}}
@@ -141,7 +142,7 @@
                                 <img class="savedbookImage" src={{imgURL}} alt="image of book">
                         </div>
 
-                        <div><button class="removeBook"><i class="fas fa-trash"></i></button></div>
+                        <div><div class="btn waves-effect waves-light removeBook"><i class="fas fa-trash"></i></div></div>
                         </div>
                         {{/each}}     
                 </div>
