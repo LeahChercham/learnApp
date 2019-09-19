@@ -14,13 +14,14 @@ router.post("/login", function (req, res) {
     })
 })
 
+
+// Podcast DB
 router.put("/podcast/:username", function (req, res) {
     let user = req.params.username
     User.findOneAndUpdate({ "name": user }, { $push: { "podcasts": req.body } }, { new: true }, function (error, response) {
         res.send(response)
     })
 })
-
 router.delete("/podcast/:username", function (req, res) {
     let user = req.params.username
     let episodeTitle = req.body.episodeTitle
@@ -28,13 +29,37 @@ router.delete("/podcast/:username", function (req, res) {
         res.send(response)
     })
 })
-
 router.get("/savedPodcasts/:username", function (req, res) {
     let user = req.params.username
     User.findOne({ "name": user }, function (error, response) {
         res.send(response.podcasts)
     })
 })
+
+
+//books DB
+router.put("/book/:username", function (req, res) {
+    let user = req.params.username
+    User.findOneAndUpdate({ "name": user }, { $push: { "books": req.body } }, { new: true }, function (error, response) {
+        res.send(response)
+    })
+})
+router.delete("/book/:username", function (req, res) {
+    let user = req.params.username
+    let title = req.body.title
+    User.findOneAndUpdate({ "name": user }, { $pull: { "books": { "title": title } } }, { new: true }, function (error, response) {
+        res.send(response)
+    })
+})
+router.get("/savedBooks/:username", function (req, res) {
+    let user = req.params.username
+    User.findOne({ "name": user }, function (error, response) {
+        res.send(response.books)
+    })
+})
+
+
+
 
 // ======================================= GET PODCAST REQUEST ================================ // 
 const getRandomInteger = function (max, min) {
@@ -62,15 +87,15 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
 
             for (let i = 0; i < 3; i++) {
                 let length = resultsOfData.length
-                let max = length-1
+                let max = length - 1
                 let min = 0
                 let randomNumber = getRandomInteger(max, min)
                 let index = randomNumbers.findIndex(r => r.number == randomNumber)
-                if(index != -1){
+                if (index != -1) {
                     i--
                 } else {
-                randomNumbers.push({"number": randomNumber})
-                resultsArray.push(resultsOfData[randomNumber])
+                    randomNumbers.push({ "number": randomNumber })
+                    resultsArray.push(resultsOfData[randomNumber])
                 }
             }
             first3Podcasts(resultsArray)
@@ -79,7 +104,7 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
     }
 
     const first3Podcasts = function (resultsOfData) {
-        
+
         for (let i = 0; i < 3; i++) {
             resultsOfData[i] = {
                 episodeTitle: resultsOfData[i].title_original,
@@ -96,5 +121,55 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
     request(getLink, callback);
 })
 // ======================================= GET PODCAST REQUEST DONE ================================ // 
+
+
+// ======================================= GET BOOKS REQUEST ================================ // 
+
+router.get("/books/:searchedSkill", function (req, res) {
+    let searchedSkill = req.params.searchedSkill
+    request(`https://www.googleapis.com/books/v1/volumes?q=${searchedSkill}&langRestrict=en`, function (err, response) {
+        if (err) { console.log(err) }
+        let data = JSON.parse(response.body)
+        let englishBooks = []
+        data.items.forEach(d => {
+            if (d.volumeInfo.language == "en") {
+                englishBooks.push(d)
+            }
+        })
+
+        let resultsArray = []
+        let randomNumbers = []
+
+        for (let i = 0; i < 3; i++) {
+            let length = englishBooks.length
+            let max = length - 1
+            let min = 0
+            let randomNumber = getRandomInteger(max, min)
+            let index = randomNumbers.findIndex(r => r.number == randomNumber)
+            if (index != -1) {
+                i--
+            } else {
+                randomNumbers.push({ "number": randomNumber })
+                resultsArray.push(englishBooks[randomNumber])
+            }}
+
+            let finalBooks = []
+        resultsArray.forEach(r => {
+            let book = {
+                "authors" : r.volumeInfo.authors,
+                "title": r.volumeInfo.title,
+                "subtitle": r.volumeInfo.subtitle,
+                "buyLink": r.volumeInfo.infoLink,
+                "imgURL": r.volumeInfo.imageLinks.thumbnail,
+                "description": r.volumeInfo.description 
+            }
+            finalBooks.push(book)
+        })
+
+            res.send(finalBooks) // array of book objects
+        })
+})
+
+// ======================================= GET BOOKS REQUEST DONE ================================ // 
 
 module.exports = router
