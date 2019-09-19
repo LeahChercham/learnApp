@@ -22,3 +22,33 @@ body{
     grid-template-rows: 1fr 4fr 4fr 5fr;
 }
 
+/*-------CSS for Results ----------*/
+
+.podcast {
+    font-family: monospace;
+    font-size: 12px
+}
+
+.podcastImage {
+    height: 100px;
+    width: 100px
+}
+
+.h1 {
+    font-size: 15px;
+    font-style: bold;
+
+}
+
+.h2 {
+    font-size: 14px;
+    font-style: italic, bold;
+    
+}
+
+.listenText {
+    font-size: 14px;
+    font-style: italic, bold;
+    color: red;
+    font-style: bold
+}

@@ -46,18 +46,21 @@
             <div class="result podcast">
                 {{#each podcast}}
                 <div class="podcast">
-                    <div class="podcastName">{{podcastName}}</div>
-                    <div class="episodeTitle">{{episodeTitle}}</div>
-                    <div class="podcastImage">
-                            <img src={{image}} alt="image of podcast">
-                    </div>
-                    <div>Listen to the podcast:
-                        <audio controls duration src={{podcastLink}}></audio>
-                    </div>
-                    <span class="podcastDescription" data-id="{{description}}">{{shortDesc description}}</span>
-                    <span class="showMore" >Show more</span>
+                    <h1 class="episodeTitle">{{episodeTitle}}</h1>
+                    <h2 class="podcastName">{{podcastName}}</h2>
                     
-                </div>  
+                    <div class="podcastImage">
+                            <img class="podcastImage" src={{image}} alt="image of podcast">
+                    </div>
+                    <div class="listenText">   Listen Right Here!   
+                        <audio controls duration src={{podcastLink}}></audio>
+                    
+                    </div>
+                        <span class="podcastDescription" data-id="{{description}}">{{shortDesc description}}</span>
+                        <span class="showMore" >
+                            <button class=descButton>Show more</button>
+                        </span>
+                    </div>  
                 {{/each}}
             </div>
             <div class="result book"></div>

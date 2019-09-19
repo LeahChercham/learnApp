@@ -42,10 +42,16 @@ const showMore = function () {
     let words = allDescription.split(" ")
     let restOfDesc = words.splice(50).join(" ")
     $(this).empty()
-    podcastDiv.append(`<span>${restOfDesc}</span>`)
+    podcastDiv.append(`<span class= expandedDesc >${restOfDesc}</span> <span class="readLess"> <button class="descButton">Read Less </button></span>`)
+}
+
+const showLess = function () {
+    const expandedDesc = $(this).closest(".podcast").find(".expandedDesc")
+    expandedDesc.empty()
 }
 
 $("body").on("click", ".showMore", showMore)
+$("body").on("click", ".readLess", showLess)
 
 //Handlebar custom HELPER 
 Handlebars.registerHelper('shortDesc', function (description) {
