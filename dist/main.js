@@ -74,7 +74,6 @@ const search = function () {
     setPreloader()
     user.search(skill).then(() => {
     console.log("done")})
-    
 }
 
 renderer.render(LOGIN_TEMPLATE, { isLoggedIn: false }, LOGIN_AREA)
@@ -83,8 +82,9 @@ $(".main-area").on("click", "#searchButton", search)
 // ================================== save and remove buttons =================================
 
 const saveToDB = function () {
-    let objectType = $(this).attr("class")
-    objectType = objectType.slice(4)
+    //debugger
+    let objectType = $(this).data("button")
+    //objectType = objectType.slice(4)
 
     if (objectType == "Podcast") {
         let episodeName = $(this).closest(".podcast").find(".episodeTitle").text()
@@ -102,8 +102,9 @@ const saveToDB = function () {
 }
 
 const removeFromDB = function () {
-    let objectType = $(this).attr("class")
-    objectType = objectType.slice(6)
+    //debugger
+    let objectType = $(this).data("button")
+    //objectType = objectType.slice(6)
 
     if (objectType == "Podcast") {
         let episodeName = $(this).closest(".savedPodcast").find(".savedEpisodeTitle").text()

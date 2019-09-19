@@ -65,7 +65,7 @@
                 <div class="podcast">
                     <div class="episodeTitle">{{episodeTitle}}</div>
                     <div class="podcastName">{{podcastName}}</div>
-                    <div><div class="savePodcast waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
+                    <div><div data-button="Podcast" class="savePodcast waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
                     
                     <div class="podcastImage">
                             <img class="resultImg" src={{image}} alt="image of podcast">
@@ -94,7 +94,7 @@
                         {{#each authors}}
                         <div class="bookAuthor">{{authors}}</div>
                         {{/each}}
-                        <div><div class="saveBook waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
+                        <div><div data-button="Book" class="saveBook waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
                         
                         <div class="bookImage">
                                 <img class="resultImg" src={{imgURL}} alt="image of book">
@@ -115,7 +115,7 @@
                         <div class="videoTitle"><a href="{{link}}">{{title}}</a></div>
                         <div class="channelTitle">{{channelTitle}}</div>
                         <iframe width="480" height="270" src= "https://www.youtube.com/embed/{{videoID}}"></iframe>
-                        <div><div class="saveVideo waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
+                        <div><div data-button="Video" class="saveVideo waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
                         
                             <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                             {{#if description}}
@@ -144,7 +144,7 @@
                     </div>
                         
                     <div><audio controls duration src={{podcastLink}}></audio></div>
-                    <div><div class="removePodcast waves-effect waves-light btn"><i class="fas fa-trash"></i></div></div>
+                    <div><div data-button="Podcast" class="removePodcast waves-effect waves-light btn"><i class="fas fa-trash"></i></div></div>
                     </div>
 
                     {{/each}}
@@ -165,7 +165,7 @@
                                 <img class="resultImg" src={{imgURL}} alt="image of book">
                         </div>
 
-                        <div><div class="removeBook waves-effect waves-light btn"><i class="fas fa-trash"></i></div></div>
+                        <div><div data-button="Book" class="removeBook waves-effect waves-light btn"><i class="fas fa-trash"></i></div></div>
                         </div>
                         {{/each}}     
                 </div>
@@ -174,15 +174,15 @@
                         <div class="savedVideo">
                             <h1 class="savedVideoTitle"><a href="{{link}}">{{title}}</a></h1>
                             <h2 class="savedChannelTitle">{{channelTitle}}</h2>
-                            <!-- <iframe width="480" height="270" src= "https://www.youtube.com/embed/{{videoID}}"></iframe>
-                            <div><button class="saveVideo"><i class="fas fa-archive"></i><br></button></div>
+                            <iframe width="480" height="270" src= "https://www.youtube.com/embed/{{videoID}}"></iframe>
+                            <div><div data-button="Video" class="removeVideo waves-effect waves-light btn"><i class="fas fa-trash"></i><br></div></div>
                             
                                 <span class="savedVideoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                                 {{#if description}}
                                 <span class="showMoreVideo" >
-                                    <button class=descButton>Show more</button>
+                                    <div class="descButton waves-effect waves-light btn">Show more</div>
                                 </span>
-                                {{/if}}-->
+                                {{/if}}
                             </div>  
                         {{/each}}
                 </div>
