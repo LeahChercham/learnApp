@@ -20,31 +20,36 @@ router.post("/login", function (req, res) {
 
 })
 
-router.put("/podcast/:username", function(req,res){
+router.put("/podcast/:username", function (req, res) {
     let user = req.params.username
-    User.findOneAndUpdate({"name": user}, {$push: {"podcasts" : req.body}}, {new: true}, function(error, response){
+    User.findOneAndUpdate({ "name": user }, { $push: { "podcasts": req.body } }, { new: true }, function (error, response) {
         console.log(response)
         res.send(response)
     })
 })
 
-router.delete("/podcast/:username/:episodeTitle", function(req,res){
+router.delete("/podcast/:username/:episodeTitle", function (req, res) {
     let user = req.params.username
     let episodeTitle = req.params.episodeTitle
     console.log("episode title:" + episodeTitle)
-    User.findOneAndUpdate({"name": user}, {$pull: {"podcasts" :{"episodeTitle" : episodeTitle}}}, {new: true}, function(error,response){
+    User.findOneAndUpdate({ "name": user }, { $pull: { "podcasts": { "episodeTitle": episodeTitle } } }, { new: true }, function (error, response) {
         res.send(response)
     })
 })
 
-router.get("/savedPodcasts/:username", function(req,res){
+router.get("/savedPodcasts/:username", function (req, res) {
     let user = req.params.username
-    User.findOne({"name":user}, function(error,response){
+    User.findOne({ "name": user }, function (error, response) {
         res.send(response.podcasts)
     })
 })
 
 // ======================================= GET PODCAST REQUEST ================================ // 
+const getRandomInteger = function (max, min) {
+    let randomNumber = Math.floor(Math.random() * (max - min + 1)) + min
+    return randomNumber
+}
+
 router.get("/podcasts/:searchedSkill", async function (req, res) {
     const searchedSkill = req.params.searchedSkill
     const getLink = {
@@ -56,21 +61,42 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
 
     function callback(error, response, body) {
         if (!error && response.statusCode == 200) {
-            //const searchedSkill = req.params.skill
-            //console.log(` Asking API for ${searchedSkill} podcasts`)
 
             let data = JSON.parse(body)
             let resultsOfData = data.results
 
-            first3Podcasts(resultsOfData)
-            resultsOfData.splice(3)
-            res.send(resultsOfData)
+            let resultsArray = []
+            let randomNumbers = []
+
+            for (let i = 0; i < 3; i++) {
+                let length = resultsOfData.length
+                let max = length-1
+                let min = 0
+                let randomNumber = getRandomInteger(max, min)
+                let index = randomNumbers.findIndex(r => r.number == randomNumber)
+                if(index != -1){
+                    i--
+                } else {
+                randomNumbers.push({"number": randomNumber})
+                resultsArray.push(resultsOfData[randomNumber])
+                }
+                
+                console.log(randomNumbers)
+                
+                console.log(index)
+                
+            }
+
+
+            first3Podcasts(resultsArray)
+
+            res.send(resultsArray)
         }
     }
 
     const first3Podcasts = function (resultsOfData) {
-        for (let i = 0; i < 4; i++) {
-            debugger 
+        
+        for (let i = 0; i < 3; i++) {
             resultsOfData[i] = {
                 episodeTitle: resultsOfData[i].title_original,
                 podcastName: resultsOfData[i].podcast_title_original,
