@@ -75,6 +75,10 @@ const saveToDB = function () {
         let bookTitle = $(this).closest(".book").find(".bookTitle").text()
         user.saveToDB(objectType, bookTitle)
     }
+    else if (objectType == "Video") {
+        let videoTitle = $(this).closest(".video").find(".videoTitle").text()
+        user.saveToDB(objectType, videoTitle)
+    }
 }
 
 const removeFromDB = function () {
@@ -88,6 +92,10 @@ const removeFromDB = function () {
         let title = $(this).closest(".savedBook").find(".savedBookTitle").text()
         user.removeFromDB(objectType, title)
     }
+    else if (objectType == "Video") {
+        let title = $(this).closest(".savedVideo").find(".savedVideoTitle").text()
+        user.removeFromDB(objectType, title)
+    }
 }
 
 
@@ -95,6 +103,8 @@ $("body").on("click", ".savePodcast", saveToDB)
 $("body").on("click", ".removePodcast", removeFromDB)
 $("body").on("click", ".saveBook", saveToDB)
 $("body").on("click", ".removeBook", removeFromDB)
+$("body").on("click", ".saveVideo", saveToDB)
+$("body").on("click", ".removeVideo", removeFromDB)
 
 // ============================================================================================
 
@@ -130,10 +140,28 @@ const showLessBook = function () {
     expandedDesc.empty()
 }
 
+// // For Video
+// const showMoreVideo = function () {
+//     const VideoDiv = $(this).closest(".video")
+//     const allDescription = $(this).closest(".video").find(".videoDescription").data("id")
+//     let words = allDescription.split(" ")
+//     let restOfDesc = words.splice(30).join(" ")
+//     $(this).empty()
+//     videoDiv.append(`<span class= expandedDesc >${restOfDesc}</span> <span class="readLessVideo"> <button class="descButton">Read Less </button></span>`)
+// }
+// const showLessVideo = function () {
+//     const expandedDesc = $(this).closest(".video").find(".expandedDesc")
+//     expandedDesc.empty()
+// }
+
+
+
 $("body").on("click", ".showMorePodcast", showMorePodcast)
 $("body").on("click", ".readLessPodcast", showLessPodcast)
 $("body").on("click", ".showMoreBook", showMoreBook)
 $("body").on("click", ".readLessBook", showLessBook)
+// $("body").on("click", ".showMoreVideo", showMoreVideo)
+// $("body").on("click", ".readLessVideo", showLessVideo)
 
 //Handlebar custom HELPER 
 Handlebars.registerHelper('shortDesc', function (description) {
