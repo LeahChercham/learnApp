@@ -4,13 +4,15 @@ const logIn = function () {
     const username = $("#username").val()
     let password = $("#password").val()
     if (password) {
-        $.post('/login', { username }, function (u) {
+        $.post('/login', { username }, async function (u) {
             user = new User(username)
             renderer.render(LOGIN_TEMPLATE, { isLoggedIn: true, username }, LOGIN_AREA)
             let data = "" // because we need data to use handlebars
+            let savedPodcasts = await dataManager.getAllDataFromDB()
+            savedPodcasts = { podcast: dataManager.savedPodcasts }
             renderer.render(MAIN_TEMPLATE, data, MAIN_AREA)
             renderer.render(RESULTS_TEMPLATE, data, RESULTS_AREA)
-            renderer.render(DB_TEMPLATE, data, DB_AREA)
+            renderer.render(DB_TEMPLATE, savedPodcasts, DB_AREA)
 
         })
     } else {
