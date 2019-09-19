@@ -51,7 +51,12 @@ router.delete("/book/:username", function (req, res) {
         res.send(response)
     })
 })
-
+router.get("/savedBooks/:username", function (req, res) {
+    let user = req.params.username
+    User.findOne({ "name": user }, function (error, response) {
+        res.send(response.books)
+    })
+})
 
 
 

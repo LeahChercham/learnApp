@@ -68,12 +68,13 @@ const saveToDB = function () {
     let objectType = $(this).attr("class")
     objectType = objectType.slice(4)
 
-    if(objectType == "Podcast"){
-    let episodeName = $(this).closest(".podcast").find(".episodeTitle").text()
-    user.saveToDB(objectType, episodeName)}
-    else if (objectType == "Book"){
-    let bookTitle = $(this).closest(".book").find(".bookTitle").text()
-    user.saveToDB(objectType, bookTitle)
+    if (objectType == "Podcast") {
+        let episodeName = $(this).closest(".podcast").find(".episodeTitle").text()
+        user.saveToDB(objectType, episodeName)
+    }
+    else if (objectType == "Book") {
+        let bookTitle = $(this).closest(".book").find(".bookTitle").text()
+        user.saveToDB(objectType, bookTitle)
     }
 }
 
@@ -81,10 +82,14 @@ const removeFromDB = function () {
     debugger
     let objectType = $(this).attr("class")
     objectType = objectType.slice(6)
-    
-    if(objectType == "Podcast"){
-    let episodeName = $(this).closest(".savedPodcast").find(".savedEpisodeTitle").text()
-    user.removeFromDB(objectType, episodeName)}
+
+    if (objectType == "Podcast") {
+        let episodeName = $(this).closest(".savedPodcast").find(".savedEpisodeTitle").text()
+        user.removeFromDB(objectType, episodeName)
+    } else if (objectType == "Book") {
+        let title = $(this).closest(".book").find(".bookTitle").text()
+        user.removeFromDB(objectType, title)
+    }
 }
 
 

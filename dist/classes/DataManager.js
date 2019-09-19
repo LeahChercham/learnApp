@@ -18,10 +18,16 @@ class DataManager {
         let response = await $.get(`/savedPodcasts/${user.name}`)
         this.savedPodcasts = response
     }
+    async getBooksFromDB() {
+        let response = await $.get(`/savedBooks/${user.name}`)
+        this.savedBooks = response
+    }
+
 
     async getAllDataFromDB() {
         await this.getPodcastsFromDB()
-        console.log(this.savedPodcasts)
+        await this.getBooksFromDB()
+        console.log(this.savedBooks)
     }
 
 
@@ -48,10 +54,10 @@ class DataManager {
     }
 
     async saveToDB(objectType, title, user) {
-        if(objectType =="Podcast"){
+        if (objectType == "Podcast") {
             let data = this.podcasts.find(p => p.episodeTitle == title)
             console.log(data)
-    
+
             await $.ajax({
                 method: "put",
                 url: `/podcast/${user}`,
@@ -61,10 +67,10 @@ class DataManager {
                 },
                 error: function (xhr, text, error) { console.log("error : " + error + " - " + text) }
             })
-        } else if (objectType =="Book"){
+        } else if (objectType == "Book") {
             let data = this.books.find(p => p.title == title)
             console.log(data)
-    
+
             await $.ajax({
                 method: "put",
                 url: `/book/${user}`,
@@ -80,17 +86,18 @@ class DataManager {
 
     async removeFromDB(objectType, title, user) {
         debugger
-        if(objectType == "Podcast"){
-        let data = this.savedPodcasts.find(p => p.episodeTitle == title)
-        await $.ajax({
-            method: "delete",
-            url: `/podcast/${user}`,
-            data: data,
-            success: (res) => {
-                console.log("success")
-            },
-            error: function (xhr, text, error) { console.log("error : " + error + " - " + text) }
-        })} else if (objectType == "Book"){
+        if (objectType == "Podcast") {
+            let data = this.savedPodcasts.find(p => p.episodeTitle == title)
+            await $.ajax({
+                method: "delete",
+                url: `/podcast/${user}`,
+                data: data,
+                success: (res) => {
+                    console.log("success")
+                },
+                error: function (xhr, text, error) { console.log("error : " + error + " - " + text) }
+            })
+        } else if (objectType == "Book") {
             let data = this.savedBooks.find(p => p.title == title)
             await $.ajax({
                 method: "delete",
