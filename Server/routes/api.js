@@ -97,4 +97,22 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
 })
 // ======================================= GET PODCAST REQUEST DONE ================================ // 
 
+
+// ======================================= GET BOOKS REQUEST ================================ // 
+
+router.get("/books/:searchedSkill", function(req,res){
+    let searchedSkill = req.params.searchedSkill
+    request(`https://www.googleapis.com/books/v1/volumes?q=${searchedSkill}&langRestrict=en`, function(err, response){
+        if(err){console.log(err)}
+        let data = JSON.parse(response.body)
+        let englishBooks = []
+        data.items.forEach(d => {
+            if( d.volumeInfo.language == "en"){
+            englishBooks.push(d)}})
+        res.send(englishBooks) // array of book objects
+    })
+})
+
+// ======================================= GET BOOKS REQUEST DONE ================================ // 
+
 module.exports = router
