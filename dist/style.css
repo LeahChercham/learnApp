@@ -26,7 +26,10 @@ body{
 
 .podcast {
     font-family: monospace;
-    font-size: 12px
+    font-size: 12px;
+    /*display: flex;
+    flex-wrap: wrap;
+outline: 1px solid black;*/
 }
 
 .podcastImage {
