@@ -58,6 +58,27 @@ router.get("/savedBooks/:username", function (req, res) {
     })
 })
 
+//videos DB
+router.put("/video/:username", function (req, res) {
+    let user = req.params.username
+    User.findOneAndUpdate({ "name": user }, { $push: { "videos": req.body } }, { new: true }, function (error, response) {
+        res.send(response)
+    })
+})
+router.delete("/video/:username", function (req, res) {
+    let user = req.params.username
+    let title = req.body.title
+    User.findOneAndUpdate({ "name": user }, { $pull: { "videos": { "title": title } } }, { new: true }, function (error, response) {
+        res.send(response)
+    })
+})
+router.get("/savedVideos/:username", function (req, res) {
+    let user = req.params.username
+    User.findOne({ "name": user }, function (error, response) {
+        res.send(response.videos)
+    })
+})
+
 
 
 
@@ -151,25 +172,76 @@ router.get("/books/:searchedSkill", function (req, res) {
             } else {
                 randomNumbers.push({ "number": randomNumber })
                 resultsArray.push(englishBooks[randomNumber])
-            }}
+            }
+        }
 
-            let finalBooks = []
+        let finalBooks = []
         resultsArray.forEach(r => {
             let book = {
-                "authors" : r.volumeInfo.authors,
+                "authors": r.volumeInfo.authors,
                 "title": r.volumeInfo.title,
                 "subtitle": r.volumeInfo.subtitle,
                 "buyLink": r.volumeInfo.infoLink,
                 "imgURL": r.volumeInfo.imageLinks.thumbnail,
-                "description": r.volumeInfo.description 
+                "description": r.volumeInfo.description
             }
             finalBooks.push(book)
         })
 
-            res.send(finalBooks) // array of book objects
-        })
+        res.send(finalBooks) // array of book objects
+    })
 })
 
 // ======================================= GET BOOKS REQUEST DONE ================================ // 
+
+
+// ======================================= GET YOUTUBE REQUEST ================================ // 
+
+let youtubeApiKey = 'AIzaSyBXysSPUaFWos7eA34ro6425SMJsW9tQQ0'
+
+router.get("/videos/:searchedSkill", function (req, res) {
+    let searchedSkill = req.params.searchedSkill
+    let link = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchedSkill}&type=video&videoType=episode&key=${youtubeApiKey}`
+
+    request(link, function (err, response) {
+        if (err) { console.log(err) }
+        let data = JSON.parse(response.body)
+        let dataArray = data.items
+        let dataWanted = []
+            dataArray.forEach(d => {
+            let video = {
+                "title": d.snippet.title,
+                "channelTitle": d.channelTitle,
+                "description": d.snippet.description,
+                "link": `https://www.youtube.com/watch?v=${d.id.videoId}`,
+                "videoID": d.id.videoId
+            }
+            dataWanted.push(video)
+        })
+
+        let resultsArray = []
+        let randomNumbers = []
+
+        for (let i = 0; i < 3; i++) {
+            let length = dataWanted.length
+            let max = length - 1
+            let min = 0
+            let randomNumber = getRandomInteger(max, min)
+            let index = randomNumbers.findIndex(r => r.number == randomNumber)
+            if (index != -1) {
+                i--
+            } else {
+                randomNumbers.push({ "number": randomNumber })
+                resultsArray.push(dataWanted[randomNumber])
+            }
+        }
+        res.send(resultsArray)
+        })
+
+    })
+
+
+
+// ======================================= GET YOUTUBE REQUEST DONE ================================ // 
 
 module.exports = router

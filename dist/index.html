@@ -92,8 +92,24 @@
                         </div>  
                     {{/each}}
                 </div>
-            <div class="result book"></div>
-            <div class="result course"></div>
+            
+            <div class="resultVideo">
+                    {{#each video}}
+                    <div class="video">
+                        <h1 class="videoTitle"><a href="{{link}}">{{title}}</a></h1>
+                        <h2 class="channelTitle">{{channelTitle}}</h2>
+                        <iframe width="480" height="270" src= "https://www.youtube.com/embed/{{videoID}}"></iframe>
+                        <div><button class="saveVideo"><i class="fas fa-archive"></i><br></button></div>
+                        
+                            <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
+                            {{#if description}}
+                            <span class="showMoreVideo" >
+                                <button class=descButton>Show more</button>
+                            </span>
+                            {{/if}}
+                        </div>  
+                    {{/each}}
+            </div>
         </div>
     </script>
 

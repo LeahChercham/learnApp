@@ -8,7 +8,7 @@ const UserSchema = new Schema({
     desiredJobSaved: Boolean,
     books: Array,
     podcasts: Array,
-    courses: Array
+    videos: Array
 })
 
 const User = mongoose.model('user', UserSchema)
