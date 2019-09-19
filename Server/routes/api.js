@@ -73,11 +73,18 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
                 let max = length-1
                 let min = 0
                 let randomNumber = getRandomInteger(max, min)
-                randomNumbers.push(randomNumber)
-                if(randomNumbers.randomNumber){
-                    
-                }
+                let index = randomNumbers.findIndex(r => r.number == randomNumber)
+                if(index != -1){
+                    i--
+                } else {
+                randomNumbers.push({"number": randomNumber})
                 resultsArray.push(resultsOfData[randomNumber])
+                }
+                
+                console.log(randomNumbers)
+                
+                console.log(index)
+                
             }
 
 
