@@ -78,7 +78,6 @@ const saveToDB = function () {
 }
 
 const removeFromDB = function () {
-    debugger
     let objectType = $(this).attr("class")
     objectType = objectType.slice(6)
 
