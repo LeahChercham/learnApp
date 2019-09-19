@@ -109,7 +109,7 @@
     <script id="db-template" type="text/x-handlebars-template">
         <div class="db-container">
             <div id="savedPodcasts">
-                <h2>Listen to later:</h2>
+                <div class="laterText">Listen to later:</div>
                 
                     {{#each podcast}}
                 <div class="savedPodcast">
@@ -118,7 +118,7 @@
                     <div class="savedPodcastImage">
                             <img class="savedPodcastImage" src={{image}} alt="image of podcast">
                     </div>
-                        
+
                     <div><audio controls duration src={{podcastLink}}></audio></div>
                     <div><button class="removePodcast"><i class="fas fa-trash"></i></button></div>
                     </div>
@@ -127,7 +127,7 @@
                     <img id="listenImage" src="./images\small-logo.png" alt="Powered by LISTEN NOTES">
             </div>
             <div id="savedBooks">
-                    <h2>Read later:</h2> 
+                    <div class="laterText">Read later:</div> 
                         {{#each book}}
                     <div class="savedBook">
                         <div class="savedBookTitle">{{title}}</div>
