@@ -1,4 +1,48 @@
-.resultImg{
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+#mainContainer{
+    margin-top:5vh;
+}
+
+/* .resultImg{
     width: 20%;
     height:auto;
+} */
+
+.logInContainer{
+    margin-top:10vh;
+}
+
+#loggedInContainer{
+    display:grid;
+    grid-template-columns: 8fr 2fr;
+}
+#welcomeMessage{
+    display:grid;
+    align-self: center;
+    justify-self: left;
+    font-size: 130%;
+    font-weight: bold;
+}
+
+#logOutButton{
+    display:grid;
+    align-self: center;
+    justify-self: center;
+}
+
+.audioContainer{
+    display:grid;
+    align-content: center;
+    justify-content: right;
+}
+
+audio{
+    width:400px;
+    height:30px;
+}
+.boldWeight{
+    font-weight: bold;
 }

@@ -204,10 +204,11 @@ router.get("/videos/:searchedSkill", function (req, res) {
     let link = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchedSkill}&type=video&videoType=episode&key=${youtubeApiKey}`
 
     request(link, function (err, response) {
-        if (err) { console.log(err) }
+        if (err) { console.log(err) } else{
         let data = JSON.parse(response.body)
         let dataArray = data.items
         let dataWanted = []
+        if(dataArray == undefined){return}else{
             dataArray.forEach(d => {
             let video = {
                 "title": d.snippet.title,
@@ -217,7 +218,7 @@ router.get("/videos/:searchedSkill", function (req, res) {
                 "videoID": d.id.videoId
             }
             dataWanted.push(video)
-        })
+        })}
 
         let resultsArray = []
         let randomNumbers = []
@@ -235,7 +236,7 @@ router.get("/videos/:searchedSkill", function (req, res) {
                 resultsArray.push(dataWanted[randomNumber])
             }
         }
-        res.send(resultsArray)
+        res.send(resultsArray)}
         })
 
     })

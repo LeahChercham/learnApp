@@ -16,23 +16,23 @@
 </head>
 
 <body>
-    <div id="container">
-        <div class="login-area"></div>
-        <div class="main-area"></div>
-        <div class="results-area"></div>
-        <div class="db-area"></div>
+    <div id="mainContainer">
+        <div class="login-area container"></div>
+        <div class="main-area container"></div>
+        <div class="results-area container"></div>
+        <div class="db-area container"></div>
     </div>
 
 
     <!-- Handlebars Templates-->
     <script id="login-template" type="text/x-handlebars-template">
     {{#if isLoggedIn}}
-        <div class="container">
-                <div id="welcomeMessage">Hi {{username}}</div class="">
-                <div class="waves-effect waves-light btn" id="logOutButton" onclick=logOut()>Logout</div>
+        <div id="loggedInContainer">
+                    <span id="welcomeMessage"> Hi {{username}}</span>                    
+                    <span class="waves-effect waves-light btn-small" id="logOutButton" onclick=logOut()>Logout</span>   
         </div>
     {{else}}
-        <div class="container">
+        <div class="container logInContainer">
             <div class="row">
                 <div class="col l6 offset-l3 m6 offset-m3 s10 offset-s1">
                     <div class="card blue-grey darken-1">
@@ -62,25 +62,30 @@
             <div class="accordion-title">Podcasts</div>
             <div class="result podcast accordion-content">
                 {{#each podcast}}
-                <div class="podcast">
-                    <div class="episodeTitle">{{episodeTitle}}</div>
-                    <div class="podcastName">{{podcastName}}</div>
-                    <div><div data-button="Podcast" class="savePodcast waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
-                    
-                    <div class="podcastImage">
-                            <img class="resultImg" src={{image}} alt="image of podcast">
+                <div class="card small">
+                <div class="podcast"> 
+                    <div class="card-image waves-effect waves-block waves-light podcastImage">
+                            <img class="resultImg activator" src={{image}} alt="image of podcast">
                     </div>
-                    <div class="listenText">   Listen Right Here!   
-                        <audio controls duration src={{podcastLink}}></audio>
-                    
+                    <div class="card-action">
+                            <span class="episodeTitle card-title activator grey-text text-darken-4">{{episodeTitle}}<i class="material-icons right">more_vert</i></span>
+                            <!-- <p class="boldWeight">From</p> -->
+                            <div class="podcastName"> {{podcastName}}</div>
+                        <div class="audioContainer">
+                                    <audio controls duration src={{podcastLink}}></audio>
+                                </div>
                     </div>
+                           <div class="card-reveal">  
+                                <span class="card-title grey-text text-darken-4">{{episodeTitle}}<i class="material-icons right">close</i></span>         
                         <span class="podcastDescription" data-id="{{description}}">{{shortDesc description}}</span>
                         {{#if description}}
                         <span class="showMorePodcast" >
                             <div class="descButton waves-effect waves-light btn">Show more</div>
                         </span>
                         {{/if}}
+                        </div>
                     </div>  
+                </div>
                 {{/each}}
             </div>
             <div class="accordion-title">Books</div>
@@ -112,7 +117,7 @@
             <div class="resultVideo accordion-content">
                     {{#each video}}
                     <div class="video">
-                        <div class="videoTitle"><a href="{{link}}">{{title}}</a></div>
+                        <!-- <div class="videoTitle"><a href="{{link}}">{{title}}</a></div> -->
                         <div class="channelTitle">{{channelTitle}}</div>
                         <iframe width="480" height="270" src= "https://www.youtube.com/embed/{{videoID}}"></iframe>
                         <div><div data-button="Video" class="saveVideo waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
@@ -170,6 +175,7 @@
                         {{/each}}     
                 </div>
                 <div class="savedVideos">
+                        <div>Watch later:</div> 
                         {{#each video}}
                         <div class="savedVideo">
                             <h1 class="savedVideoTitle"><a href="{{link}}">{{title}}</a></h1>
