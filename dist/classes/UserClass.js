@@ -5,7 +5,7 @@ class User {
 
     async search(skill) {
         await dataManager.getAllDataFromAPI(skill)
-        let data = { podcast: dataManager.podcasts }
+        let data = { podcast: dataManager.podcasts, book: dataManager.books }
         console.log("this is data: " + data)
         renderer.render(RESULTS_TEMPLATE, data, RESULTS_AREA)
     }

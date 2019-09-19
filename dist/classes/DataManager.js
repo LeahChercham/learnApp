@@ -1,14 +1,19 @@
 class DataManager {
 
     constructor() {
-        // this.books = []
+        this.books = []
+
         this.podcasts = []
         this.savedPodcasts = []
+
         // this.course = []
 
-        this.route = ""
+        this.route = "" // we need this for the podcasts in case a podcast starts with a # or contains a colon.
 
     }
+
+    // =========================== GET FROM DB ======================================
+
     async getPodcastsFromDB() {
         let response = await $.get(`/savedPodcasts/${user.name}`)
         this.savedPodcasts = response
@@ -19,18 +24,27 @@ class DataManager {
         console.log(this.savedPodcasts)
     }
 
+
+    // =========================== GET FROM API ======================================
     async getPodcastFromAPI(skill) {
         let response = await $.get(`/podcasts/${skill}`)
         if (response) {
             this.podcasts = response
         }
     }
+    async getBooksFromAPI(skill) {
+        let response = await $.get(`/books/${skill}`)
+        if (response) {
+            this.books = response
+        }
+    }
+
 
     async getAllDataFromAPI(skill) {
         await this.getPodcastFromAPI(skill)
-        console.log(this.podcasts)
+        await this.getBooksFromAPI(skill)
+        console.log(this.books)
         // v4 await getCourseFromAPI()
-        // v3 await getBookFromAPI()
     }
 
     async saveToDB(episode, user) {

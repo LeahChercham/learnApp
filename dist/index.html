@@ -65,6 +65,25 @@
                     </div>  
                 {{/each}}
             </div>
+            <div class="result book">
+                    {{#each book}}
+                    <div class="book">
+                        <h1 class="bookTitle"><a href="{{buyLink}}">{{title}}</a></h1>
+                        {{#if subtitle}}
+                        <h2 class="bookSubtitle">{{subtitle}}</h2>
+                        {{/if}}
+                        <div><button class="saveBook"><i class="fas fa-archive"></i><br></button></div>
+                        
+                        <div class="bookImage">
+                                <img class="bookImage" src={{imgURL}} alt="image of book">
+                        </div>
+                            <span class="bookDescription" data-id="{{description}}">{{description}}</span> 
+                            <!-- <span class="showMore" >
+                                <button class=descButton>Show more</button>
+                            </span> -->
+                        </div>  
+                    {{/each}}
+                </div>
             <div class="result book"></div>
             <div class="result course"></div>
         </div>
