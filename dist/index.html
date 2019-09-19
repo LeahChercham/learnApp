@@ -10,7 +10,7 @@
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="./materialize-css/dist/css/materialize.css"
         media="screen,projection" />
-
+    <link rel="stylesheet" href="Accordion.css">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
@@ -53,12 +53,12 @@
             <div class="result podcast accordion-content">
                 {{#each podcast}}
                 <div class="podcast">
-                    <h1 class="episodeTitle">{{episodeTitle}}</h1>
-                    <h2 class="podcastName">{{podcastName}}</h2>
+                    <div class="episodeTitle">{{episodeTitle}}</div>
+                    <div class="podcastName">{{podcastName}}</div>
                     <div><div class="savePodcast waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
                     
                     <div class="podcastImage">
-                            <img class="podcastImage" src={{image}} alt="image of podcast">
+                            <img class="resultImg" src={{image}} alt="image of podcast">
                     </div>
                     <div class="listenText">   Listen Right Here!   
                         <audio controls duration src={{podcastLink}}></audio>
@@ -77,17 +77,17 @@
             <div class="result book accordion-content">
                     {{#each book}}
                     <div class="book">
-                        <h1 class="bookTitle"><a href="{{buyLink}}">{{title}}</a></h1>
+                        <div class="bookTitle"><a href="{{buyLink}}">{{title}}</a></div>
                         {{#if subtitle}}
-                        <h2 class="bookSubtitle">{{subtitle}}</h2>
+                        <div class="bookSubtitle">{{subtitle}}</div>
                         {{/if}}
                         {{#each authors}}
-                        <h3 class="bookAuthor">{{authors}}</h3>
+                        <div class="bookAuthor">{{authors}}</div>
                         {{/each}}
                         <div><div class="saveBook waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
                         
                         <div class="bookImage">
-                                <img class="bookImage" src={{imgURL}} alt="image of book">
+                                <img class="resultImg" src={{imgURL}} alt="image of book">
                         </div>
                             <span class="bookDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                             {{#if description}}
@@ -102,8 +102,8 @@
             <div class="resultVideo accordion-content">
                     {{#each video}}
                     <div class="video">
-                        <h1 class="videoTitle"><a href="{{link}}">{{title}}</a></h1>
-                        <h2 class="channelTitle">{{channelTitle}}</h2>
+                        <div class="videoTitle"><a href="{{link}}">{{title}}</a></div>
+                        <div class="channelTitle">{{channelTitle}}</div>
                         <iframe width="480" height="270" src= "https://www.youtube.com/embed/{{videoID}}"></iframe>
                         <div><div class="saveVideo waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
                         
@@ -123,14 +123,14 @@
     <script id="db-template" type="text/x-handlebars-template">
         <div class="db-container">
             <div id="savedPodcasts">
-                <h2>Listen to later:</h2>
+                <div>Listen to later:</div>
                 
                     {{#each podcast}}
                 <div class="savedPodcast">
                     <div class="savedPodcastName">{{podcastName}}</div>
                     <div class="savedEpisodeTitle">{{episodeTitle}}</div>
                     <div class="savedPodcastImage">
-                            <img class="savedPodcastImage" src={{image}} alt="image of podcast">
+                            <img class="resultImg" src={{image}} alt="image of podcast">
                     </div>
                         
                     <div><audio controls duration src={{podcastLink}}></audio></div>
@@ -141,18 +141,18 @@
                     <img id="listenImage" src="./images\small-logo.png" alt="Powered by LISTEN NOTES">
             </div>
             <div id="savedBooks">
-                    <h2>Read later:</h2> 
+                    <div>Read later:</div> 
                         {{#each book}}
                     <div class="savedBook">
                         <div class="savedBookTitle">{{title}}</div>
                         {{#if subtitle}}
-                        <h2 class="savedbookSubtitle">{{subtitle}}</h2>
+                        <div class="savedbookSubtitle">{{subtitle}}</div>
                         {{/if}}
                         {{#each authors}}
-                        <h3 class="saved bookAuthor">{{authors}}</h3>
+                        <div class="saved bookAuthor">{{authors}}</div>
                         {{/each}}
                         <div class="savedbookImage">
-                                <img class="savedbookImage" src={{imgURL}} alt="image of book">
+                                <img class="resultImg" src={{imgURL}} alt="image of book">
                         </div>
 
                         <div><div class="removeBook waves-effect waves-light btn"><i class="fas fa-trash"></i></div></div>
