@@ -1,5 +1,5 @@
 const dataManager = new DataManager()
-const renderer = new Renderer()
+
 
 let user
 

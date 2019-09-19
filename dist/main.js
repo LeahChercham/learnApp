@@ -1,3 +1,4 @@
+const renderer = new Renderer()
 
 const logIn = function () {
     //debugger
