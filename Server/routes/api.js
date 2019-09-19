@@ -14,13 +14,14 @@ router.post("/login", function (req, res) {
     })
 })
 
+
+// Podcast DB
 router.put("/podcast/:username", function (req, res) {
     let user = req.params.username
     User.findOneAndUpdate({ "name": user }, { $push: { "podcasts": req.body } }, { new: true }, function (error, response) {
         res.send(response)
     })
 })
-
 router.delete("/podcast/:username", function (req, res) {
     let user = req.params.username
     let episodeTitle = req.body.episodeTitle
@@ -28,13 +29,26 @@ router.delete("/podcast/:username", function (req, res) {
         res.send(response)
     })
 })
-
 router.get("/savedPodcasts/:username", function (req, res) {
     let user = req.params.username
     User.findOne({ "name": user }, function (error, response) {
         res.send(response.podcasts)
     })
 })
+
+
+//books DB
+router.put("/book/:username", function (req, res) {
+    let user = req.params.username
+    User.findOneAndUpdate({ "name": user }, { $push: { "books": req.body } }, { new: true }, function (error, response) {
+        res.send(response)
+    })
+})
+
+
+
+
+
 
 // ======================================= GET PODCAST REQUEST ================================ // 
 const getRandomInteger = function (max, min) {
