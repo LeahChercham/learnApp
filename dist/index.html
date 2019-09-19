@@ -59,9 +59,11 @@
                     
                     </div>
                         <span class="podcastDescription" data-id="{{description}}">{{shortDesc description}}</span>
-                        <span class="showMore" >
+                        {{#if description}}
+                        <span class="showMorePodcast" >
                             <button class=descButton>Show more</button>
                         </span>
+                        {{/if}}
                     </div>  
                 {{/each}}
             </div>
@@ -72,15 +74,20 @@
                         {{#if subtitle}}
                         <h2 class="bookSubtitle">{{subtitle}}</h2>
                         {{/if}}
+                        {{#each authors}}
+                        <h3 class="bookAuthor">{{authors}}</h3>
+                        {{/each}}
                         <div><button class="saveBook"><i class="fas fa-archive"></i><br></button></div>
                         
                         <div class="bookImage">
                                 <img class="bookImage" src={{imgURL}} alt="image of book">
                         </div>
-                            <span class="bookDescription" data-id="{{description}}">{{description}}</span> 
-                            <!-- <span class="showMore" >
+                            <span class="bookDescription" data-id="{{description}}">{{shortDesc description}}</span> 
+                            {{#if description}}
+                            <span class="showMoreBook" >
                                 <button class=descButton>Show more</button>
-                            </span> -->
+                            </span>
+                            {{/if}}
                         </div>  
                     {{/each}}
                 </div>
@@ -120,9 +127,9 @@
 
     <script src="./jquery/dist/jquery.js"></script>
     <script src="./handlebars/dist/handlebars.js"></script>
+    <script src="./readmore-js/readmore.min.js"></script>
     <script src="./classes/Renderer.js"></script>
     <script src="./classes/DataManager.js"></script>
-    <script src="constants.js"></script>
     <script src="./classes/UserClass.js"></script>
     <script src="main.js"></script>
 </body>

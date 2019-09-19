@@ -4,7 +4,7 @@ const dataManager = new DataManager()
 let user
 
 const LOGIN_TEMPLATE = "login-template"
-const LOGIN_AREA = "login-area" 
+const LOGIN_AREA = "login-area"
 
 const MAIN_TEMPLATE = "main-template"
 const MAIN_AREA = "main-area"
@@ -21,22 +21,23 @@ const logIn = function () {
     //debugger
     const username = $("#username").val()
     let password = $("#password").val()
-    if(username){
-    if (password) {
-        $.post('/login', { username }, async function (u) {
-            user = new User(username)
-            renderer.render(LOGIN_TEMPLATE, { isLoggedIn: true, username }, LOGIN_AREA)
-            let data = "" // because we need data to use handlebars
-            let savedPodcasts = await dataManager.getAllDataFromDB()
-            savedPodcasts = { podcast: dataManager.savedPodcasts }
-            renderer.render(MAIN_TEMPLATE, data, MAIN_AREA)
-            renderer.render(RESULTS_TEMPLATE, data, RESULTS_AREA)
-            renderer.render(DB_TEMPLATE, savedPodcasts, DB_AREA)
+    if (username) {
+        if (password) {
+            $.post('/login', { username }, async function (u) {
+                user = new User(username)
+                renderer.render(LOGIN_TEMPLATE, { isLoggedIn: true, username }, LOGIN_AREA)
+                let data = "" // because we need data to use handlebars
+                let savedPodcasts = await dataManager.getAllDataFromDB()
+                savedPodcasts = { podcast: dataManager.savedPodcasts }
+                renderer.render(MAIN_TEMPLATE, data, MAIN_AREA)
+                renderer.render(RESULTS_TEMPLATE, data, RESULTS_AREA)
+                renderer.render(DB_TEMPLATE, savedPodcasts, DB_AREA)
 
-        })
+            })
+        } else {
+            alert("Please enter your password.")
+        }
     } else {
-        alert("Please enter your password.")
-    }} else {
         alert("Please enter username.")
     }
 }
@@ -59,39 +60,59 @@ $(".main-area").on("click", "#searchButton", search)
 
 //------------ Read more feature -------------
 
-const showMore = function () {
+const showMorePodcast = function () {
     const podcastDiv = $(this).closest(".podcast")
     const allDescription = $(this).closest(".podcast").find(".podcastDescription").data("id")
     let words = allDescription.split(" ")
-    let restOfDesc = words.splice(50).join(" ")
+    let restOfDesc = words.splice(30).join(" ")
     $(this).empty()
-    podcastDiv.append(`<span class= expandedDesc >${restOfDesc}</span> <span class="readLess"> <button class="descButton">Read Less </button></span>`)
+    podcastDiv.append(`<span class= expandedDesc >${restOfDesc}</span> <span class="readLessPodcast"> <button class="descButton">Read Less </button></span>`)
 }
 
-const showLess = function () {
+const showLessPodcast = function () {
     const expandedDesc = $(this).closest(".podcast").find(".expandedDesc")
     expandedDesc.empty()
 }
 
-$("body").on("click", ".showMore", showMore)
-$("body").on("click", ".readLess", showLess)
+const showMoreBook = function () {
+    const BookDiv = $(this).closest(".book")
+    const allDescription = $(this).closest(".book").find(".bookDescription").data("id")
+    let words = allDescription.split(" ")
+    let restOfDesc = words.splice(30).join(" ")
+    $(this).empty()
+    BookDiv.append(`<span class= expandedDesc >${restOfDesc}</span> <span class="readLessBook"> <button class="descButton">Read Less </button></span>`)
+}
+
+const showLessBook = function () {
+    const expandedDesc = $(this).closest(".book").find(".expandedDesc")
+    expandedDesc.empty()
+}
+
+$("body").on("click", ".showMorePodcast", showMorePodcast)
+$("body").on("click", ".readLessPodcast", showLessPodcast)
+$("body").on("click", ".showMoreBook", showMoreBook)
+$("body").on("click", ".readLessBook", showLessBook)
 
 //Handlebar custom HELPER 
 Handlebars.registerHelper('shortDesc', function (description) {
-    let words = description.split(" ")
-    let fewWords = words.splice(0,50).join(" ")
-    if (words.length > 50)
-        return fewWords;
+    if (description) {
+        let words = description.split(" ")
+        let fewWords = words.splice(0, 30).join(" ")
+        if (words.length > 30) {
+            return fewWords
+        }
+        else { return description }
+    }
 });
 
 // ========= save and remove buttons
 
-const saveToDB = function(){
+const saveToDB = function () {
     let episodeName = $(this).closest(".podcast").find(".episodeTitle").text()
     user.saveToDB(episodeName)
 }
 
-const removeFromDB = function(){
+const removeFromDB = function () {
     let episodeName = $(this).closest(".savedPodcast").find(".savedEpisodeTitle").text()
     user.removeFromDB(episodeName)
 }
@@ -99,4 +120,3 @@ const removeFromDB = function(){
 
 $("body").on("click", ".savePodcast", saveToDB)
 $("body").on("click", ".removePodcast", removeFromDB)
-
