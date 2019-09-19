@@ -18,5 +18,5 @@ server.use(express.static(path.join(__dirname, 'node_modules')))
 
 server.use('/', api)
 
-const PORT = process.env.PORT || 3000
-server.listen(PORT, function () { console.log('Running on ' + PORT) })
+const PORT = '3000';
+server.listen(process.env.PORT || PORT, () => { console.log('Running on ' + PORT) })
