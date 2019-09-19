@@ -62,15 +62,15 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
 
             for (let i = 0; i < 3; i++) {
                 let length = resultsOfData.length
-                let max = length-1
+                let max = length - 1
                 let min = 0
                 let randomNumber = getRandomInteger(max, min)
                 let index = randomNumbers.findIndex(r => r.number == randomNumber)
-                if(index != -1){
+                if (index != -1) {
                     i--
                 } else {
-                randomNumbers.push({"number": randomNumber})
-                resultsArray.push(resultsOfData[randomNumber])
+                    randomNumbers.push({ "number": randomNumber })
+                    resultsArray.push(resultsOfData[randomNumber])
                 }
             }
             first3Podcasts(resultsArray)
@@ -79,7 +79,7 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
     }
 
     const first3Podcasts = function (resultsOfData) {
-        
+
         for (let i = 0; i < 3; i++) {
             resultsOfData[i] = {
                 episodeTitle: resultsOfData[i].title_original,
@@ -100,17 +100,49 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
 
 // ======================================= GET BOOKS REQUEST ================================ // 
 
-router.get("/books/:searchedSkill", function(req,res){
+router.get("/books/:searchedSkill", function (req, res) {
     let searchedSkill = req.params.searchedSkill
-    request(`https://www.googleapis.com/books/v1/volumes?q=${searchedSkill}&langRestrict=en`, function(err, response){
-        if(err){console.log(err)}
+    request(`https://www.googleapis.com/books/v1/volumes?q=${searchedSkill}&langRestrict=en`, function (err, response) {
+        if (err) { console.log(err) }
         let data = JSON.parse(response.body)
         let englishBooks = []
         data.items.forEach(d => {
-            if( d.volumeInfo.language == "en"){
-            englishBooks.push(d)}})
-        res.send(englishBooks) // array of book objects
-    })
+            if (d.volumeInfo.language == "en") {
+                englishBooks.push(d)
+            }
+        })
+
+        let resultsArray = []
+        let randomNumbers = []
+
+        for (let i = 0; i < 3; i++) {
+            let length = englishBooks.length
+            let max = length - 1
+            let min = 0
+            let randomNumber = getRandomInteger(max, min)
+            let index = randomNumbers.findIndex(r => r.number == randomNumber)
+            if (index != -1) {
+                i--
+            } else {
+                randomNumbers.push({ "number": randomNumber })
+                resultsArray.push(englishBooks[randomNumber])
+            }}
+
+            let finalBooks = []
+        resultsArray.forEach(r => {
+            let book = {
+                "authors" : r.volumeInfo.authors,
+                "title": r.volumeInfo.title,
+                "subtitle": r.volumeInfo.subtitle,
+                "buyLink": r.volumeInfo.infoLink,
+                "imgURL": r.volumeInfo.imageLinks.thumbnail,
+                "description": r.volumeInfo.description 
+            }
+            finalBooks.push(book)
+        })
+
+            res.send(finalBooks) // array of book objects
+        })
 })
 
 // ======================================= GET BOOKS REQUEST DONE ================================ // 
