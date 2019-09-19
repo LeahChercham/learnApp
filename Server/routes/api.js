@@ -109,6 +109,7 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
         }
         return resultsOfData
     }
+
     request(getLink, callback);
 })
 // ======================================= GET PODCAST REQUEST DONE ================================ // 
