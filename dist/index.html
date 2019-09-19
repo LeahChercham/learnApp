@@ -23,12 +23,12 @@
     <!-- Handlebars Templates-->
     <script id="login-template" type="text/x-handlebars-template">
     {{#if isLoggedIn}}
-        <div class="logContainer">
+        <div class="logContainerOff">
                 <div id="welcomeMessage">Hi {{username}}</div class="">
                 <button class="button" id="logOutButton" onclick=logOut()>Logout</button>
         </div>
     {{else}}
-        <div class="logContainer">
+        <div class="logContainerIn">
             <input id="username" placeholder="Username">
             <input id="password" placeholder="Password" type="password">
             <button class="button" id="logInButton" onclick=logIn()>Login</button>
@@ -44,57 +44,65 @@
     </script>
 
     <script id="results-template" type="text/x-handlebars-template">
-        <div id="result">
-            <div class="result podcast">
+            <div class="result">
                 {{#each podcast}}
-                <div class="podcast">
-                    <h1 class="episodeTitle">{{episodeTitle}}</h1>
-                    <h2 class="podcastName">{{podcastName}}</h2>
-                    <div><button class="savePodcast"><i class="fas fa-archive"></i><br></button></div>
-                    
-                    <div class="podcastImage">
-                            <img class="podcastImage" src={{image}} alt="image of podcast">
-                    </div>
-                    <div class="listenText">   Listen Right Here!   
-                        <audio controls duration src={{podcastLink}}></audio>
-                    
-                    </div>
-                        <span class="podcastDescription" data-id="{{description}}">{{shortDesc description}}</span>
+                    <div class="podcast card">
+                        <div class="row1">
+                            <div class="nameGrid">
+                                <div class="episodeTitle resultTitle">{{episodeTitle}}</div>
+                                <div class="podcastName resultSubtitle">{{podcastName}}</div>
+                            </div>
+                            <div class="savePodcastButton">
+                                <button class="savePodcast"><i class="fas fa-archive"></i><br></button>
+                            </div>
+                        </div>
+
+                        <div class="row2">
+                            <div class="podcastImage">
+                                    <img class="podcastImage" src={{image}} alt="image of podcast">
+                            </div>
+                            <div class="entirePodcastDescription">
+                                    <span class="podcastDescription" data-id="{{description}}">{{shortDesc description}}</span>
+                                    {{#if description}}
+                                        <span class="showMorePodcast" >
+                                            <i class="button fas fa-angle-double-right descButton"></i>
+                                        </span>
+                                    {{/if}}
+                            </div>
+                        </div>  
+                        <div class="row3">   
+                            <div>Listen right here:</div>  
+                            <audio controls duration src={{podcastLink}}></audio>
+                        </div>
+                    </div>  
+                {{/each}}
+            </div>
+
+            <div class="result">
+                {{#each book}}
+                    <div class="book card">
+                        <div class="bookTitle resultTitle"><a href="{{buyLink}}">{{title}}</a></div>
+                        {{#if subtitle}}
+                            <div class="bookSubtitle resultSubtitle">{{subtitle}}</div>
+                        {{/if}}
+                        {{#each authors}}
+                            <div class="bookAuthor">{{authors}}</div>
+                        {{/each}}
+                        <div>
+                            <button class="saveBook"><i class="fas fa-archive"></i><br></button>
+                        </div>
+                        <div class="bookImage">
+                            <img class="bookImage" src={{imgURL}} alt="image of book">
+                        </div>
+                        <span class="bookDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                         {{#if description}}
-                        <span class="showMorePodcast" >
-                            <button class=descButton>Show more</button>
-                        </span>
+                            <span class="showMoreBook" >
+                                <button class=descButton>Show more</button>
+                            </span>
                         {{/if}}
                     </div>  
                 {{/each}}
             </div>
-            <div class="result book">
-                    {{#each book}}
-                    <div class="book">
-                        <h1 class="bookTitle"><a href="{{buyLink}}">{{title}}</a></h1>
-                        {{#if subtitle}}
-                        <h2 class="bookSubtitle">{{subtitle}}</h2>
-                        {{/if}}
-                        {{#each authors}}
-                        <h3 class="bookAuthor">{{authors}}</h3>
-                        {{/each}}
-                        <div><button class="saveBook"><i class="fas fa-archive"></i><br></button></div>
-                        
-                        <div class="bookImage">
-                                <img class="bookImage" src={{imgURL}} alt="image of book">
-                        </div>
-                            <span class="bookDescription" data-id="{{description}}">{{shortDesc description}}</span> 
-                            {{#if description}}
-                            <span class="showMoreBook" >
-                                <button class=descButton>Show more</button>
-                            </span>
-                            {{/if}}
-                        </div>  
-                    {{/each}}
-                </div>
-            <div class="result book"></div>
-            <div class="result course"></div>
-        </div>
     </script>
 
 
@@ -146,7 +154,6 @@
 
     <script src="./jquery/dist/jquery.js"></script>
     <script src="./handlebars/dist/handlebars.js"></script>
-    <script src="./readmore-js/readmore.min.js"></script>
     <script src="./classes/Renderer.js"></script>
     <script src="./classes/DataManager.js"></script>
     <script src="./classes/UserClass.js"></script>

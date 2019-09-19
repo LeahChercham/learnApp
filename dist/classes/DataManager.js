@@ -2,7 +2,7 @@ class DataManager {
 
     constructor() {
         this.books = []
-
+        this.savedBooks = []
         this.podcasts = []
         this.savedPodcasts = []
 

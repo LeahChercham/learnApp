@@ -109,21 +109,22 @@ const showMorePodcast = function () {
     const allDescription = $(this).closest(".podcast").find(".podcastDescription").data("id")
     let words = allDescription.split(" ")
     let restOfDesc = words.splice(30).join(" ")
-    $(this).empty()
-    podcastDiv.append(`<span class= expandedDesc >${restOfDesc}</span> <span class="readLessPodcast"> <button class="descButton">Read Less </button></span>`)
+    $(this).empty().append(`<span class= expandedDesc >${restOfDesc}</span> <span class="readLessPodcast"> <button class="descButton">Read Less </button></span>`)
 }
 const showLessPodcast = function () {
+    debugger
     const expandedDesc = $(this).closest(".podcast").find(".expandedDesc")
     expandedDesc.empty()
 }
 // For Book
 const showMoreBook = function () {
+    debugger
     const BookDiv = $(this).closest(".book")
     const allDescription = $(this).closest(".book").find(".bookDescription").data("id")
     let words = allDescription.split(" ")
     let restOfDesc = words.splice(30).join(" ")
     $(this).empty()
-    BookDiv.append(`<span class= expandedDesc >${restOfDesc}</span> <span class="readLessBook"> <button class="descButton">Read Less </button></span>`)
+    BookDiv.append(`<span class= expandedDesc >${restOfDesc}</span> <span class=" button readLessBook"><i class="fas fa-angle-double-left descButton"></i></span>`)
 }
 const showLessBook = function () {
     const expandedDesc = $(this).closest(".book").find(".expandedDesc")

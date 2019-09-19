@@ -5,9 +5,6 @@
     --secondaryTextColor: white;
     --secondaryBackgroundColor: var(--primaryTextColor);
 }
-body{
-    margin: 10px;
-}
 
 .button{
     background-color:var(--secondaryBackgroundColor);
@@ -20,38 +17,78 @@ body{
     width: 98vw;
     display:grid;
     grid-template-rows: 1fr 4fr 4fr 5fr;
+    background-color: lightsteelblue;
 }
+
+
+
+
+
 
 /*-------CSS for Results ----------*/
-
-.podcast {
-    font-family: monospace;
-    font-size: 12px;
-    /*display: flex;
-    flex-wrap: wrap;
-outline: 1px solid black;*/
+.results-area{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap:1vw;
 }
 
-.podcastImage {
-    height: 100px;
-    width: 100px
+/* ==================================podcast area */
+.podcast .card{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 
-.h1 {
-    font-size: 15px;
-    font-style: bold;
-
+.row1{
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+}
+.nameGrid{
+    display: grid;
+    grid-template-rows: 3fr 2fr;
+    align-items: center;
+    justify-items: center;
+}
+.savePodcastButton{
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}
+.row2{
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+}
+.row3 {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
 }
 
-.h2 {
-    font-size: 14px;
-    font-style: italic, bold;
-    
+.podcastImage{
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    width:70px;
+    height:70px;
+}
+audio{
+    width: 200px;
+    height:30px;
 }
 
-.listenText {
-    font-size: 14px;
-    font-style: italic, bold;
-    color: red;
-    font-style: bold
+.entirePodcastDescription{
+    font-size:70%;
+}
+
+.logContainerIn{
+    display: grid;
+    grid-template-rows: 2fr 2fr 1fr;
+    grid-gap:1vh;
+    align-content: center;
+    justify-content: center;
+    margin-top:15vh;
+    padding:10px;
+}
+
+::placeholder{
+    align-self: center;
+    justify-self: center;
 }
