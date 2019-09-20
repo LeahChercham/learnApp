@@ -93,7 +93,7 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
     const getLink = {
         url: `https://listen-api.listennotes.com/api/v2/search?q=${searchedSkill}&type=episode&offset=0&len_min=5&len_max=45&only_in=title&language=English&safe_mode=1&limit=3`,
         headers: {
-            'X-ListenAPI-Key': 'c1c2187a1d5e462b9f49a13728df80de'
+            'X-ListenAPI-Key': process.env.LISTEN_API
         }
     }
 
@@ -205,7 +205,7 @@ router.get("/books/:searchedSkill", function (req, res) {
 
 // ======================================= GET YOUTUBE REQUEST ================================ // 
 
-let youtubeApiKey = 'AIzaSyAwo7bsdRBvO-aEZ1fktiZAWeVDh4EC5Po'
+let youtubeApiKey = process.env.YOUTUBE_API
 
 router.get("/videos/:searchedSkill", function (req, res) {
     let searchedSkill = req.params.searchedSkill
