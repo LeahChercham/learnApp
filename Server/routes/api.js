@@ -217,9 +217,10 @@ router.get("/videos/:searchedSkill", function (req, res) {
             res.end()
         } else {
             let data = JSON.parse(response.body)
+            //console.log(data)
             let dataArray = data.items
             let dataWanted = []
-            //if (dataArray == undefined) { res.end() } else {
+            if (!dataArray) { res.end() } else {
                 dataArray.forEach(d => {
                     let video = {
                         "title": d.snippet.title,
@@ -249,7 +250,7 @@ router.get("/videos/:searchedSkill", function (req, res) {
                 }
             }
             res.send(resultsArray)
-        }
+        } }
     })
 
 })
