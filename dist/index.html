@@ -144,19 +144,17 @@
                     <div class="video container">
             
                         <div class="channelInfo">
-                            <div><a href={{link}}>{{channelTitle}}</a>
-                                <div class="videoTitle">{{title}}</div>
-                            </div>
                             <div data-button="Video" class="saveVideo waves-effect waves-light btn-small"><i
                                     class="fas fa-archive"></i></div>
+                                    <div class="videoTitle title"><a href={{link}}>{{title}}</a></div>
                         </div>
                         <iframe width="480" height="270" src="https://www.youtube.com/embed/{{videoID}}"></iframe>
-                        <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
+                        <!-- <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                                         {{#if description}}
                                         <span class="showMoreVideo" >
                                             <div data-button="Video" class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
                                         </span>
-                                        {{/if}}
+                                        {{/if}} -->
                     </div>
                     {{/each}}
             
@@ -255,19 +253,19 @@
                         <div class="video container">
                 
                             <div class="channelInfo">
-                                <div><a href={{link}}>{{channelTitle}}</a>
-                                    <div class="videoTitle">{{title}}</div>
-                                </div>
-                                <div data-button="Video" class="removeVideo waves-effect waves-light btn-small"><i
+                                    <div data-button="Video" class="removeVideo waves-effect waves-light btn-small"><i
                                         class="fas fa-trash"></i></div>
+                                    
+                                    <div class="videoTitle title"><a href={{link}}>{{title}}</a></div>
+                                
                             </div>
                             <iframe width="480" height="270" src="https://www.youtube.com/embed/{{videoID}}"></iframe>
-                            <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
+                            <!-- <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                                                         {{#if description}}
                                                         <span class="showMoreVideo" >
                                                             <div data-button="Video" class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
                                                         </span>
-                                                        {{/if}}
+                                                        {{/if}} -->
                         </div>
                         {{/each}}
                 

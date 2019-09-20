@@ -96,6 +96,8 @@ audio{
     padding:3vmin;
 }
 .bookImage{
+    display:grid;
+    grid-template-rows:2fr 1fr;
     align-self: center;
     justify-self: center;
 }
@@ -121,9 +123,10 @@ audio{
 .video .container{
     display:grid;
     grid-gap:3vw;
+    padding:3vw;
     grid-template-areas:
-    "t"
-    "v";
+    "v"
+    "t";
     height:auto;
     background-color:#dfe6e9;
     border-style: solid;
@@ -134,7 +137,7 @@ audio{
 .channelInfo{
     grid-area: t;
     display: grid;
-    grid-template-columns: 6fr 1fr;
+    grid-template-columns: 1fr 6fr;
     align-content: center;
     justify-content: center;
 }
@@ -160,14 +163,20 @@ iframe{
 
 .saveBook{
     display: grid;
-    align-self: center;
-    justify-self: center;
+    align-content: center;
+    justify-content: center;
 }
 .removeBook{
     display: grid;
-    align-self: center;
-    justify-self: center;
+    align-content: center;
+    justify-content: center;
 }
+.removeVideo{
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}
+
 
 /* Here extra code for mobile view */
 @media only screen and (max-width:600px){
