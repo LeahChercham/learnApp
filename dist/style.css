@@ -6,10 +6,10 @@
     margin-top:5vh;
 }
 
-/* .resultImg{
-    width: 20%;
+.resultImg{
+    width: 80px;
     height:auto;
-} */
+}
 
 .logInContainer{
     margin-top:10vh;
@@ -40,9 +40,28 @@
 }
 
 audio{
-    width:400px;
+    width:300px;
     height:30px;
 }
 .boldWeight{
     font-weight: bold;
+}
+
+/* Podcast container */
+.podcast .container{
+    display:grid;
+    grid-template-rows:1fr 1fr; 
+    grid-template-columns:1fr 5fr;
+    align-items: center;
+    justify-items: center;
+    height:150px;
+    background-color:lightblue;
+    padding:2vmin;
+    border-style: solid;
+    margin-top:3vmin;
+}
+
+.episodeTitle{
+    font-weight: bold;
+    font-size: 120%;
 }

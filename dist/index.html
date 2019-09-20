@@ -10,8 +10,9 @@
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="./materialize-css/dist/css/materialize.css"
         media="screen,projection" />
+        <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="Accordion.css">
-    <link rel="stylesheet" href="style.css">
+    
     <title>Document</title>
 </head>
 
@@ -63,34 +64,31 @@
             <div class="result podcast accordion-content">
                 {{#each podcast}}
                 <div class="podcast container">
-                <div class="card horizontal small">
                 
-                    <div class="card-image waves-effect waves-block waves-light podcastImage">
+                    <div class="imageContainer">
                             <img class="resultImg activator" src={{image}} alt="image of podcast">
                     </div>
-                    <div class="card-stacked">
-                    <div class="card-action">
+                        <div class="podcastInfoContainer">
+                            <span class="episodeTitle">{{episodeTitle}}</span> 
+                            <div class="podcastName"> {{podcastName}}</div>    
+                        </div>
 
-                            <!-- <p class="boldWeight">From</p> -->
-                            <div class="podcastName"> {{podcastName}}</div>
+                        <div data-button="Book" class="saveBook waves-effect waves-light btn-small"><i class="fas fa-archive"></i><br></div>
+
                         <div class="audioContainer">
-                                    <audio controls duration src={{podcastLink}}></audio>
-                                </div>
-                    </div>
-                           <div class="card-content">  
-                                <span class="card-title grey-text text-darken-4">{{episodeTitle}}</span>         
-                        <span class="podcastDescription" data-id="{{description}}">{{shortDesc description}}</span>
+                            <audio controls duration src={{podcastLink}}></audio>
+                        </div>    
+                        <!-- <span class="podcastDescription" data-id="{{description}}">{{shortDesc description}}</span>
                         {{#if description}}
                         <span class="showMorePodcast" >
-                            <div class="descButton waves-effect waves-light btn">Show more</div>
+                            <div class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
                         </span>
-                        {{/if}}
-                        </div>
+                        {{/if}} -->
                     </div>
-                    </div>  
-                </div>
                 {{/each}}
             </div>
+        </div>
+            
             <div class="accordion-title">Books</div>
             <div class="result book accordion-content">
                     {{#each book}}
@@ -107,12 +105,12 @@
                         <div class="bookImage">
                                 <img class="resultImg" src={{imgURL}} alt="image of book">
                         </div>
-                            <span class="bookDescription" data-id="{{description}}">{{shortDesc description}}</span> 
+                            <!-- <span class="bookDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                             {{#if description}}
                             <span class="showMoreBook" >
-                                <div class="descButton waves-effect waves-light btn">Show more</div>
+                                <div class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
                             </span>
-                            {{/if}}
+                            {{/if}} -->
                         </div>  
                     {{/each}}
                 </div>
@@ -126,12 +124,12 @@
                         <iframe width="480" height="270" src= "https://www.youtube.com/embed/{{videoID}}"></iframe>
                         <div><div data-button="Video" class="saveVideo waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
                         
-                            <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
+                            <!-- <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                             {{#if description}}
                             <span class="showMoreVideo" >
-                                <div class="descButton waves-effect waves-light btn">Show more</div>
+                                <div class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
                             </span>
-                            {{/if}}
+                            {{/if}} -->
                         </div>  
                     {{/each}}
                     {{else}}
