@@ -2,13 +2,22 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-#mainContainer{
+/* #mainContainer{
     margin-top:5vh;
-}
+    display: grid;
+    grid-template-rows: 1fr 1fr 6fr 2fr;
+    height:90vh;
+} */
 
 .resultImg{
     width: 80px;
     height:auto;
+}
+
+#listenImage{
+    position:absolute;
+    margin-right:10px;
+    margin-bottom: 10px;
 }
 
 .logInContainer{
@@ -64,4 +73,8 @@ audio{
 .episodeTitle{
     font-weight: bold;
     font-size: 120%;
+}
+
+.hidden {
+    display:none;
 }

@@ -54,7 +54,7 @@ const logOut = function () {
 
 // =============================== Search and Render ================================
 
-const setPreloader = function(){
+const setPreloader = function () {
     $(".results-area").append(`<div class="preloader-wrapper big active">
     <div class="spinner-layer spinner-red-only">
       <div class="circle-clipper left">
@@ -70,11 +70,12 @@ const setPreloader = function(){
 
 const search = function () {
     let skill = $("#skillInput").val()
-    if(skill){
-    $(".results-area").empty()
-    setPreloader()
-    user.search(skill).then(() => console.log("done"))}
-    else {alert("Please enter a keyword")}
+    if (skill) {
+        $(".results-area").empty()
+        setPreloader()
+        user.search(skill).then(() => console.log("done"))
+    }
+    else { alert("Please enter a keyword") }
 }
 
 renderer.render(LOGIN_TEMPLATE, { isLoggedIn: false }, LOGIN_AREA)
@@ -197,5 +198,14 @@ Handlebars.registerHelper('shortDesc', function (description) {
 });
 // =============================================================================================
 
+// hide and show function
 
+$("body").on("click", ".showButton", function () {
+    $(".hidden").show()
+    $(".show").hide()
+})
+$("body").on("click", ".hideButton", function () {
+    $(".hidden").hide()
+    $(".show").show()
+})
 

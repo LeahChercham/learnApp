@@ -52,10 +52,9 @@
     </script>
 
     <script id="main-template" type="text/x-handlebars-template">
-        <input type="text" placeholder="What skill do you want to improve?" id="skillInput">
+        <input type="text" placeholder="In what skill would you like to improve?" id="skillInput">
         <div class="waves-effect waves-light btn" id="searchButton">Show me Recommendations!</div>
 
-        </div>
     </script>
 
     <script id="results-template" type="text/x-handlebars-template">
@@ -142,6 +141,9 @@
 
     <script id="db-template" type="text/x-handlebars-template">
         <div class="db-container">
+                <span class="showButton show btn waves-effect waves-light">Saved for Later</span>
+                <span class="hideButton hidden btn waves-effect waves-light">Close save for later</span>
+            <div class="hidden">
             <div id="savedPodcasts">
                 <div>Listen to later:</div>
                 
@@ -158,7 +160,7 @@
                     </div>
 
                     {{/each}}
-                    <img id="listenImage" src="./images\small-logo.png" alt="Powered by LISTEN NOTES">
+                    
             </div>
             <div id="savedBooks">
                     <div>Read later:</div> 
@@ -197,6 +199,8 @@
                             </div>  
                         {{/each}}
                 </div>
+            </div>
+                <img id="listenImage" src="./images\small-logo.png" alt="Powered by LISTEN NOTES">
         </div>
     </script>
 
