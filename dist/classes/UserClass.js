@@ -4,7 +4,6 @@ class User {
     }
 
     async search(skill) {
-        debugger
         await dataManager.getAllDataFromAPI(skill)
         let data = { podcast: dataManager.podcasts, book: dataManager.books, video:dataManager.videos }
         console.log("this is data: " + data)
