@@ -8,9 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <!-- <link type="text/css" rel="stylesheet" href="./materialize-css/dist/css/materialize.css" -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-        
+    
         <link rel="stylesheet" href="Accordion.css">
         <link rel="stylesheet" href="style.css">
     
@@ -152,8 +151,8 @@
 
     <script id="db-template" type="text/x-handlebars-template">
         <div class="db-container">
-                <span class="showButton show btn waves-effect waves-light">Saved for Later</span>
-                <span class="hideButton hidden btn waves-effect waves-light">Close save for later</span>
+                <div class="showButton show btn waves-effect waves-light">Saved for Later</div>
+                <div class="hideButton hidden btn waves-effect waves-light">Close save for later</div>
             <div class="hidden">
 
                     <div id="result accordion">
@@ -191,7 +190,6 @@
                         
                 
             <div id="savedBooks">
-                    <div>Read later:</div> 
 
                     <div class="accordion-title">Books</div>
             <div class="result book accordion-content">
@@ -246,7 +244,7 @@
                         {{/each}}      -->
                 </div>
                 <div class="savedVideos">
-                        <div>Watch later:</div> 
+                        
                         {{#each video}}
                         <div class="savedVideo">
                             <h1 class="savedVideoTitle"><a href="{{link}}">{{title}}</a></h1>
@@ -264,8 +262,9 @@
                         {{/each}}
                 </div>
             </div>
-                <img id="listenImage" src="./images\small-logo.png" alt="Powered by LISTEN NOTES">
+                
         </div>
+        <img id="listenImage" src="./images\small-logo.png" alt="Powered by LISTEN NOTES">
     </script>
 
 

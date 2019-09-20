@@ -16,8 +16,8 @@
 
 #listenImage{
     position:absolute;
-    margin-right:10px;
-    margin-bottom: 10px;
+    right:5%;
+    bottom: 5%;
 }
 
 .logInContainer{
@@ -99,3 +99,18 @@ audio{
     display:none;
 }
 
+.preloader-wrapper{
+    position:relative;
+    margin-left:50%;
+    margin-right:50%;
+    margin-top:20%
+}
+
+/* .db-container{
+    position: absolute;
+    bottom:5%;
+} */
+
+.hideButton{
+    margin-top:3vmin;
+}

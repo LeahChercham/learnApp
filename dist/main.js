@@ -32,7 +32,8 @@ const logIn = function () {
                 saved = { podcast: dataManager.savedPodcasts, book: dataManager.savedBooks }
                 renderer.render(MAIN_TEMPLATE, data, MAIN_AREA)
                 renderer.render(RESULTS_TEMPLATE, data, RESULTS_AREA)
-                renderer.render(DB_TEMPLATE, saved, DB_AREA)
+                accordion.init(DB_TEMPLATE,saved,DB_AREA)
+                //renderer.render(DB_TEMPLATE, saved, DB_AREA)
 
             })
         } else {
