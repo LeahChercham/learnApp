@@ -7,7 +7,7 @@ class User {
         await dataManager.getAllDataFromAPI(skill)
         let data = { podcast: dataManager.podcasts, book: dataManager.books, video:dataManager.videos }
         console.log("this is data: " + data)
-        accordion.init(data)
+        accordion.init(RESULTS_TEMPLATE, data, RESULTS_AREA)
         //renderer.render(RESULTS_TEMPLATE, data, RESULTS_AREA)
     }
 
@@ -24,7 +24,7 @@ class User {
             await dataManager.saveToDB(objectType, title, user)
         }
         let data = { podcast: dataManager.savedPodcasts, book: dataManager.savedBooks, video: dataManager.savedVideos }
-        renderer.render(DB_TEMPLATE, data, DB_AREA)
+        accordion.init(DB_TEMPLATE, data, DB_AREA)
     }
 
     async removeFromDB(objectType, title) {
@@ -32,7 +32,6 @@ class User {
         let promise = await dataManager.removeFromDB(objectType, title , user)
         console.log(promise)
         let data = { podcast: dataManager.savedPodcasts, book: dataManager.savedBooks, video: dataManager.savedVideos }
-        console.log(data)
-        renderer.render(DB_TEMPLATE, data, DB_AREA)
+        accordion.init(DB_TEMPLATE, data, DB_AREA)
     }
 }

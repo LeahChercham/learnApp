@@ -1,13 +1,3 @@
-*{
-    font-family: 'Montserrat', sans-serif;
-}
-
-/* #mainContainer{
-    margin-top:5vh;
-    display: grid;
-    grid-template-rows: 1fr 1fr 6fr 2fr;
-    height:90vh;
-} */
 
 .resultImg{
     width: 80px;
@@ -15,16 +5,17 @@
 }
 
 #listenImage{
-    position:absolute;
-    margin-right:10px;
-    margin-bottom: 10px;
+    position:fixed;
+    right:5px;
+    bottom: 5px;
 }
 
 .logInContainer{
-    margin-top:10vh;
+    margin-top:15vh;
 }
 
 #loggedInContainer{
+    margin-top:5vh;
     display:grid;
     grid-template-columns: 8fr 2fr;
 }
@@ -59,11 +50,11 @@ audio{
 /* Podcast container */
 .podcast .container{
     display:grid;
-    grid-template-rows:1fr 1fr; 
+    grid-template-rows:2fr 1fr; 
     grid-template-columns:1fr 5fr;
     align-items: center;
     justify-items: center;
-    height:150px;
+    height:auto;
     background-color:lightblue;
     padding:2vmin;
     border-style: solid;
@@ -73,7 +64,7 @@ audio{
 .book .container{
     display:grid;
     grid-template-columns:1fr 8fr;
-    height:180px;
+    height:auto;
     background-color:lightblue;
     border-style: solid;
     margin-top:3vmin;
@@ -99,3 +90,64 @@ audio{
     display:none;
 }
 
+.preloader-wrapper{
+    position:relative;
+    margin-left:45%;
+    margin-right:50%;
+    margin-top:10%;
+    padding-bottom:40px;
+}
+
+
+.video .container{
+    display:grid;
+    grid-template-areas:
+    "t"
+    "v";
+    height:auto;
+    background-color:lightblue;
+    border-style: solid;
+    margin-top:3vmin;
+    justify-content: center;
+    align-content: center;
+}
+.channelInfo{
+    grid-area: t;
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    align-content: center;
+    justify-content: center;
+}
+
+iframe{
+    display: grid;
+    grid-area: v;
+    align-self: center;
+    justify-self: center;
+}
+.saveVideo{
+    display: grid;
+    align-self: center;
+    justify-self: center;
+}
+
+.showButton{
+    background-color:var(--dbAreaColor);
+}
+.hideButton{
+    background-color:var(--dbAreaColor);
+}
+
+/* Here extra code for mobile view */
+@media only screen and (max-width:600px){
+
+audio{
+    width:150px
+}
+
+iframe{
+    width:50%;
+    height:auto;
+}
+
+}

@@ -18,21 +18,41 @@ const RESULTS_AREA = "results-area"
 //--------- Constants file above ---------
 
 
+// =============================================================================================
+
+// hide and show function
+const hide = function(){
+    $(".hidden").hide()
+    $(".show").show()
+}
+const show = function(){
+    $(".hidden").show()
+    $(".show").hide()
+}
+
+$("body").on("click", ".showButton", show)
+$("body").on("click", ".hideButton", hide)
+
+
+
 // ============= Log In and Log Out
-const logIn = function () {
+const logIn = async function () {
+    
     const username = $("#username").val()
     let password = $("#password").val()
     if (username) {
         if (password) {
-            $.post('/login', { username }, async function (u) {
+            await $.post('/login', { username }, async function (u) {
+                
                 user = new User(username)
                 renderer.render(LOGIN_TEMPLATE, { isLoggedIn: true, username }, LOGIN_AREA)
                 let data = "" // because we need data to use handlebars
                 let saved = await dataManager.getAllDataFromDB()
-                saved = { podcast: dataManager.savedPodcasts, book: dataManager.savedBooks }
+                saved = { podcast: dataManager.savedPodcasts, book: dataManager.savedBooks, video: dataManager.savedVideos }
                 renderer.render(MAIN_TEMPLATE, data, MAIN_AREA)
                 renderer.render(RESULTS_TEMPLATE, data, RESULTS_AREA)
-                renderer.render(DB_TEMPLATE, saved, DB_AREA)
+                accordion.init(DB_TEMPLATE,saved,DB_AREA)
+                //renderer.render(DB_TEMPLATE, saved, DB_AREA)
 
             })
         } else {
@@ -108,13 +128,16 @@ const removeFromDB = function () {
     if (objectType == "Podcast") {
         let episodeName = $(this).closest(".podcast").find(".episodeTitle").text()
         user.removeFromDB(objectType, episodeName)
+        show()
     } else if (objectType == "Book") {
         let title = $(this).closest(".book").find(".bookTitle").text().trim()
         user.removeFromDB(objectType, title)
+        show()
     }
     else if (objectType == "Video") {
         let title = $(this).closest(".video").find(".videoTitle").text()
         user.removeFromDB(objectType, title)
+        show()
     }
 }
 
@@ -154,7 +177,6 @@ const showMoreBook = function () {
     $(this).empty().append(`<span class= expandedDesc >${restOfDesc}</span> <span class="readLessBook"> <div class="waves-effect waves-light descButton btn-small"><i class="material-icons right">more_horiz</i></div></span>`)
 }
 const showLessBook = function () {
-    debugger
     const expandedDesc = $(this).closest(".book").find(".expandedDesc")
     expandedDesc.empty()
 }
@@ -193,16 +215,4 @@ Handlebars.registerHelper('shortDesc', function (description) {
         else { return description }
     }
 });
-// =============================================================================================
-
-// hide and show function
-
-$("body").on("click", ".showButton", function () {
-    $(".hidden").show()
-    $(".show").hide()
-})
-$("body").on("click", ".hideButton", function () {
-    $(".hidden").hide()
-    $(".show").show()
-})
 
