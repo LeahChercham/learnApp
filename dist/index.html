@@ -107,6 +107,7 @@
                     <div class="book container">
                             <div class="bookImage">
                                     <img class="resultImg" src={{imgURL}} alt="image of book">
+                                    <div data-button="Book" class="saveBook waves-effect waves-light btn-small"><i class="fas fa-archive"></i></div>
                             </div>
                             <div class="bookSmallContainer">
                         <div class="bookTitle">
@@ -114,14 +115,15 @@
                             {{#if subtitle}}
                             <div class="bookSubtitle">{{subtitle}}</div>
                             {{/if}}
+                            {{#each authors}}
+                        <span class="bookAuthor"> - {{this}} - </span>
+                        {{/each}}
                         </div>
                             </div>
 
-                        <div data-button="Book" class="saveBook waves-effect waves-light btn-small"><i class="fas fa-archive"></i></div>
                         
-                        {{#each authors}}
-                        <span class="bookAuthor"> - {{this}} - </span>
-                        {{/each}}
+                        
+                        
 
                     </div>
                     {{/each}} 
@@ -213,6 +215,7 @@
                     <div class="book container">
                             <div class="bookImage">
                                     <img class="resultImg" src={{imgURL}} alt="image of book">
+                                    <div data-button="Book" class="removeBook waves-effect waves-light btn-small"><i class="fas fa-trash"></i><br></div>
                             </div>
                             <div class="bookSmallContainer">
                         <div class="bookTitle">
@@ -220,13 +223,15 @@
                             {{#if subtitle}}
                             <div class="bookSubtitle">{{subtitle}}</div>
                             {{/if}}
+                            
+                            {{#each authors}}
+                        <span class="bookAuthor"> {{this}}</span><br>
+                        {{/each}}
                         </div>
 
-                        <div><div data-button="Book" class="removeBook waves-effect waves-light btn-small"><i class="fas fa-trash"></i><br></div></div>
                         
-                        {{#each authors}}
-                        <span class="bookAuthor"> - {{this}} - </span>
-                        {{/each}}
+                        
+                        
 
                     </div>
                             <!-- <span class="bookDescription" data-id="{{description}}">{{shortDesc description}}</span> 

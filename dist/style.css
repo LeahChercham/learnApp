@@ -50,24 +50,43 @@ audio{
 /* Podcast container */
 .podcast .container{
     display:grid;
+    grid-gap:3vw;
     grid-template-rows:2fr 1fr; 
     grid-template-columns:1fr 5fr;
     align-items: center;
     justify-items: center;
     height:auto;
-    background-color:lightblue;
+    background-color:#dfe6e9;
     padding:2vmin;
     border-style: solid;
     margin-top:3vmin;
 }
 
+.podcastInfoContainer{
+    display:grid;
+    align-self:center;
+    justify-self: left;
+}
+
 .book .container{
     display:grid;
+    grid-gap:3vw;
     grid-template-columns:1fr 8fr;
     height:auto;
-    background-color:lightblue;
+    background-color:#dfe6e9;
     border-style: solid;
     margin-top:3vmin;
+    padding:3vmin;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 120%;
+}
+
+.bookSubtitle{
+    font-style: italic;
+    word-wrap: wrap break-word;
 }
 
 .bookSmallContainer{
@@ -101,11 +120,12 @@ audio{
 
 .video .container{
     display:grid;
+    grid-gap:3vw;
     grid-template-areas:
     "t"
     "v";
     height:auto;
-    background-color:lightblue;
+    background-color:#dfe6e9;
     border-style: solid;
     margin-top:3vmin;
     justify-content: center;
@@ -136,6 +156,17 @@ iframe{
 }
 .hideButton{
     background-color:var(--dbAreaColor);
+}
+
+.saveBook{
+    display: grid;
+    align-self: center;
+    justify-self: center;
+}
+.removeBook{
+    display: grid;
+    align-self: center;
+    justify-self: center;
 }
 
 /* Here extra code for mobile view */
