@@ -10,8 +10,9 @@
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="./materialize-css/dist/css/materialize.css"
         media="screen,projection" />
+        <link rel="stylesheet" href="Accordion.css">
         <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="Accordion.css">
+    
     
     <title>Document</title>
 </head>
@@ -60,7 +61,8 @@
     <script id="results-template" type="text/x-handlebars-template">
         <div id="result accordion">
             <div class="accordion-title">Podcasts</div>
-            <div class="result podcast accordion-content">
+            <div class="result podcast accordion-content hiddenPodcast">
+                <div class="hidePodcastButton"></div>
                 {{#each podcast}}
                 <div class="podcast container">
                 

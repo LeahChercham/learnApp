@@ -3,11 +3,12 @@ class Accordion{
     init(data){
         $("body").off("click", ".accordion-title")
         renderer.render(RESULTS_TEMPLATE, data, RESULTS_AREA)
+        $(this).next().slideUp()
         this.bindEvents()
     }
 
     bindEvents(){
-        $("body").on("click", ".accordion-title",this.toggleAccordion)
+        $("body").on("click", ".accordion-title", this.toggleAccordion)
     }
     toggleAccordion(){
         $(this).next().slideToggle();
