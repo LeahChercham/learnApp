@@ -69,9 +69,10 @@ class DataManager {
 
     async getAllDataFromAPI(skill) {
         debugger
+
         await this.getPodcastFromAPI(skill)
         await this.getBooksFromAPI(skill)
-        await this.getVideosFromAPI(skill)
+        //await this.getVideosFromAPI(skill)
         
     }
 

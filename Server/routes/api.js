@@ -205,7 +205,7 @@ router.get("/books/:searchedSkill", function (req, res) {
 
 // ======================================= GET YOUTUBE REQUEST ================================ // 
 
-let youtubeApiKey = 'AIzaSyBXysSPUaFWos7eA34ro6425SMJsW9tQQ0'
+let youtubeApiKey = 'AIzaSyBvOHefEjpBi3zxdr3oR8yqVR2Zyq4E3aI'
 
 router.get("/videos/:searchedSkill", function (req, res) {
     let searchedSkill = req.params.searchedSkill
@@ -219,7 +219,7 @@ router.get("/videos/:searchedSkill", function (req, res) {
             let data = JSON.parse(response.body)
             let dataArray = data.items
             let dataWanted = []
-            if (dataArray == undefined) { res.end() } else {
+            //if (dataArray == undefined) { res.end() } else {
                 dataArray.forEach(d => {
                     let video = {
                         "title": d.snippet.title,
@@ -230,7 +230,7 @@ router.get("/videos/:searchedSkill", function (req, res) {
                     }
                     dataWanted.push(video)
                 })
-            }
+            
 
             let resultsArray = []
             let randomNumbers = []
@@ -253,7 +253,6 @@ router.get("/videos/:searchedSkill", function (req, res) {
     })
 
 })
-
 
 
 // ======================================= GET YOUTUBE REQUEST DONE ================================ // 

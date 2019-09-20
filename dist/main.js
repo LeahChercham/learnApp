@@ -74,8 +74,7 @@ const search = function () {
     if(skill){
     $(".results-area").empty()
     setPreloader()
-    user.search(skill).then(() => {
-    console.log("done")})}
+    user.search(skill).then(() => console.log("done"))}
     else {alert("Please enter a keyword")}
 }
 
