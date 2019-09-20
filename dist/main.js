@@ -34,7 +34,6 @@ $("body").on("click", ".showButton", show)
 $("body").on("click", ".hideButton", hide)
 
 
-
 // ============= Log In and Log Out
 const logIn = async function () {
     
@@ -123,21 +122,19 @@ const saveToDB = function () {
 
 const removeFromDB = function () {
     let objectType = $(this).data("button")
-    //objectType = objectType.slice(6)
 
     if (objectType == "Podcast") {
         let episodeName = $(this).closest(".podcast").find(".episodeTitle").text()
         user.removeFromDB(objectType, episodeName)
-        show()
+        
     } else if (objectType == "Book") {
         let title = $(this).closest(".book").find(".bookTitle").text().trim()
         user.removeFromDB(objectType, title)
-        show()
     }
     else if (objectType == "Video") {
         let title = $(this).closest(".video").find(".videoTitle").text()
         user.removeFromDB(objectType, title)
-        show()
+        
     }
 }
 
@@ -194,8 +191,6 @@ const showLessVideo = function () {
     const expandedDesc = $(this).closest(".video").find(".expandedDesc")
     expandedDesc.empty()
 }
-
-
 
 $("body").on("click", ".showMorePodcast", showMorePodcast)
 $("body").on("click", ".readLessPodcast", showLessPodcast)
