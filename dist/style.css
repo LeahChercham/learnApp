@@ -73,17 +73,21 @@ audio{
 .book .container{
     display:grid;
     grid-template-columns:1fr 8fr;
-    height:150px;
+    height:180px;
     background-color:lightblue;
-    padding:2vmin;
     border-style: solid;
+    margin-top:3vmin;
 }
 
 .bookSmallContainer{
     display: grid;
-    align-items: center;
+    align-content: center;
+    justify-content: left;
     padding:3vmin;
-    grid-template-rows: 1fr 1fr 1fr;
+}
+.bookImage{
+    align-self: center;
+    justify-self: center;
 }
 
 .episodeTitle{
