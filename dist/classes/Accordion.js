@@ -1,10 +1,13 @@
 //=========== Accordion
 class Accordion{
     init(templateID, data, destination){
+        
         $("body").off("click", ".accordion-title")
+        
         renderer.render(templateID, data, destination)
-        $(this).next().slideUp()
+        $(".accordion-content").slideUp()
         this.bindEvents()
+        // $(".destination").show()
     }
 
     bindEvents(){

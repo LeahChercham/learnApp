@@ -5,7 +5,6 @@ class Renderer {
             $(`.${destination}`).empty()
             return}
         $(`.${destination}`).empty()
-
         const source = $(`#${templateID}`).html()
         const template = Handlebars.compile(source)
         const html = template(data)
