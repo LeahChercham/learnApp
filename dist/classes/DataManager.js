@@ -92,7 +92,7 @@ class DataManager {
         } else if (objectType == "Book") {
             let data = this.books.find(p => p.title == title)
             console.log(data)
-            debugger
+    
             await $.ajax({
                 method: "put",
                 url: `/book/${user}`,

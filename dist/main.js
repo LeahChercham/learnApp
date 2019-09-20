@@ -102,7 +102,6 @@ $(".main-area").on("click", "#searchButton", search)
 // ================================== save and remove buttons =================================
 
 const saveToDB = function () {
-    debugger
     let objectType = $(this).data("button")
     //objectType = objectType.slice(4)
 
@@ -128,7 +127,7 @@ const removeFromDB = function () {
         user.removeFromDB(objectType, episodeName)
         
     } else if (objectType == "Book") {
-        let title = $(this).closest(".book").find(".bookTitle").text().trim()
+        let title = $(this).closest(".book").find(".title").text().trim()
         user.removeFromDB(objectType, title)
     }
     else if (objectType == "Video") {
