@@ -74,6 +74,7 @@ class DataManager {
     }
 
     async saveToDB(objectType, title, user) {
+        debugger
         if (objectType == "Podcast") {
             let data = this.podcasts.find(p => p.episodeTitle == title)
             console.log(data)
@@ -91,7 +92,7 @@ class DataManager {
         } else if (objectType == "Book") {
             let data = this.books.find(p => p.title == title)
             console.log(data)
-
+            debugger
             await $.ajax({
                 method: "put",
                 url: `/book/${user}`,
@@ -105,6 +106,7 @@ class DataManager {
 
         else if (objectType == "Video") {
             let data = this.videos.find(v => v.title == title)
+            
             console.log(data)
 
             await $.ajax({

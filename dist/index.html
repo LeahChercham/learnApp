@@ -110,7 +110,7 @@
                             </div>
                             <div class="bookSmallContainer">
                         <div class="bookTitle">
-                            <div href="{{buyLink}}">{{title}}</div>
+                            <div href="{{buyLink}}" class="title">{{title}}</div>
                             {{#if subtitle}}
                             <div class="bookSubtitle">{{subtitle}}</div>
                             {{/if}}
@@ -149,12 +149,12 @@
                                     class="fas fa-archive"></i></div>
                         </div>
                         <iframe width="480" height="270" src="https://www.youtube.com/embed/{{videoID}}"></iframe>
-                        <!-- <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
+                        <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                                         {{#if description}}
                                         <span class="showMoreVideo" >
-                                            <div class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
+                                            <div data-button="Video" class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
                                         </span>
-                                        {{/if}} -->
+                                        {{/if}}
                     </div>
                     {{/each}}
             
@@ -257,12 +257,12 @@
                                         class="fas fa-trash"></i></div>
                             </div>
                             <iframe width="480" height="270" src="https://www.youtube.com/embed/{{videoID}}"></iframe>
-                            <!-- <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
+                            <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                                                         {{#if description}}
                                                         <span class="showMoreVideo" >
-                                                            <div class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
+                                                            <div data-button="Video" class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
                                                         </span>
-                                                        {{/if}} -->
+                                                        {{/if}}
                         </div>
                         {{/each}}
                 
