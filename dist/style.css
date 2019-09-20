@@ -2,14 +2,23 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-#mainContainer{
+/* #mainContainer{
     margin-top:5vh;
+    display: grid;
+    grid-template-rows: 1fr 1fr 6fr 2fr;
+    height:90vh;
+} */
+
+.resultImg{
+    width: 80px;
+    height:auto;
 }
 
-/* .resultImg{
-    width: 20%;
-    height:auto;
-} */
+#listenImage{
+    position:absolute;
+    margin-right:10px;
+    margin-bottom: 10px;
+}
 
 .logInContainer{
     margin-top:10vh;
@@ -40,9 +49,53 @@
 }
 
 audio{
-    width:400px;
+    width:300px;
     height:30px;
 }
 .boldWeight{
     font-weight: bold;
 }
+
+/* Podcast container */
+.podcast .container{
+    display:grid;
+    grid-template-rows:1fr 1fr; 
+    grid-template-columns:1fr 5fr;
+    align-items: center;
+    justify-items: center;
+    height:150px;
+    background-color:lightblue;
+    padding:2vmin;
+    border-style: solid;
+    margin-top:3vmin;
+}
+
+.book .container{
+    display:grid;
+    grid-template-columns:1fr 8fr;
+    height:180px;
+    background-color:lightblue;
+    border-style: solid;
+    margin-top:3vmin;
+}
+
+.bookSmallContainer{
+    display: grid;
+    align-content: center;
+    justify-content: left;
+    padding:3vmin;
+}
+.bookImage{
+    align-self: center;
+    justify-self: center;
+}
+
+.episodeTitle{
+    font-weight: bold;
+    font-size: 120%;
+}
+
+.hidden {
+    display:none;
+}
+

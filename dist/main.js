@@ -54,7 +54,7 @@ const logOut = function () {
 
 // =============================== Search and Render ================================
 
-const setPreloader = function(){
+const setPreloader = function () {
     $(".results-area").append(`<div class="preloader-wrapper big active">
     <div class="spinner-layer spinner-red-only">
       <div class="circle-clipper left">
@@ -70,11 +70,12 @@ const setPreloader = function(){
 
 const search = function () {
     let skill = $("#skillInput").val()
-    if(skill){
-    $(".results-area").empty()
-    setPreloader()
-    user.search(skill).then(() => console.log("done"))}
-    else {alert("Please enter a keyword")}
+    if (skill) {
+        $(".results-area").empty()
+        setPreloader()
+        user.search(skill).then(() => console.log("done"))
+    }
+    else { alert("Please enter a keyword") }
 }
 
 renderer.render(LOGIN_TEMPLATE, { isLoggedIn: false }, LOGIN_AREA)
@@ -83,7 +84,6 @@ $(".main-area").on("click", "#searchButton", search)
 // ================================== save and remove buttons =================================
 
 const saveToDB = function () {
-    //debugger
     let objectType = $(this).data("button")
     //objectType = objectType.slice(4)
 
@@ -92,8 +92,7 @@ const saveToDB = function () {
         user.saveToDB(objectType, episodeName)
     }
     else if (objectType == "Book") {
-        //debugger
-        let bookTitle = $(this).closest(".book").find(".bookTitle").text()
+        let bookTitle = $(this).closest(".book").find(".bookTitle").text().trim()
         user.saveToDB(objectType, bookTitle)
     }
     else if (objectType == "Video") {
@@ -103,19 +102,18 @@ const saveToDB = function () {
 }
 
 const removeFromDB = function () {
-    //debugger
     let objectType = $(this).data("button")
     //objectType = objectType.slice(6)
 
     if (objectType == "Podcast") {
-        let episodeName = $(this).closest(".savedPodcast").find(".savedEpisodeTitle").text()
+        let episodeName = $(this).closest(".podcast").find(".episodeTitle").text()
         user.removeFromDB(objectType, episodeName)
     } else if (objectType == "Book") {
-        let title = $(this).closest(".savedBook").find(".savedBookTitle").text()
+        let title = $(this).closest(".book").find(".bookTitle").text().trim()
         user.removeFromDB(objectType, title)
     }
     else if (objectType == "Video") {
-        let title = $(this).closest(".savedVideo").find(".savedVideoTitle").text()
+        let title = $(this).closest(".video").find(".videoTitle").text()
         user.removeFromDB(objectType, title)
     }
 }
@@ -140,9 +138,8 @@ const showMorePodcast = function () {
     const podcastDiv = $(this).closest(".podcast")
     const allDescription = $(this).closest(".podcast").find(".podcastDescription").data("id")
     let words = allDescription.split(" ")
-    let restOfDesc = words.splice(30).join(" ")
-    $(this).empty()
-    podcastDiv.append(`<span class= expandedDesc >${restOfDesc}</span> <span class="readLessPodcast"> <button class="descButton">Read Less </button></span>`)
+    let restOfDesc = words.splice(15).join(" ")
+    $(this).empty().append(`<span class= expandedDesc >${restOfDesc}</span> <span class="readLessPodcast"> <div class="waves-effect waves-light descButton btn-small"><i class="material-icons right">more_horiz</i></div></span>`)
 }
 const showLessPodcast = function () {
     const expandedDesc = $(this).closest(".podcast").find(".expandedDesc")
@@ -153,11 +150,11 @@ const showMoreBook = function () {
     const BookDiv = $(this).closest(".book")
     const allDescription = $(this).closest(".book").find(".bookDescription").data("id")
     let words = allDescription.split(" ")
-    let restOfDesc = words.splice(30).join(" ")
-    $(this).empty()
-    BookDiv.append(`<span class= expandedDesc >${restOfDesc}</span> <span class="readLessBook"> <button class="descButton">Read Less </button></span>`)
+    let restOfDesc = words.splice(15).join(" ")
+    $(this).empty().append(`<span class= expandedDesc >${restOfDesc}</span> <span class="readLessBook"> <div class="waves-effect waves-light descButton btn-small"><i class="material-icons right">more_horiz</i></div></span>`)
 }
 const showLessBook = function () {
+    debugger
     const expandedDesc = $(this).closest(".book").find(".expandedDesc")
     expandedDesc.empty()
 }
@@ -167,7 +164,7 @@ const showMoreVideo = function () {
     const videoDiv = $(this).closest(".video")
     const allDescription = $(this).closest(".video").find(".videoDescription").data("id")
     let words = allDescription.split(" ")
-    let restOfDesc = words.splice(30).join(" ")
+    let restOfDesc = words.splice(15).join(" ")
     $(this).empty()
     videoDiv.append(`<span class= expandedDesc >${restOfDesc}</span> <span class="readLessVideo"> <button class="descButton">Read Less </button></span>`)
 }
@@ -189,8 +186,8 @@ $("body").on("click", ".readLessVideo", showLessVideo)
 Handlebars.registerHelper('shortDesc', function (description) {
     if (description) {
         let words = description.split(" ")
-        let fewWords = words.splice(0, 30).join(" ")
-        if (words.length > 30) {
+        let fewWords = words.splice(0, 15).join(" ")
+        if (words.length > 15) {
             return fewWords
         }
         else { return description }
@@ -198,5 +195,14 @@ Handlebars.registerHelper('shortDesc', function (description) {
 });
 // =============================================================================================
 
+// hide and show function
 
+$("body").on("click", ".showButton", function () {
+    $(".hidden").show()
+    $(".show").hide()
+})
+$("body").on("click", ".hideButton", function () {
+    $(".hidden").hide()
+    $(".show").show()
+})
 

@@ -68,11 +68,12 @@ class DataManager {
 
         await this.getPodcastFromAPI(skill)
         await this.getBooksFromAPI(skill)
-        await this.getVideosFromAPI(skill)
+        //await this.getVideosFromAPI(skill)
         
     }
 
     async saveToDB(objectType, title, user) {
+        
         if (objectType == "Podcast") {
             let data = this.podcasts.find(p => p.episodeTitle == title)
             console.log(data)
