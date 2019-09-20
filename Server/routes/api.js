@@ -106,7 +106,6 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
             let resultsArray = []
             let randomNumbers = []
 
-            if(resultsOfData.length >= 3){
             for (let i = 0; i < 3; i++) {
                 let length = resultsOfData.length
                 let max = length - 1
@@ -120,14 +119,11 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
                     randomNumbers.push({ "number": randomNumber })
                     resultsArray.push(resultsOfData[randomNumber])
                 }}
-            } else {
-                resultsArray = resultsOfData
-            }
+            
             first3Podcasts(resultsArray)
             res.send(resultsArray)
-        }
-    }
-
+        }}
+    
     const first3Podcasts = function (resultsOfData) {
 
         for (let i = 0; i < resultsOfData.length; i++) {

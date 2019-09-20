@@ -69,8 +69,10 @@ const setPreloader = function(){
 }
 
 const search = function () {
+    debugger
     let skill = $("#skillInput").val()
     if(skill){
+    $(".results-area").empty()
     setPreloader()
     user.search(skill).then(() => {
     console.log("done")})}

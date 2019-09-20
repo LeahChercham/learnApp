@@ -41,6 +41,7 @@ class DataManager {
     // =========================== GET FROM API ======================================
 
     async getPodcastFromAPI(skill) {
+        debugger
         let response = await $.get(`/podcasts/${skill}`)
         if (response) {
             this.podcasts = response
@@ -48,6 +49,7 @@ class DataManager {
     }
 
     async getBooksFromAPI(skill) {
+        debugger
         let response = await $.get(`/books/${skill}`)
         if (response) {
             this.books = response
@@ -55,6 +57,7 @@ class DataManager {
     }
 
     async getVideosFromAPI(skill) {
+        debugger
         let response = await $.get(`/videos/${skill}`)
         if (response) {
             this.videos = response
@@ -64,6 +67,7 @@ class DataManager {
 
 
     async getAllDataFromAPI(skill) {
+        debugger
         await this.getPodcastFromAPI(skill)
         await this.getBooksFromAPI(skill)
         await this.getVideosFromAPI(skill)
