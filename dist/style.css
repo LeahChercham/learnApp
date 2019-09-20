@@ -112,5 +112,6 @@ audio{
 } */
 
 .hideButton{
-    margin-top:3vmin;
+    position: relative;
+    margin-top: 20vh;
 }
