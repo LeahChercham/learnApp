@@ -43,9 +43,10 @@ class DataManager {
     async getPodcastFromAPI(skill) {
         debugger
         let response = await $.get(`/podcasts/${skill}`)
-        if (response) {
-            this.podcasts = response
-        }
+        let thisResponse = response
+        if (thisResponse) {
+            this.podcasts = thisResponse
+        }else {alert("no podcasts found")}
     }
 
     async getBooksFromAPI(skill) {
