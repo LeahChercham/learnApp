@@ -106,18 +106,22 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
             let resultsArray = []
             let randomNumbers = []
 
+            if(resultsOfData.length >= 3){
             for (let i = 0; i < 3; i++) {
                 let length = resultsOfData.length
                 let max = length - 1
                 let min = 0
                 let randomNumber = getRandomInteger(max, min)
                 let index = randomNumbers.findIndex(r => r.number == randomNumber)
+                
                 if (index != -1) {
                     i--
                 } else {
                     randomNumbers.push({ "number": randomNumber })
                     resultsArray.push(resultsOfData[randomNumber])
-                }
+                }}
+            } else {
+                resultsArray = resultsOfData
             }
             first3Podcasts(resultsArray)
             res.send(resultsArray)
@@ -126,7 +130,7 @@ router.get("/podcasts/:searchedSkill", async function (req, res) {
 
     const first3Podcasts = function (resultsOfData) {
 
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < resultsOfData.length; i++) {
             resultsOfData[i] = {
                 episodeTitle: resultsOfData[i].title_original,
                 podcastName: resultsOfData[i].podcast_title_original,
@@ -204,11 +208,14 @@ router.get("/videos/:searchedSkill", function (req, res) {
     let link = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchedSkill}&type=video&videoType=episode&key=${youtubeApiKey}`
 
     request(link, function (err, response) {
-        if (err) { console.log(err) } else{
+        if (err) { 
+        console.log(err)
+        res.end() } else{
         let data = JSON.parse(response.body)
         let dataArray = data.items
         let dataWanted = []
-        if(dataArray == undefined){return}else{
+        console.log(dataArray)
+        if(dataArray == undefined){res.end()}else{
             dataArray.forEach(d => {
             let video = {
                 "title": d.snippet.title,

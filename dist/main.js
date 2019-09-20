@@ -20,7 +20,6 @@ const RESULTS_AREA = "results-area"
 
 // ============= Log In and Log Out
 const logIn = function () {
-    //debugger
     const username = $("#username").val()
     let password = $("#password").val()
     if (username) {
@@ -71,9 +70,11 @@ const setPreloader = function(){
 
 const search = function () {
     let skill = $("#skillInput").val()
+    if(skill){
     setPreloader()
     user.search(skill).then(() => {
-    console.log("done")})
+    console.log("done")})}
+    else {alert("Please enter a keyword")}
 }
 
 renderer.render(LOGIN_TEMPLATE, { isLoggedIn: false }, LOGIN_AREA)

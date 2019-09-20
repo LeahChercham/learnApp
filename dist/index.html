@@ -115,6 +115,7 @@
                 </div>
             <div class="accordion-title">Video</div>
             <div class="resultVideo accordion-content">
+                    {{#if video}}
                     {{#each video}}
                     <div class="video">
                         <!-- <div class="videoTitle"><a href="{{link}}">{{title}}</a></div> -->
@@ -130,6 +131,9 @@
                             {{/if}}
                         </div>  
                     {{/each}}
+                    {{else}}
+                    <div>No videos found.</div>
+                    {{/if}}
             </div>
         </div>
     </script>

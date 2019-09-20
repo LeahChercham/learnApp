@@ -51,7 +51,6 @@ class DataManager {
         let response = await $.get(`/books/${skill}`)
         if (response) {
             this.books = response
-            console.log (this.books)
         }
     }
 
@@ -60,7 +59,7 @@ class DataManager {
         if (response) {
             this.videos = response
             console.log(this.videos)
-        }
+        } else {alert("no videos found")}
     }
 
 
