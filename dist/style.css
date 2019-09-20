@@ -50,11 +50,11 @@ audio{
 /* Podcast container */
 .podcast .container{
     display:grid;
-    grid-template-rows:1fr 1fr; 
+    grid-template-rows:2fr 1fr; 
     grid-template-columns:1fr 5fr;
     align-items: center;
     justify-items: center;
-    height:150px;
+    height:auto;
     background-color:lightblue;
     padding:2vmin;
     border-style: solid;
@@ -64,7 +64,7 @@ audio{
 .book .container{
     display:grid;
     grid-template-columns:1fr 8fr;
-    height:180px;
+    height:auto;
     background-color:lightblue;
     border-style: solid;
     margin-top:3vmin;
@@ -104,7 +104,7 @@ audio{
     grid-template-areas:
     "t"
     "v";
-    height:350px;
+    height:auto;
     background-color:lightblue;
     border-style: solid;
     margin-top:3vmin;
@@ -118,6 +118,13 @@ audio{
     align-content: center;
     justify-content: center;
 }
+
+iframe{
+    display: grid;
+    grid-area: v;
+    align-self: center;
+    justify-self: center;
+}
 .saveVideo{
     display: grid;
     align-self: center;
@@ -129,4 +136,18 @@ audio{
 }
 .hideButton{
     background-color:var(--dbAreaColor);
+}
+
+/* Here extra code for mobile view */
+@media only screen and (max-width:600px){
+
+audio{
+    width:150px
+}
+
+iframe{
+    width:50%;
+    height:auto;
+}
+
 }
