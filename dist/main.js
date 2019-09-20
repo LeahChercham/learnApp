@@ -211,3 +211,16 @@ Handlebars.registerHelper('shortDesc', function (description) {
     }
 });
 
+//================== key down
+
+$("body").on("keydown", ".logInContainer", function(event){
+    if(event.which == 13){
+        $("#logInButton").click()
+    }
+})
+
+$(".main-area").on("keydown", "input", function(event){
+    if(event.which == 13){
+        $("#searchButton").click()
+    }
+})
