@@ -107,21 +107,23 @@
                     <div class="book container">
                             <div class="bookImage">
                                     <img class="resultImg" src={{imgURL}} alt="image of book">
+                                    <div data-button="Book" class="saveBook waves-effect waves-light btn-small"><i class="fas fa-archive"></i></div>
                             </div>
                             <div class="bookSmallContainer">
                         <div class="bookTitle">
-                            <div href="{{buyLink}}">{{title}}</div>
+                            <div href="{{buyLink}}" class="title">{{title}}</div>
                             {{#if subtitle}}
                             <div class="bookSubtitle">{{subtitle}}</div>
                             {{/if}}
+                            {{#each authors}}
+                        <span class="bookAuthor"> - {{this}} - </span>
+                        {{/each}}
                         </div>
                             </div>
 
-                        <div data-button="Book" class="saveBook waves-effect waves-light btn-small"><i class="fas fa-archive"></i></div>
                         
-                        {{#each authors}}
-                        <span class="bookAuthor"> - {{this}} - </span>
-                        {{/each}}
+                        
+                        
 
                     </div>
                     {{/each}} 
@@ -142,17 +144,15 @@
                     <div class="video container">
             
                         <div class="channelInfo">
-                            <div><a href={{link}}>{{channelTitle}}</a>
-                                <div class="videoTitle">{{title}}</div>
-                            </div>
                             <div data-button="Video" class="saveVideo waves-effect waves-light btn-small"><i
                                     class="fas fa-archive"></i></div>
+                                    <div class="videoTitle title"><a href={{link}}>{{title}}</a></div>
                         </div>
                         <iframe width="480" height="270" src="https://www.youtube.com/embed/{{videoID}}"></iframe>
                         <!-- <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                                         {{#if description}}
                                         <span class="showMoreVideo" >
-                                            <div class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
+                                            <div data-button="Video" class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
                                         </span>
                                         {{/if}} -->
                     </div>
@@ -213,20 +213,23 @@
                     <div class="book container">
                             <div class="bookImage">
                                     <img class="resultImg" src={{imgURL}} alt="image of book">
+                                    <div data-button="Book" class="removeBook waves-effect waves-light btn-small"><i class="fas fa-trash"></i><br></div>
                             </div>
                             <div class="bookSmallContainer">
                         <div class="bookTitle">
-                            <div href="{{buyLink}}">{{title}}</div>
+                            <div href="{{buyLink}}"" class="title">{{title}}</div>
                             {{#if subtitle}}
                             <div class="bookSubtitle">{{subtitle}}</div>
                             {{/if}}
+                            
+                            {{#each authors}}
+                        <span class="bookAuthor"> {{this}}</span><br>
+                        {{/each}}
                         </div>
 
-                        <div><div data-button="Book" class="removeBook waves-effect waves-light btn-small"><i class="fas fa-trash"></i><br></div></div>
                         
-                        {{#each authors}}
-                        <span class="bookAuthor"> - {{this}} - </span>
-                        {{/each}}
+                        
+                        
 
                     </div>
                             <!-- <span class="bookDescription" data-id="{{description}}">{{shortDesc description}}</span> 
@@ -250,17 +253,17 @@
                         <div class="video container">
                 
                             <div class="channelInfo">
-                                <div><a href={{link}}>{{channelTitle}}</a>
-                                    <div class="videoTitle">{{title}}</div>
-                                </div>
-                                <div data-button="Video" class="removeVideo waves-effect waves-light btn-small"><i
+                                    <div data-button="Video" class="removeVideo waves-effect waves-light btn-small"><i
                                         class="fas fa-trash"></i></div>
+                                    
+                                    <div class="videoTitle title"><a href={{link}}>{{title}}</a></div>
+                                
                             </div>
                             <iframe width="480" height="270" src="https://www.youtube.com/embed/{{videoID}}"></iframe>
                             <!-- <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                                                         {{#if description}}
                                                         <span class="showMoreVideo" >
-                                                            <div class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
+                                                            <div data-button="Video" class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
                                                         </span>
                                                         {{/if}} -->
                         </div>

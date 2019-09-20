@@ -205,7 +205,7 @@ router.get("/books/:searchedSkill", function (req, res) {
 
 // ======================================= GET YOUTUBE REQUEST ================================ // 
 
-let youtubeApiKey = 'AIzaSyBvOHefEjpBi3zxdr3oR8yqVR2Zyq4E3aI'
+let youtubeApiKey = 'AIzaSyAwo7bsdRBvO-aEZ1fktiZAWeVDh4EC5Po'
 
 router.get("/videos/:searchedSkill", function (req, res) {
     let searchedSkill = req.params.searchedSkill

@@ -110,7 +110,7 @@ const saveToDB = function () {
         user.saveToDB(objectType, episodeName)
     }
     else if (objectType == "Book") {
-        let bookTitle = $(this).closest(".book").find(".bookTitle").text().trim()
+        let bookTitle = $(this).closest(".book").find(".title").text().trim()
         user.saveToDB(objectType, bookTitle)
     }
     else if (objectType == "Video") {
@@ -127,7 +127,7 @@ const removeFromDB = function () {
         user.removeFromDB(objectType, episodeName)
         
     } else if (objectType == "Book") {
-        let title = $(this).closest(".book").find(".bookTitle").text().trim()
+        let title = $(this).closest(".book").find(".title").text().trim()
         user.removeFromDB(objectType, title)
     }
     else if (objectType == "Video") {
@@ -190,6 +190,16 @@ const showLessVideo = function () {
     const expandedDesc = $(this).closest(".video").find(".expandedDesc")
     expandedDesc.empty()
 }
+
+
+// try for all
+// const showMore = function(){
+//     let objectType = $(this).data("button")
+
+// }
+
+
+
 
 $("body").on("click", ".showMorePodcast", showMorePodcast)
 $("body").on("click", ".readLessPodcast", showLessPodcast)
