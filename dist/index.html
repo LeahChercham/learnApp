@@ -134,33 +134,33 @@
                             {{/if}} -->
                     
                 </div>
+            <div>
+                <div class="accordion-title">Video</div>
+                <div class="resultVideo video accordion-content">
             
-            <div class="accordion-title">Video</div>
-            <div class="resultVideo accordion-content">
-                    {{#if video}}
                     {{#each video}}
                     <div class="video container">
-                        
+            
                         <div class="channelInfo">
                             <div><a href={{link}}>{{channelTitle}}</a>
-                            <div class="videoTitle">{{title}}</div>
+                                <div class="videoTitle">{{title}}</div>
+                            </div>
+                            <div data-button="Video" class="saveVideo waves-effect waves-light btn-small"><i
+                                    class="fas fa-archive"></i></div>
                         </div>
-                            <div data-button="Video" class="saveVideo waves-effect waves-light btn-small"><i class="fas fa-archive"></i></div>
-                        </div>
-                        <iframe width="480" height="270" src= "https://www.youtube.com/embed/{{videoID}}"></iframe>
-                            <!-- <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
-                            {{#if description}}
-                            <span class="showMoreVideo" >
-                                <div class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
-                            </span>
-                            {{/if}} -->
-                        </div>  
+                        <iframe width="480" height="270" src="https://www.youtube.com/embed/{{videoID}}"></iframe>
+                        <!-- <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
+                                        {{#if description}}
+                                        <span class="showMoreVideo" >
+                                            <div class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
+                                        </span>
+                                        {{/if}} -->
+                    </div>
                     {{/each}}
-                    {{else}}
-                    <div>No videos found.</div>
-                    {{/if}}
+            
+                </div>
             </div>
-        </div>
+    </div>
        
     </script>
 
@@ -243,27 +243,29 @@
 
                 </div>
                 <div class="savedVideos">
-                        <div class="accordion-title db">Video</div>
-                        <div class="video accordion-content db">
-                                
-                                {{#each video}}
-                                <div class="video container">
-                                    
-                                        <div class="channelInfo">
-                                                <div><a href={{link}}>{{channelTitle}}</a>
-                                                <div class="videoTitle">{{title}}</div>
-                                        </div>
-                                        <div data-button="Video" class="removeVideo waves-effect waves-light btn-small"><i class="fas fa-trash"></i></div>
-                                        </div>
-                                    <iframe width="480" height="270" src= "https://www.youtube.com/embed/{{videoID}}"></iframe>
-                                        <!-- <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
-                                        {{#if description}}
-                                        <span class="showMoreVideo" >
-                                            <div class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
-                                        </span>
-                                        {{/if}} -->
-                                    </div>  
-                                {{/each}}
+                    <div class="accordion-title db">Video</div>
+                    <div class="video accordion-content db">
+                
+                        {{#each video}}
+                        <div class="video container">
+                
+                            <div class="channelInfo">
+                                <div><a href={{link}}>{{channelTitle}}</a>
+                                    <div class="videoTitle">{{title}}</div>
+                                </div>
+                                <div data-button="Video" class="removeVideo waves-effect waves-light btn-small"><i
+                                        class="fas fa-trash"></i></div>
+                            </div>
+                            <iframe width="480" height="270" src="https://www.youtube.com/embed/{{videoID}}"></iframe>
+                            <!-- <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
+                                                        {{#if description}}
+                                                        <span class="showMoreVideo" >
+                                                            <div class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
+                                                        </span>
+                                                        {{/if}} -->
+                        </div>
+                        {{/each}}
+                
                     </div>
                 </div>
             </div>
