@@ -17,21 +17,20 @@ const RESULTS_TEMPLATE = "results-template"
 const RESULTS_AREA = "results-area"
 //--------- Constants file above ---------
 
-
 // =============================================================================================
 
 // hide and show function
-const hide = function(){
+const hiding = function(){
     $(".hidden").hide()
     $(".show").show()
 }
-const show = function(){
+const showing = function(){
     $(".hidden").show()
     $(".show").hide()
 }
 
-$("body").on("click", ".showButton", show)
-$("body").on("click", ".hideButton", hide)
+$("body").on("click", ".showButton", showing)
+$("body").on("click", ".hideButton", hiding)
 
 
 // ============= Log In and Log Out
