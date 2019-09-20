@@ -2,7 +2,14 @@ class User {
     constructor(name) {
         this.name = name
     }
-
+    hide(){
+        $(".hidden").hide()
+        $(".show").show()
+    }
+    show(){
+        $(".hidden").show()
+        $(".show").hide()
+    }
     async search(skill) {
         await dataManager.getAllDataFromAPI(skill)
         let data = { podcast: dataManager.podcasts, book: dataManager.books, video:dataManager.videos }
@@ -25,6 +32,7 @@ class User {
         }
         let data = { podcast: dataManager.savedPodcasts, book: dataManager.savedBooks, video: dataManager.savedVideos }
         accordion.init(DB_TEMPLATE, data, DB_AREA)
+        this.show()
     }
 
     async removeFromDB(objectType, title) {
@@ -33,5 +41,6 @@ class User {
         console.log(promise)
         let data = { podcast: dataManager.savedPodcasts, book: dataManager.savedBooks, video: dataManager.savedVideos }
         accordion.init(DB_TEMPLATE, data, DB_AREA)
+        this.show()
     }
 }
