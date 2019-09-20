@@ -70,6 +70,22 @@ audio{
     margin-top:3vmin;
 }
 
+.book .container{
+    display:grid;
+    grid-template-columns:1fr 8fr;
+    height:150px;
+    background-color:lightblue;
+    padding:2vmin;
+    border-style: solid;
+}
+
+.bookSmallContainer{
+    display: grid;
+    align-items: center;
+    padding:3vmin;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
 .episodeTitle{
     font-weight: bold;
     font-size: 120%;
@@ -78,3 +94,4 @@ audio{
 .hidden {
     display:none;
 }
+

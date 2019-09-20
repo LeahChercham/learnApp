@@ -74,7 +74,7 @@
                             <div class="podcastName"> {{podcastName}}</div>    
                         </div>
 
-                        <div data-button="Book" class="saveBook waves-effect waves-light btn-small"><i class="fas fa-archive"></i><br></div>
+                        <div data-button="Podcast" class="savePodcast waves-effect waves-light btn-small"><i class="fas fa-archive"></i><br></div>
 
                         <div class="audioContainer">
                             <audio controls duration src={{podcastLink}}></audio>
@@ -93,26 +93,34 @@
             <div class="accordion-title">Books</div>
             <div class="result book accordion-content">
                     {{#each book}}
-                    <div class="book">
-                        <div class="bookTitle"><a href="{{buyLink}}">{{title}}</a></div>
-                        {{#if subtitle}}
-                        <div class="bookSubtitle">{{subtitle}}</div>
-                        {{/if}}
+                    <div class="book container">
+                            <div class="bookImage">
+                                    <img class="resultImg" src={{imgURL}} alt="image of book">
+                            </div>
+                            <div class="bookSmallContainer">
+                        <div class="bookTitle">
+                            <a href="{{buyLink}}">{{title}}</a>
+                            {{#if subtitle}}
+                            <div class="bookSubtitle">{{subtitle}}</div>
+                            {{/if}}
+                        </div>
+
+                        <div><div data-button="Book" class="saveBook waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
+                        
                         {{#each authors}}
                         <div class="bookAuthor">{{authors}}</div>
                         {{/each}}
-                        <div><div data-button="Book" class="saveBook waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
+
+                    </div>
                         
-                        <div class="bookImage">
-                                <img class="resultImg" src={{imgURL}} alt="image of book">
-                        </div>
+                        
                             <!-- <span class="bookDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                             {{#if description}}
                             <span class="showMoreBook" >
                                 <div class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
                             </span>
                             {{/if}} -->
-                        </div>  
+                        </div> 
                     {{/each}}
                 </div>
             <div class="accordion-title">Video</div>
@@ -146,24 +154,39 @@
                 <span class="showButton show btn waves-effect waves-light">Saved for Later</span>
                 <span class="hideButton hidden btn waves-effect waves-light">Close save for later</span>
             <div class="hidden">
-            <div id="savedPodcasts">
-                <div>Listen to later:</div>
-                
-                    {{#each podcast}}
-                <div class="savedPodcast">
-                    <div class="savedPodcastName">{{podcastName}}</div>
-                    <div class="savedEpisodeTitle">{{episodeTitle}}</div>
-                    <div class="savedPodcastImage">
-                            <img class="resultImg" src={{image}} alt="image of podcast">
-                    </div>
-                        
-                    <div><audio controls duration src={{podcastLink}}></audio></div>
-                    <div><div data-button="Podcast" class="removePodcast waves-effect waves-light btn"><i class="fas fa-trash"></i></div></div>
-                    </div>
 
-                    {{/each}}
-                    
-            </div>
+                    <div id="result accordion">
+                            <div class="accordion-title">Podcasts</div>
+                            <div class="result podcast accordion-content hiddenPodcast">
+                                <div class="hidePodcastButton"></div>
+                                {{#each podcast}}
+                                <div class="podcast container">
+                                
+                                    <div class="imageContainer">
+                                            <img class="resultImg activator" src={{image}} alt="image of podcast">
+                                    </div>
+                                        <div class="podcastInfoContainer">
+                                            <span class="episodeTitle">{{episodeTitle}}</span> 
+                                            <div class="podcastName"> {{podcastName}}</div>    
+                                        </div>
+                
+                                        <div data-button="Podcast" class="removePodcast waves-effect waves-light btn-small"><i class="fas fa-trash"></i><br></div>
+                
+                                        <div class="audioContainer">
+                                            <audio controls duration src={{podcastLink}}></audio>
+                                        </div>    
+                                        <!-- <span class="podcastDescription" data-id="{{description}}">{{shortDesc description}}</span>
+                                        {{#if description}}
+                                        <span class="showMorePodcast" >
+                                            <div class="descButton waves-effect waves-light btn-small"><i class="material-icons right">more_horiz</i></div>
+                                        </span>
+                                        {{/if}} -->
+                                    </div>
+                                {{/each}}
+                            </div>
+                        </div>
+
+                
             <div id="savedBooks">
                     <div>Read later:</div> 
                         {{#each book}}
