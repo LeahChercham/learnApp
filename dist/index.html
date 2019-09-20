@@ -8,13 +8,14 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link type="text/css" rel="stylesheet" href="./materialize-css/dist/css/materialize.css"
-        media="screen,projection" />
+    <!-- <link type="text/css" rel="stylesheet" href="./materialize-css/dist/css/materialize.css" -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        
         <link rel="stylesheet" href="Accordion.css">
         <link rel="stylesheet" href="style.css">
     
     
-    <title>Document</title>
+    <title>Level Yourself Up</title>
 </head>
 
 <body>
@@ -74,7 +75,7 @@
                             <div class="podcastName"> {{podcastName}}</div>    
                         </div>
 
-                        <div data-button="Podcast" class="savePodcast waves-effect waves-light btn-small"><i class="fas fa-archive"></i><br></div>
+                        <div data-button="Podcast" class="savePodcast waves-effect waves-light btn-small"><i class="fas fa-archive"></i></div>
 
                         <div class="audioContainer">
                             <audio controls duration src={{podcastLink}}></audio>
@@ -105,7 +106,7 @@
                             {{/if}}
                         </div>
 
-                        <div><div data-button="Book" class="saveBook waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
+                        <div><div data-button="Book" class="saveBook waves-effect waves-light btn"><i class="fas fa-archive"></i></div></div>
                         
                         {{#each authors}}
                         <span class="bookAuthor"> - {{this}} - </span>
@@ -131,7 +132,7 @@
                         <!-- <div class="videoTitle"><a href="{{link}}">{{title}}</a></div> -->
                         <div class="channelTitle">{{channelTitle}}</div>
                         <iframe width="480" height="270" src= "https://www.youtube.com/embed/{{videoID}}"></iframe>
-                        <div><div data-button="Video" class="saveVideo waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
+                        <div><div data-button="Video" class="saveVideo waves-effect waves-light btn"><i class="fas fa-archive"></i></div></div>
                         
                             <!-- <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                             {{#if description}}
@@ -273,7 +274,7 @@
 
     <script src="./jquery/dist/jquery.js"></script>
     <script src="./handlebars/dist/handlebars.js"></script>
-    <script src="./readmore-js/readmore.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="./classes/Renderer.js"></script>
     <script src="./classes/Accordion.js"></script>
     <script src="./classes/DataManager.js"></script>
