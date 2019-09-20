@@ -14,7 +14,8 @@ class User {
         await dataManager.getAllDataFromAPI(skill)
         let data = { podcast: dataManager.podcasts, book: dataManager.books, video:dataManager.videos }
         console.log("this is data: " + data)
-        accordion.init(RESULTS_TEMPLATE, data, RESULTS_AREA)
+        let search=true
+        accordion.init(RESULTS_TEMPLATE, data, RESULTS_AREA, search)
         //renderer.render(RESULTS_TEMPLATE, data, RESULTS_AREA)
     }
 
