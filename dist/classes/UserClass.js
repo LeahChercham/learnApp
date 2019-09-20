@@ -12,7 +12,6 @@ class User {
     }
 
     async saveToDB(objectType, title) {
-        debugger
         
         let user = this.name
         if (objectType == "Podcast") {
