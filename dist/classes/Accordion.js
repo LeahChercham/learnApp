@@ -5,9 +5,8 @@ class Accordion{
         $("body").off("click", ".accordion-title")
         
         renderer.render(templateID, data, destination)
-        $(".accordion-content").slideUp()
+        $(".accordion-content").hide()
         this.bindEvents()
-        // $(".destination").show()
     }
 
     bindEvents(){
