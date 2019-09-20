@@ -117,3 +117,21 @@ audio{
     height:1vmin;
     background-color:#00838f;
 }
+
+.video .container{
+    display:grid;
+    grid-template-areas:
+    "t"
+    "v";
+}
+.channelInfo{
+    grid-area: t;
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    align-content: center;
+}
+.saveVideo{
+    display: grid;
+    align-self: center;
+    justify-self: center;
+}
