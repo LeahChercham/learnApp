@@ -5,9 +5,9 @@
 }
 
 #listenImage{
-    position:absolute;
-    right:5%;
-    bottom: 5%;
+    position:fixed;
+    right:5px;
+    bottom: 5px;
 }
 
 .logInContainer{
@@ -92,9 +92,10 @@ audio{
 
 .preloader-wrapper{
     position:relative;
-    margin-left:50%;
+    margin-left:45%;
     margin-right:50%;
-    margin-top:20%
+    margin-top:10%;
+    padding-bottom:40px;
 }
 
 
