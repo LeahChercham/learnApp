@@ -1,7 +1,9 @@
 class Renderer {
 
     render(templateID, data, destination) {
-        console.log("here data:" + data)
+        if(templateID == "results-template" && data ==""){
+            $(`.${destination}`).empty()
+            return}
         $(`.${destination}`).empty()
 
         const source = $(`#${templateID}`).html()

@@ -1,57 +1,48 @@
 *{
     font-family: 'Montserrat', sans-serif;
-    --primaryTextColor: #0A2342;
-    color:var(--primaryTextColor);
-    --secondaryTextColor: white;
-    --secondaryBackgroundColor: var(--primaryTextColor);
-}
-body{
-    margin: 10px;
 }
 
-.button{
-    background-color:var(--secondaryBackgroundColor);
-    color:var(--secondaryTextColor);
-    cursor:pointer;
+#mainContainer{
+    margin-top:5vh;
 }
 
-#container{
-    height: 98vh;
-    width: 98vw;
+/* .resultImg{
+    width: 20%;
+    height:auto;
+} */
+
+.logInContainer{
+    margin-top:10vh;
+}
+
+#loggedInContainer{
     display:grid;
-    grid-template-rows: 1fr 4fr 4fr 5fr;
+    grid-template-columns: 8fr 2fr;
+}
+#welcomeMessage{
+    display:grid;
+    align-self: center;
+    justify-self: left;
+    font-size: 130%;
+    font-weight: bold;
 }
 
-/*-------CSS for Results ----------*/
-
-.podcast {
-    font-family: monospace;
-    font-size: 12px;
-    /*display: flex;
-    flex-wrap: wrap;
-outline: 1px solid black;*/
+#logOutButton{
+    display:grid;
+    align-self: center;
+    justify-self: center;
 }
 
-.podcastImage {
-    height: 100px;
-    width: 100px
+.audioContainer{
+    display:grid;
+    align-content: center;
+    justify-content: right;
 }
 
-.h1 {
-    font-size: 15px;
-    font-style: bold;
-
+audio{
+    width:400px;
+    height:30px;
 }
-
-.h2 {
-    font-size: 14px;
-    font-style: italic, bold;
-    
-}
-
-.listenText {
-    font-size: 14px;
-    font-style: italic, bold;
-    color: red;
-    font-style: bold
+.boldWeight{
+    font-weight: bold;
 }

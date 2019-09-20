@@ -7,7 +7,8 @@ class User {
         await dataManager.getAllDataFromAPI(skill)
         let data = { podcast: dataManager.podcasts, book: dataManager.books, video:dataManager.videos }
         console.log("this is data: " + data)
-        renderer.render(RESULTS_TEMPLATE, data, RESULTS_AREA)
+        accordion.init(data)
+        //renderer.render(RESULTS_TEMPLATE, data, RESULTS_AREA)
     }
 
     async saveToDB(objectType, title) {

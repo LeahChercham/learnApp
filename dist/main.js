@@ -1,5 +1,6 @@
 const renderer = new Renderer()
 const dataManager = new DataManager()
+const accordion = new Accordion()
 
 let user
 
@@ -19,7 +20,6 @@ const RESULTS_AREA = "results-area"
 
 // ============= Log In and Log Out
 const logIn = function () {
-    //debugger
     const username = $("#username").val()
     let password = $("#password").val()
     if (username) {
@@ -53,9 +53,28 @@ const logOut = function () {
 // ==================================================================================
 
 // =============================== Search and Render ================================
+
+const setPreloader = function(){
+    $(".results-area").append(`<div class="preloader-wrapper big active">
+    <div class="spinner-layer spinner-red-only">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </div>`)
+}
+
 const search = function () {
     let skill = $("#skillInput").val()
-    user.search(skill).then(() => console.log("done"))
+    if(skill){
+    $(".results-area").empty()
+    setPreloader()
+    user.search(skill).then(() => console.log("done"))}
+    else {alert("Please enter a keyword")}
 }
 
 renderer.render(LOGIN_TEMPLATE, { isLoggedIn: false }, LOGIN_AREA)
@@ -64,8 +83,9 @@ $(".main-area").on("click", "#searchButton", search)
 // ================================== save and remove buttons =================================
 
 const saveToDB = function () {
-    let objectType = $(this).attr("class")
-    objectType = objectType.slice(4)
+    //debugger
+    let objectType = $(this).data("button")
+    //objectType = objectType.slice(4)
 
     if (objectType == "Podcast") {
         let episodeName = $(this).closest(".podcast").find(".episodeTitle").text()
@@ -83,8 +103,9 @@ const saveToDB = function () {
 }
 
 const removeFromDB = function () {
-    let objectType = $(this).attr("class")
-    objectType = objectType.slice(6)
+    //debugger
+    let objectType = $(this).data("button")
+    //objectType = objectType.slice(6)
 
     if (objectType == "Podcast") {
         let episodeName = $(this).closest(".savedPodcast").find(".savedEpisodeTitle").text()
@@ -176,3 +197,6 @@ Handlebars.registerHelper('shortDesc', function (description) {
     }
 });
 // =============================================================================================
+
+
+

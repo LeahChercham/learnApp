@@ -4,111 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
         integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="./materialize-css/dist/css/materialize.css"
+        media="screen,projection" />
+    <link rel="stylesheet" href="Accordion.css">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 
 <body>
-    <div id="container">
-        <div class="login-area"></div>
-        <div class="main-area"></div>
-        <div class="results-area"></div>
-        <div class="db-area"></div>
+    <div id="mainContainer">
+        <div class="login-area container"></div>
+        <div class="main-area container"></div>
+        <div class="results-area container"></div>
+        <div class="db-area container"></div>
     </div>
 
 
     <!-- Handlebars Templates-->
     <script id="login-template" type="text/x-handlebars-template">
     {{#if isLoggedIn}}
-        <div class="logContainer">
-                <div id="welcomeMessage">Hi {{username}}</div class="">
-                <button class="button" id="logOutButton" onclick=logOut()>Logout</button>
+        <div id="loggedInContainer">
+                    <span id="welcomeMessage"> Hi {{username}}</span>                    
+                    <span class="waves-effect waves-light btn-small" id="logOutButton" onclick=logOut()>Logout</span>   
         </div>
     {{else}}
-        <div class="logContainer">
-            <input id="username" placeholder="Username">
-            <input id="password" placeholder="Password" type="password">
-            <button class="button" id="logInButton" onclick=logIn()>Login</button>
+        <div class="container logInContainer">
+            <div class="row">
+                <div class="col l6 offset-l3 m6 offset-m3 s10 offset-s1">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                                <input id="username" placeholder="Username">
+                                <input id="password" placeholder="Password" type="password">
+                            <div class="card-action">
+                                <div class="waves-effect waves-light btn" id="logInButton" onclick=logIn()>Login</div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     {{/if}}
     </script>
 
     <script id="main-template" type="text/x-handlebars-template">
         <input type="text" placeholder="What skill do you want to improve?" id="skillInput">
-        <button class="button" id="searchButton">Show me Recommendations!</button>
+        <div class="waves-effect waves-light btn" id="searchButton">Show me Recommendations!</div>
 
         </div>
     </script>
 
     <script id="results-template" type="text/x-handlebars-template">
-        <div id="result">
-            <div class="result podcast">
+        <div id="result accordion">
+            <div class="accordion-title">Podcasts</div>
+            <div class="result podcast accordion-content">
                 {{#each podcast}}
-                <div class="podcast">
-                    <h1 class="episodeTitle">{{episodeTitle}}</h1>
-                    <h2 class="podcastName">{{podcastName}}</h2>
-                    <div><button class="savePodcast"><i class="fas fa-archive"></i><br></button></div>
-                    
-                    <div class="podcastImage">
-                            <img class="podcastImage" src={{image}} alt="image of podcast">
+                <div class="podcast container">
+                <div class="card small">
+                
+                    <div class="card-image waves-effect waves-block waves-light podcastImage">
+                            <img class="resultImg activator" src={{image}} alt="image of podcast">
                     </div>
-                    <div class="listenText">   Listen Right Here!   
-                        <audio controls duration src={{podcastLink}}></audio>
-                    
+                    <div class="card-action">
+                            <span class="episodeTitle card-title activator grey-text text-darken-4">{{episodeTitle}}<i class="material-icons right">more_vert</i></span>
+                            <!-- <p class="boldWeight">From</p> -->
+                            <div class="podcastName"> {{podcastName}}</div>
+                        <div class="audioContainer">
+                                    <audio controls duration src={{podcastLink}}></audio>
+                                </div>
                     </div>
+                           <div class="card-reveal">  
+                                <span class="card-title grey-text text-darken-4">{{episodeTitle}}<i class="material-icons right">close</i></span>         
                         <span class="podcastDescription" data-id="{{description}}">{{shortDesc description}}</span>
                         {{#if description}}
                         <span class="showMorePodcast" >
-                            <button class=descButton>Show more</button>
+                            <div class="descButton waves-effect waves-light btn">Show more</div>
                         </span>
                         {{/if}}
+                        </div>
                     </div>  
+                </div>
                 {{/each}}
             </div>
-            <div class="result book">
+            <div class="accordion-title">Books</div>
+            <div class="result book accordion-content">
                     {{#each book}}
                     <div class="book">
-                        <h1 class="bookTitle"><a href="{{buyLink}}">{{title}}</a></h1>
+                        <div class="bookTitle"><a href="{{buyLink}}">{{title}}</a></div>
                         {{#if subtitle}}
-                        <h2 class="bookSubtitle">{{subtitle}}</h2>
+                        <div class="bookSubtitle">{{subtitle}}</div>
                         {{/if}}
                         {{#each authors}}
-                        <h3 class="bookAuthor">{{authors}}</h3>
+                        <div class="bookAuthor">{{authors}}</div>
                         {{/each}}
-                        <div><button class="saveBook"><i class="fas fa-archive"></i><br></button></div>
+                        <div><div data-button="Book" class="saveBook waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
                         
                         <div class="bookImage">
-                                <img class="bookImage" src={{imgURL}} alt="image of book">
+                                <img class="resultImg" src={{imgURL}} alt="image of book">
                         </div>
                             <span class="bookDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                             {{#if description}}
                             <span class="showMoreBook" >
-                                <button class=descButton>Show more</button>
+                                <div class="descButton waves-effect waves-light btn">Show more</div>
                             </span>
                             {{/if}}
                         </div>  
                     {{/each}}
                 </div>
-            
-            <div class="resultVideo">
+            <div class="accordion-title">Video</div>
+            <div class="resultVideo accordion-content">
+                    {{#if video}}
                     {{#each video}}
                     <div class="video">
-                        <h1 class="videoTitle"><a href="{{link}}">{{title}}</a></h1>
-                        <h2 class="channelTitle">{{channelTitle}}</h2>
+                        <!-- <div class="videoTitle"><a href="{{link}}">{{title}}</a></div> -->
+                        <div class="channelTitle">{{channelTitle}}</div>
                         <iframe width="480" height="270" src= "https://www.youtube.com/embed/{{videoID}}"></iframe>
-                        <div><button class="saveVideo"><i class="fas fa-archive"></i><br></button></div>
+                        <div><div data-button="Video" class="saveVideo waves-effect waves-light btn"><i class="fas fa-archive"></i><br></div></div>
                         
                             <span class="videoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                             {{#if description}}
                             <span class="showMoreVideo" >
-                                <button class=descButton>Show more</button>
+                                <div class="descButton waves-effect waves-light btn">Show more</div>
                             </span>
                             {{/if}}
                         </div>  
                     {{/each}}
+                    {{else}}
+                    <div>No videos found.</div>
+                    {{/if}}
             </div>
         </div>
     </script>
@@ -117,56 +143,57 @@
     <script id="db-template" type="text/x-handlebars-template">
         <div class="db-container">
             <div id="savedPodcasts">
-                <h2>Listen to later:</h2>
+                <div>Listen to later:</div>
                 
                     {{#each podcast}}
                 <div class="savedPodcast">
                     <div class="savedPodcastName">{{podcastName}}</div>
                     <div class="savedEpisodeTitle">{{episodeTitle}}</div>
                     <div class="savedPodcastImage">
-                            <img class="savedPodcastImage" src={{image}} alt="image of podcast">
+                            <img class="resultImg" src={{image}} alt="image of podcast">
                     </div>
                         
                     <div><audio controls duration src={{podcastLink}}></audio></div>
-                    <div><button class="removePodcast"><i class="fas fa-trash"></i></button></div>
+                    <div><div data-button="Podcast" class="removePodcast waves-effect waves-light btn"><i class="fas fa-trash"></i></div></div>
                     </div>
 
                     {{/each}}
                     <img id="listenImage" src="./images\small-logo.png" alt="Powered by LISTEN NOTES">
             </div>
             <div id="savedBooks">
-                    <h2>Read later:</h2> 
+                    <div>Read later:</div> 
                         {{#each book}}
                     <div class="savedBook">
                         <div class="savedBookTitle">{{title}}</div>
                         {{#if subtitle}}
-                        <h2 class="savedbookSubtitle">{{subtitle}}</h2>
+                        <div class="savedbookSubtitle">{{subtitle}}</div>
                         {{/if}}
                         {{#each authors}}
-                        <h3 class="saved bookAuthor">{{authors}}</h3>
+                        <div class="saved bookAuthor">{{authors}}</div>
                         {{/each}}
                         <div class="savedbookImage">
-                                <img class="savedbookImage" src={{imgURL}} alt="image of book">
+                                <img class="resultImg" src={{imgURL}} alt="image of book">
                         </div>
 
-                        <div><button class="removeBook"><i class="fas fa-trash"></i></button></div>
+                        <div><div data-button="Book" class="removeBook waves-effect waves-light btn"><i class="fas fa-trash"></i></div></div>
                         </div>
                         {{/each}}     
                 </div>
                 <div class="savedVideos">
+                        <div>Watch later:</div> 
                         {{#each video}}
                         <div class="savedVideo">
                             <h1 class="savedVideoTitle"><a href="{{link}}">{{title}}</a></h1>
                             <h2 class="savedChannelTitle">{{channelTitle}}</h2>
-                            <!-- <iframe width="480" height="270" src= "https://www.youtube.com/embed/{{videoID}}"></iframe>
-                            <div><button class="saveVideo"><i class="fas fa-archive"></i><br></button></div>
+                            <iframe width="480" height="270" src= "https://www.youtube.com/embed/{{videoID}}"></iframe>
+                            <div><div data-button="Video" class="removeVideo waves-effect waves-light btn"><i class="fas fa-trash"></i><br></div></div>
                             
                                 <span class="savedVideoDescription" data-id="{{description}}">{{shortDesc description}}</span> 
                                 {{#if description}}
                                 <span class="showMoreVideo" >
-                                    <button class=descButton>Show more</button>
+                                    <div class="descButton waves-effect waves-light btn">Show more</div>
                                 </span>
-                                {{/if}}-->
+                                {{/if}}
                             </div>  
                         {{/each}}
                 </div>
@@ -181,6 +208,7 @@
     <script src="./handlebars/dist/handlebars.js"></script>
     <script src="./readmore-js/readmore.min.js"></script>
     <script src="./classes/Renderer.js"></script>
+    <script src="./classes/Accordion.js"></script>
     <script src="./classes/DataManager.js"></script>
     <script src="./classes/UserClass.js"></script>
     <script src="main.js"></script>

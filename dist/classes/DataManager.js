@@ -42,16 +42,16 @@ class DataManager {
 
     async getPodcastFromAPI(skill) {
         let response = await $.get(`/podcasts/${skill}`)
-        if (response) {
-            this.podcasts = response
-        }
+        let thisResponse = response
+        if (thisResponse) {
+            this.podcasts = thisResponse
+        }else {alert("no podcasts found")}
     }
 
     async getBooksFromAPI(skill) {
         let response = await $.get(`/books/${skill}`)
         if (response) {
             this.books = response
-            console.log (this.books)
         }
     }
 
@@ -60,14 +60,15 @@ class DataManager {
         if (response) {
             this.videos = response
             console.log(this.videos)
-        }
+        } else {alert("no videos found")}
     }
 
 
     async getAllDataFromAPI(skill) {
+
         await this.getPodcastFromAPI(skill)
         await this.getBooksFromAPI(skill)
-        await this.getVideosFromAPI(skill)
+        //await this.getVideosFromAPI(skill)
         
     }
 
