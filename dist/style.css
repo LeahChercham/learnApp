@@ -21,10 +21,11 @@
 }
 
 .logInContainer{
-    margin-top:10vh;
+    margin-top:15vh;
 }
 
 #loggedInContainer{
+    margin-top:5vh;
     display:grid;
     grid-template-columns: 8fr 2fr;
 }
@@ -107,7 +108,12 @@ audio{
 }
 
 
-.hideButton{
+/* .hideButton{
     position: relative;
     margin-top: 25vh;
+} */
+
+.blueBar{
+    height:1vmin;
+    background-color:#00838f;
 }

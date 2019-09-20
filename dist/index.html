@@ -22,6 +22,7 @@
         <div class="login-area container"></div>
         <div class="main-area container"></div>
         <div class="results-area container"></div>
+        
         <div class="db-area container"></div>
     </div>
 
@@ -59,6 +60,7 @@
     <div class="row">
         <div class="col l5 m5 s5 waves-effect waves-light btn" id="searchButton">Show me Recommendations!</div>
         <div class="col l5 offset-l2 m5 s5 offset-m2 offset-s2 showButton show btn waves-effect waves-light">Saved for Later</div>
+        <div class="col l5 offset-l2 m5 s5 offset-m2 offset-s2 hideButton hidden btn waves-effect waves-light">Close save for later</div>
     </div>
 
 
@@ -152,15 +154,17 @@
                     {{/if}}
             </div>
         </div>
+       
     </script>
 
 
     <script id="db-template" type="text/x-handlebars-template">
         <div class="db-container">
-                <div class="hideButton hidden btn waves-effect waves-light">Close save for later</div>
+                
             <div class="hidden">
-
+                <hr class="blueBar">
                     <div id="result accordion">
+                            
                             <div class="accordion-title">Podcasts</div>
                             <div class="result podcast accordion-content hiddenPodcast">
                                 <div class="hidePodcastButton"></div>
@@ -249,7 +253,8 @@
                         {{/each}}      -->
                 </div>
                 <div class="savedVideos">
-                        
+                    <div class="accordion-title">Videos</div>
+                     <div class="result video accordion-content">
                         {{#each video}}
                         <div class="savedVideo">
                             <h1 class="savedVideoTitle"><a href="{{link}}">{{title}}</a></h1>
@@ -263,8 +268,9 @@
                                     <div class="descButton waves-effect waves-light btn">Show more</div>
                                 </span>
                                 {{/if}}
-                            </div>  
+                        </div>  
                         {{/each}}
+                    </div>
                 </div>
             </div>
                 
