@@ -123,12 +123,19 @@ audio{
     grid-template-areas:
     "t"
     "v";
+    height:350px;
+    background-color:lightblue;
+    border-style: solid;
+    margin-top:3vmin;
+    justify-content: center;
+    align-content: center;
 }
 .channelInfo{
     grid-area: t;
     display: grid;
     grid-template-columns: 6fr 1fr;
     align-content: center;
+    justify-content: center;
 }
 .saveVideo{
     display: grid;
